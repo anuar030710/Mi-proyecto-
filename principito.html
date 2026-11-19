@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El principito: una animación</title>
+  <style>
+    :root { --gold: #f5d27a; --ink: #0b1026; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--ink); color: #f4f1ea; font-family: system-ui, sans-serif; overflow-x: hidden; }
+    .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(1px 1px at 20% 30%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 70% 60%, #fff 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 40% 80%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 85% 15%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 10% 90%, #fff 50%, transparent 51%);
+      background-size: 300px 300px; opacity: .7; }
+    .prince { position: fixed; z-index: 2; width: 70px; top: 0; left: 0; pointer-events: none; will-change: transform; }
+    .scene { position: relative; z-index: 1; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+    .card { max-width: 520px; text-align: center; opacity: 0; transform: translateY(40px); transition: opacity .9s ease, transform .9s ease; }
+    .card.visible { opacity: 1; transform: none; }
+    h2 { font-size: clamp(26px, 5vw, 40px); color: var(--gold); margin: 0 0 16px; font-weight: 600; }
+    p { font-size: clamp(16px, 2.6vw, 19px); line-height: 1.6; margin: 0; color: #e6e1d6; }
+    .planet { width: 160px; height: 160px; margin: 0 auto 24px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #f6c98a, #b5651d 70%); box-shadow: 0 0 60px rgba(245,210,122,.35);
+      animation: spin 18s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .orbit { width: 240px; height: 240px; margin: 0 auto 24px; border: 1px dashed rgba(245,210,122,.4); border-radius: 50%; position: relative; animation: spin 30s linear infinite; }
+    .orbit::after { content: ""; position: absolute; width: 14px; height: 14px; background: var(--gold); border-radius: 50%; top: -7px; left: 50%; margin-left: -7px; box-shadow: 0 0 12px var(--gold); }
+    .flower { font-size: 56px; margin-bottom: 12px; }
+    .end { min-height: 100vh; }
+    footer { position: relative; z-index: 1; text-align: center; padding: 40px 16px 60px; font-size: 13px; color: #8d88a0; }
+    @media (prefers-reduced-motion: reduce) { .planet, .orbit { animation: none; } .card { transition: none; } }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+
+  <svg class="prince" id="prince" viewBox="0 0 60 80" aria-hidden="true">
+    <circle cx="30" cy="22" r="14" fill="#f3d2a2"/>
+    <path d="M14 14 Q30 2 46 14 Q40 10 30 10 Q20 10 14 14Z" fill="#f5d27a"/>
+    <path d="M18 34 L42 34 L46 70 L14 70 Z" fill="#f5d27a"/>
+    <path d="M14 40 Q30 50 46 40" stroke="#c0392b" stroke-width="5" fill="none"/>
+    <circle cx="25" cy="20" r="2" fill="#0b1026"/>
+    <circle cx="35" cy="20" r="2" fill="#0b1026"/>
+  </svg>
+
+  <section class="scene">
+    <div class="card">
+      <h2>Un dibujo incomprendido</h2>
+      <p>Todo empezó con un dibujo que los adultos no entendían. Una serpiente que había tragado un animal, o un sombrero, según quien mirara.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div class="card">
+      <div class="planet" aria-hidden="true"></div>
+      <h2>Un planeta diminuto</h2>
+      <p>Un mundo tan pequeño que cabe en una casa. Allí crece una flor que necesita cuidado, y tres volcanes que hay que vigilar.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div class="card">
+      <div class="orbit" aria-hidden="true"></div>
+      <h2>Viajar entre estrellas</h2>
+      <p>De planeta en planeta, cada habitante muestra una manera distinta de ver el mundo: el poder, la vanidad, las cuentas, el deber. Todos olvidan lo que de verdad importa.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div class="card">
+      <div class="flower" aria-hidden="true">🌹</div>
+      <h2>Lo importante no se ve</h2>
+      <p>Lo esencial suele quedar oculto a simple vista. Se descubre con tiempo, atención y cariño hacia algo o alguien.</p>
+    </div>
+  </section>
+
+  <section class="scene end">
+    <div class="card">
+      <h2>Volver a casa</h2>
+      <p>Hay un camino de regreso que empieza con una despedida. Las estrellas siguen ahí, y cada una guarda una risa cuando alguien mira al cielo.</p>
+    </div>
+  </section>
+
+  <footer>Animación original: texto y dibujos propios, inspirados en el libro de Antoine de Saint-Exupéry.</footer>
+
+  <script>
+    // Revela cada tarjeta al entrar en pantalla.
+    const cards = document.querySelectorAll('.card');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.3 });
+    cards.forEach((c) => io.observe(c));
+
+    // El principito recorre la pantalla según el scroll.
+    const prince = document.getElementById('prince');
+    function moverPrincipito() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? window.scrollY / max : 0;
+      const x = 20 + p * (window.innerWidth - 110);
+      const y = 40 + Math.sin(p * Math.PI * 4) * 60 + p * (window.innerHeight * 0.5);
+      prince.style.transform = `translate(${x}px, ${y}px)`;
+    }
+    window.addEventListener('scroll', moverPrincipito, { passive: true });
+    window.addEventListener('resize', moverPrincipito);
+    moverPrincipito();
+  </script>
+</body>
+</html>
