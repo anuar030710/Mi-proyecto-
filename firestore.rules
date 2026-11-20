@@ -1,0 +1,61 @@
+rules_version = '2';
+
+// Reglas de seguridad de Inspirato Salma.
+// - Cualquiera puede VER la tienda y los productos (con su inventario).
+// - Las clientas solo pueden CREAR pedidos pendientes, bien formados. No pueden leerlos ni cambiarlos.
+// - Solo la(s) cuenta(s) de administradora pueden editar productos, inventario, datos y pedidos.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Correo(s) con permiso de administradora (en minúsculas).
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email != null
+        && request.auth.token.email.lower() in ['ytanuar10@gmail.com'];
+    }
+
+    function str(v, min, max) {
+      return v is string && v.size() >= min && v.size() <= max;
+    }
+
+    function validConsent(c) {
+      return c is map
+        && c.aceptaTerminos is map && c.aceptaTerminos.valor == true
+        && c.autorizaDatos is map && c.autorizaDatos.valor == true
+        && str(c.id, 1, 40) && str(c.fecha, 1, 40) && str(c.metodo, 1, 300);
+    }
+
+    function validPedido(d) {
+      return d.keys().hasOnly(['nombre', 'ciudad', 'nota', 'items', 'subtotal', 'consentimiento', 'estado', 'creado'])
+        && d.keys().hasAll(['nombre', 'ciudad', 'items', 'subtotal', 'consentimiento', 'estado', 'creado'])
+        && d.estado == 'pendiente'
+        && d.creado == request.time
+        && str(d.nombre, 1, 60)
+        && str(d.ciudad, 1, 60)
+        && (!('nota' in d) || str(d.nota, 0, 300))
+        && d.items is list && d.items.size() >= 1 && d.items.size() <= 30
+        && d.subtotal is number && d.subtotal >= 0
+        && validConsent(d.consentimiento);
+    }
+
+    match /tienda/{doc} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /productos/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /pedidos/{id} {
+      allow create: if validPedido(request.resource.data);
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Todo lo demás, cerrado.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

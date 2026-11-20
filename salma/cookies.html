@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Política de cookies · Inspirato Salma</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="legal">
+    <h1>Política de cookies</h1>
+    <p class="meta">Vigente desde <span data-cfg="legal.vigencia"></span></p>
+    <nav class="legal-nav" aria-label="Documentos legales">
+      <a href="terminos.html">Términos</a><a href="privacidad.html">Privacidad</a><a href="cookies.html">Cookies</a><a href="reembolsos.html">Reembolsos</a>
+    </nav>
+
+    <div class="box"><strong>En resumen:</strong> este sitio no usa cookies de publicidad, de analítica ni de redes sociales. Solo guarda en tu propio navegador lo indispensable para que funcione tu bolsa de compras y el comprobante de tu aceptación. Por eso no te mostramos un aviso para aceptar cookies.</div>
+
+    <h2>¿Qué guardamos en tu navegador?</h2>
+    <table>
+      <thead><tr><th>Nombre</th><th>Tipo</th><th>Para qué</th><th>Duración</th></tr></thead>
+      <tbody>
+        <tr><td><code>salma_bolsa</code></td><td>Almacenamiento local, necesario</td><td>Recordar las prendas que agregaste a tu bolsa</td><td>Hasta que envíes el pedido o borres los datos del navegador</td></tr>
+        <tr><td><code>salma_consentimientos</code></td><td>Almacenamiento local, necesario</td><td>Guardar tu copia del registro de aceptación (código, fecha, versión)</td><td>Últimos 20 registros, hasta que borres los datos del navegador</td></tr>
+        <tr><td><code>firebase:*</code> (solo administradora)</td><td>Almacenamiento local, necesario</td><td>Mantener abierta la sesión del panel de administración</td><td>Hasta cerrar sesión</td></tr>
+      </tbody>
+    </table>
+    <p>Esta información queda solo en tu dispositivo; nosotros no la leemos desde aquí. Las fuentes tipográficas están alojadas en nuestro propio sitio. Para mostrar el catálogo y el inventario actualizado, la página se conecta a Google Firebase, que no usa cookies de publicidad ni de seguimiento para esto.</p>
+
+    <h2>Enlaces a WhatsApp</h2>
+    <p>Cuando pulsas un botón de WhatsApp sales de este sitio hacia el servicio de Meta, que aplica sus propias cookies y políticas.</p>
+
+    <h2>¿Cómo borrarlos?</h2>
+    <p>Desde la configuración de tu navegador, en "Borrar datos de navegación" o "Datos de sitios". Si los borras, se vaciará tu bolsa.</p>
+
+    <h2>Si en el futuro usamos analítica o publicidad</h2>
+    <p>Si agregamos herramientas como Google Analytics o Meta Pixel, te pediremos tu autorización previa con un aviso en el que podrás aceptarlas o rechazarlas, y actualizaremos esta política.</p>
+  </main>
+  <div id="site-footer"></div>
+  <script src="config.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="common.js"></script>
+  <script type="module">
+    import { cargarTienda } from "./data.js";
+    Salma.init(window.SALMA_CONFIG);
+    const { cfg } = await cargarTienda();
+    Salma.init(cfg);
+  </script>
+</body>
+</html>
