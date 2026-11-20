@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es" data-type="product" data-radius="soft" data-buttons="pill" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Orvela: jerséis de lana de punto grueso</title>
+<meta name="description" content="Tres modelos de jersey de lana, de la XS a la XL, que se piden por correo con el modelo y la talla.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Orvela: jerséis de lana de punto grueso">
+<meta property="og:description" content="Tres modelos de jersey de lana, de la XS a la XL.">
+<meta property="og:image" content="share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#e2e2e2">
+<!-- <link rel="canonical" href="https://[el dominio de la marca]/"> : pendiente del dominio -->
+<meta name="site-kind" content="other">
+<meta name="page-type" content="product">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..700,0..100,0..1&family=Figtree:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<style>
+:root {
+  --p-bg: #e2e2e2; --p-surface: #d6d6d6; --p-ink: #7d0c14; --p-muted: #7a4a4e;
+  --p-accent: #7d0c14; --p-accent-ink: #e2e2e2; --p-action: #7d0c14; --p-action-ink: #e2e2e2;
+  --p-inv-bg: #7d0c14; --p-inv-surface: #862323; --p-inv-ink: #e2e2e2; --p-inv-muted: #d0b3af;
+  --p-inv-accent: #e2e2e2; --p-inv-accent-ink: #7d0c14; --p-inv-action: #e2e2e2; --p-inv-action-ink: #7d0c14;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-text: "Figtree", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.02em;
+  --display-tracking-xl: -0.028em;
+  --display-axes: 'SOFT' 30, 'WONK' 0;
+}
+</style>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js">
+<link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/picture-develops/moment.js">
+<style>
+  /* picture-develops: the section's one photograph, on the split's right column */
+  .develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(560px, var(--ly-fit)); }
+  .develop > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 1023px) { .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-7); } }
+  #modelos .tile__media { --tile-ratio: 1 / 1; }
+  /* strip: four 1:1 details from line to line */
+  .strip__img { margin: 0; aspect-ratio: 1; border-radius: var(--r-lg); overflow: hidden; }
+  @media (max-width: 639px) { #proceso .grid > .strip__img { grid-column: auto / span 6; } }
+  @media (min-width: 640px) and (max-width: 1023px) { #modelos .grid > .tile { grid-column: auto / span 4; } #modelos .tile__media { --tile-ratio: 3 / 5; } #proceso .grid > .strip__img { grid-column: auto / span 6; aspect-ratio: 4 / 3; } }
+  .strip__img > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* tall-small on the brand band */
+  .ts__tall { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(708px, var(--ly-fit, 708px)); }
+  .ts__tall > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ts__side { display: flex; flex-direction: column; justify-content: space-between; gap: var(--s-6); }
+  @media (max-width: 1023px) { .ts__tall { height: auto; aspect-ratio: 4 / 3; width: 100%; } }
+  @media (max-width: 639px) { .ts__tall { aspect-ratio: 16 / 9; } }
+  /* order: the product photograph beside the order card */
+  .order__img { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(600px, var(--ly-fit, 600px)); }
+  .order__img > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @media (max-width: 1023px) { .order__img { height: auto; aspect-ratio: 4 / 3; } }
+  /* phones: each section fits its screens */
+  @media (max-width: 639px) {
+    #modelos { --hm: 2; }
+    #modelos .grid > .tile { grid-column: 1 / -1; }
+    .develop { aspect-ratio: 2 / 1; }
+    .order__img { display: none; }
+  }
+  /* tablets: pictures lower so each section stays one screen */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .develop, .ts__tall, .order__img { aspect-ratio: 16 / 9; }
+    #contact .closing__links .footer__col { grid-column: auto / span 4; }
+  }
+</style>
+</head>
+<body>
+<!-- type: product
+     deal: hero photo (dealt twice: film needs a real film), nav nav-mega, close close-type, footer footer-dark,
+     rhythm brand-band, buttons pill, mark dots, grounds none (kind other)
+     palette oxblood-grey (shop palette: an oxblood dye on stone grey answers dyed wool on plain shelving), type fraunces
+     moments: picture-develops in #punto (the stitch close-up comes up like a print, once) -->
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Saltar al contenido</a>
+    <a class="nav__logo" href="#top"><span class="mark" data-mark="dots" aria-hidden="true"></span>Orvela</a>
+    <nav class="nav__links" aria-label="Principal">
+      <div class="nav__item">
+        <a class="nav__link" href="#modelos">Modelos <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <div class="menu-col span-3">
+              <p class="t-label">Jerséis</p>
+              <a href="#modelos">Canesú<span>Rombos en el pecho, 134 €</span></a>
+              <a href="#modelos">Rayas<span>Ocho colores, 112 €</span></a>
+              <a href="#modelos">Liso<span>Punto fino, 89 €</span></a>
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">Antes de pedir</p>
+              <a href="#tallas">Tallas<span>De la XS a la XL</span></a>
+              <a href="#tallas">Cuidado<span>Lavado a mano, en frío</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="#punto">Punto</a></div>
+      <div class="nav__item"><a class="nav__link" href="#proceso">Proceso</a></div>
+      <div class="nav__item"><a class="nav__link" href="#tallas">Tallas</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--primary" href="#pedido">Pedir un jersey</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menú">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero hero--photo" data-enter data-calm="left" style="--ly-pos: 72% 50%; --ly-pos-phone: 70% 50%" aria-labelledby="hero-h">
+    <picture class="hero__bg" data-phone-fill><source media="(max-width: 639px)" srcset="assets/img/photo-f38694356-780x975.webp 780w" sizes="100vw"><img src="assets/img/photo-f38694356.webp" srcset="assets/img/photo-f38694356-500.webp 500w, assets/img/photo-f38694356-960.webp 960w, assets/img/photo-f38694356-1280.webp 1280w, assets/img/photo-f38694356.webp 1920w" sizes="100vw" width="1920" height="1280" alt="Una pila de jerséis de lana doblados, en grises y crudo, sobre una mesa de madera" fetchpriority="high" data-source="stand-in" data-subject="product"></picture>
+    <div class="wrap"><div class="hero-text">
+      <div class="hero__text">
+        <h1 id="hero-h">Jerséis de lana para el invierno</h1>
+        <p class="hero__lead">Tres modelos de punto grueso, de <span data-assumed>89 €</span> a <span data-assumed>134 €</span>, en tallas de la XS a la XL. Nos escribes el modelo y la talla, y te confirmamos el envío.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="#pedido">Pedir un jersey<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a></div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section" id="modelos" aria-labelledby="modelos-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="modelos-h">Tres modelos de jersey. <span class="muted">Todos de lana, de la XS a la XL.</span></h2>
+      </div>
+      <div class="grid">
+        <a class="tile span-4" href="#pedido">
+          <div class="tile__media"><img src="assets/img/photo-f7244910-960.webp" srcset="assets/img/photo-f7244910-500.webp 500w, assets/img/photo-f7244910-960.webp 960w" sizes="(max-width: 639px) 118vw, 548px" width="960" height="722" alt="Jersey marrón oscuro con canesú de rombos crudos, extendido sobre una mesa de listones" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></div>
+          <div class="tile__head"><h3>Jersey de canesú</h3><span class="tile__price" data-assumed>134 €</span></div>
+          <p class="tile__facts">Cuello alto · rombos en el pecho y los puños</p>
+        </a>
+        <a class="tile span-4" href="#pedido">
+          <div class="tile__media"><img src="assets/img/photo-f192687656.webp" srcset="assets/img/photo-f192687656-500.webp 500w, assets/img/photo-f192687656-960.webp 960w, assets/img/photo-f192687656.webp 1280w" sizes="(max-width: 639px) 88vw, 411px" width="1280" height="1422" alt="Jersey ancho de rayas en ocho colores, colgado de una percha" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></div>
+          <div class="tile__head"><h3>Jersey de rayas</h3><span class="tile__price" data-assumed>112 €</span></div>
+          <p class="tile__facts">Corte holgado · ocho colores en franjas</p>
+        </a>
+        <a class="tile span-4" href="#pedido">
+          <div class="tile__media"><img src="assets/img/photo-f64814717.webp" srcset="assets/img/photo-f64814717-500.webp 500w, assets/img/photo-f64814717-960.webp 960w, assets/img/photo-f64814717.webp 1280w" sizes="(max-width: 639px) 134vw, 626px" width="1280" height="842" alt="Jersey liso de punto fino en color crudo, extendido sobre fondo blanco" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></div>
+          <div class="tile__head"><h3>Jersey liso</h3><span class="tile__price" data-assumed>89 €</span></div>
+          <p class="tile__facts">Punto fino · manga al codo · color crudo</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="punto" aria-labelledby="punto-h">
+    <div class="wrap">
+      <div class="grid">
+        <div class="span-6">
+          <div class="section-head">
+            <h2 id="punto-h">El punto de ochos, de cerca</h2>
+            <p>Los ochos cruzan seis puntos cada ocho vueltas. Por eso el jersey abriga más que uno liso del mismo peso.</p>
+          </div>
+          <ul class="rows">
+            <li><span class="rows__name">Cuerpo</span><span class="rows__value">Ochos sobre fondo de punto bobo</span></li>
+            <li><span class="rows__name">Puños y bajo</span><span class="rows__value">Elástico doble</span></li>
+            <li><span class="rows__name">Costuras</span><span class="rows__value">Remalladas, sin bordes por dentro</span></li>
+          </ul>
+        </div>
+        <figure class="develop span-6 start-7" data-moment="picture-develops"><img src="assets/img/photo-f63718371-960.webp" srcset="assets/img/photo-f63718371-500.webp 500w, assets/img/photo-f63718371-960.webp 960w" sizes="(max-width: 1023px) 100vw, 885px" width="960" height="608" alt="Punto de ochos en lana gris claro, visto de muy cerca" loading="lazy" decoding="async" data-source="stand-in" data-subject="detail"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proceso" aria-labelledby="proceso-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="proceso-h">Del ovillo al jersey</h2>
+        <p>La lana llega en madejas, se devana en ovillos, pasa por la tricotosa circular y termina en el remallado de las costuras.</p>
+        <p><a class="link" href="#modelos">Ver los modelos</a></p>
+      </div>
+      <div class="grid">
+        <figure class="strip__img span-3"><img src="assets/img/photo-f18608466.webp" srcset="assets/img/photo-f18608466-500.webp 500w, assets/img/photo-f18608466-960.webp 960w, assets/img/photo-f18608466.webp 1280w" sizes="(max-width: 639px) 64vw, 454px" width="1280" height="853" alt="Madejas de lana de colores" loading="lazy" decoding="async" data-source="stand-in" data-subject="material"></figure>
+        <figure class="strip__img span-3"><img src="assets/img/photo-f18608475.webp" srcset="assets/img/photo-f18608475-500.webp 500w, assets/img/photo-f18608475-960.webp 960w, assets/img/photo-f18608475.webp 1280w" sizes="(max-width: 639px) 44vw, 310px" width="1280" height="1255" alt="Un ovillo de lana verde y morada sobre una tela blanca" loading="lazy" decoding="async" data-source="stand-in" data-subject="material"></figure>
+        <figure class="strip__img span-3"><img src="assets/img/photo-f25491.webp" srcset="assets/img/photo-f25491-500.webp 500w, assets/img/photo-f25491-960.webp 960w, assets/img/photo-f25491.webp 1280w" sizes="(max-width: 639px) 64vw, 457px" width="1280" height="848" alt="Cilindro de una tricotosa circular tejiendo un tubo de punto blanco" loading="lazy" decoding="async" data-source="stand-in" data-subject="tool"></figure>
+        <figure class="strip__img span-3"><img src="assets/img/photo-f63439316.webp" srcset="assets/img/photo-f63439316-500.webp 500w, assets/img/photo-f63439316-960.webp 960w, assets/img/photo-f63439316.webp 1280w" sizes="(max-width: 639px) 57vw, 403px" width="1280" height="962" alt="Agujas de una tricotosa circular con hilo rojo y blanco" loading="lazy" decoding="async" data-source="stand-in" data-subject="tool"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ground-brand" id="tallas" aria-labelledby="tallas-h">
+    <div class="wrap">
+      <div class="grid">
+        
+        <div class="ts__side span-6">
+          <div class="stack-5">
+            <div class="section-head">
+              <h2 id="tallas-h">Tallas y cuidado</h2>
+              <p>Si dudas entre dos tallas, mide un jersey que ya te quede bien y elige por el contorno de pecho.</p>
+            </div>
+            <ul class="rows rows--spec">
+              <li><span class="rows__name">Tallas</span><span class="rows__value">XS a XL, pecho de 88 a 120 cm</span></li>
+              <li><span class="rows__name">Lana</span><span class="rows__value">100 %</span></li>
+              <li><span class="rows__name">Lavado</span><span class="rows__value">A mano, en agua fría</span></li>
+            </ul>
+            <a class="link" href="#pedido">Ver el formulario de pedido</a>
+          </div>
+        </div>
+        <figure class="ts__tall span-6 start-7"><img src="assets/img/photo-f56999835.webp" srcset="assets/img/photo-f56999835-500.webp 500w, assets/img/photo-f56999835-960.webp 960w, assets/img/photo-f56999835.webp 1280w" sizes="(max-width: 639px) 88vw, 1064px" width="1280" height="853" alt="Canesú gris con franjas claras de un jersey de lana, de cerca" loading="lazy" decoding="async" data-source="stand-in" data-subject="detail"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pedido" aria-labelledby="pedido-h">
+    <div class="wrap">
+      <div class="grid">
+        <div class="span-6">
+          <div class="section-head">
+            <h2 id="pedido-h">Pide tu jersey</h2>
+            <p>Escríbenos el modelo y la talla. Te contestamos con el precio final y el envío.</p>
+          </div>
+          <form class="form" action="mailto:pedidos@orvela.example" method="post" enctype="text/plain" data-endpoint="" data-sent="Tu pedido está enviado. Te contestamos con el precio final y el envío." novalidate>
+            <div class="field"><label for="f-name">Nombre</label>
+              <input id="f-name" name="nombre" type="text" autocomplete="name" required aria-describedby="f-name-err">
+              <p class="field__error" id="f-name-err" hidden>Escribe tu nombre.</p></div>
+            <div class="field"><label for="f-email">Correo electrónico</label>
+              <input id="f-email" name="correo" type="email" autocomplete="email" inputmode="email" required aria-describedby="f-email-err">
+              <p class="field__error" id="f-email-err" hidden>Escribe un correo con @, como nombre@ejemplo.com.</p></div>
+            <div class="field"><label for="f-model">Modelo</label>
+              <select id="f-model" name="modelo" required aria-describedby="f-model-err"><option value="">Elige un modelo</option><option>Jersey de canesú</option><option>Jersey de rayas</option><option>Jersey liso</option></select>
+              <p class="field__error" id="f-model-err" hidden>Elige el modelo que quieres.</p></div>
+            <div class="field"><label for="f-size">Talla</label>
+              <select id="f-size" name="talla" required aria-describedby="f-size-err"><option value="">Elige una talla</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+              <p class="field__error" id="f-size-err" hidden>Elige tu talla.</p></div>
+            <div class="btn-row"><button class="btn btn--primary" type="submit">Enviar el pedido</button></div>
+            <p class="form__status" role="status" data-form-status></p>
+          </form>
+        </div>
+        <figure class="order__img span-6 start-7"><img src="assets/img/photo-f3852967-960.webp" srcset="assets/img/photo-f3852967-500.webp 500w, assets/img/photo-f3852967-960.webp 960w" sizes="(max-width: 1023px) 100vw, 800px" width="960" height="722" alt="Jersey marrón de ochos, doblado, con la manga a la vista" loading="lazy" decoding="async" data-source="stand-in" data-subject="product"></figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer closing footer--dark ground-inverse" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Pide tu jersey de lana</h2>
+        <p>Tres modelos, de la XS a la XL.</p>
+      </div>
+      <a class="btn btn--primary btn--xl" href="#pedido">Pedir un jersey<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-6 stack-4">
+          <a class="nav__logo" href="#top"><span class="mark" data-mark="dots" aria-hidden="true"></span>Orvela</a>
+          <p class="footer__lede">Jerséis de lana de punto grueso, en tres modelos.</p>
+        </div>
+        <div class="span-2 footer__col"><h3>Modelos</h3><ul><li><a href="#modelos">Los tres modelos</a></li><li><a href="#punto">El punto</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Antes de pedir</h3><ul><li><a href="#tallas">Tallas y cuidado</a></li><li><a href="#proceso">Proceso</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Contacto</h3><ul><li><a href="mailto:hola@orvela.example">Escríbenos</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 Orvela</span>
+        <div class="socials"></div>
+        <a class="credits" href="credits.html">Fotografías vía Wikimedia Commons</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
+</body>
+</html>
