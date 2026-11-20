@@ -27,8 +27,14 @@ jobs:
         if: steps.check.outputs.ok == 'true'
         with:
           node-version: 22
-      - name: Publicar
+      - name: Publicar página
         if: steps.check.outputs.ok == 'true'
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/sa.json
-        run: npx --yes firebase-tools@15.37.0 deploy --only hosting,firestore:rules --non-interactive
+        run: npx --yes firebase-tools@15.37.0 deploy --only hosting --non-interactive
+      - name: Publicar reglas de seguridad
+        if: steps.check.outputs.ok == 'true'
+        continue-on-error: true
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/sa.json
+        run: npx --yes firebase-tools@15.37.0 deploy --only firestore:rules --non-interactive
