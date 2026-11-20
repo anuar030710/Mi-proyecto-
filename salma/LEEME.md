@@ -4,31 +4,42 @@ Tienda en HTML puro, sin servidor: catálogo → bolsa → pedido por WhatsApp a
 
 | Archivo | Para qué |
 |---|---|
-| `index.html` | Tienda (catálogo, bolsa, formulario de pedido) |
-| `config.js` | **Todo lo editable**: precios, colores, tallas, fotos, WhatsApp, datos legales |
-| `editor.html` | Editor visual de `config.js` (no está enlazado desde la tienda) |
+| `index.html` | Tienda (catálogo con inventario, bolsa, formulario de pedido) |
+| `admin.html` | **Panel de administración** con contraseña: productos, fotos, precios, colores, inventario por talla, pedidos y datos de la tienda |
+| `firebase-config.js` | Conexión con tu proyecto de Firebase |
+| `config.js` | Catálogo inicial (y respaldo si Firebase no está conectado) |
+| `../firestore.rules` | Reglas de seguridad: solo la administradora edita |
 | `terminos.html`, `privacidad.html`, `cookies.html`, `reembolsos.html` | Páginas legales |
-| `img/` | Fotos de productos (WebP, 900 px) |
 
-## Cómo editar
+## Cómo se edita
 
-1. Abre `editor.html` en el navegador.
-2. Cambia precios, nombres, colores (con selector de color), tallas, fotos, disponibilidad.
-3. Pulsa **Descargar config.js** y reemplaza el `config.js` de la carpeta.
-4. Si agregas fotos, cópialas a `img/`.
+Entra a **`/admin`** de tu página con tu correo y contraseña. Las clientas pueden ver esa
+pantalla, pero sin tu contraseña no pueden ver pedidos ni cambiar nada: lo bloquean las reglas
+de Firebase, no solo la página.
 
-Los precios de ejemplo (45.000 – 69.000) son **provisionales**: pon los tuyos.
+- **Productos** → toca uno → cambia foto, nombre, precio, colores, tallas e inventario → **Guardar**.
+- **Pedidos** → cada pedido llega como *pendiente*. Cuando la clienta pague, toca **Confirmar venta**
+  y se descuentan las unidades. **Anular venta** las devuelve. Una talla en 0 sale "agotada" y un
+  producto con todas sus tallas en 0 sale "Agotado".
+- **Tienda** → WhatsApp, medios de pago y datos legales.
 
-## Antes de publicar — obligatorio
+## Configurar Firebase (una sola vez)
 
-En `config.js` → `legal`, completa los campos que dicen `[COMPLETAR]` (nombre o razón social,
-C.C./NIT, dirección y correo). Mientras falten, la página muestra una franja amarilla.
-El Estatuto del Consumidor (Ley 1480, art. 50) exige que quien vende por internet muestre su
-identidad, documento, dirección, teléfono y correo.
+1. En console.firebase.google.com, crea el proyecto (plan gratis Spark, sin Analytics).
+2. **Build → Firestore Database → Create database**, ubicación `nam5 (United States)`, modo producción.
+3. **Build → Authentication → Get started → Email/Password → Enable**. En **Users → Add user**,
+   crea tu cuenta de administradora. En **Settings → User actions**, desactiva *Enable create (sign-up)*.
+4. **Configuración del proyecto (⚙️) → General → Tus apps → Web (`</>`)**: registra la app y copia
+   el objeto `firebaseConfig`. Se pega en `firebase-config.js` (no es secreto).
+5. **Configuración del proyecto → Cuentas de servicio → Generar nueva clave privada**. Descarga el
+   `.json` y pega **todo su contenido** en GitHub → Settings → Secrets and variables → Actions →
+   **New repository secret**, con el nombre `FIREBASE_SERVICE_ACCOUNT`. **Este sí es secreto: no lo
+   compartas con nadie.**
+6. Pon el ID del proyecto en `.firebaserc` y tu correo en `firestore.rules` (en lugar de `ADMIN_EMAIL`).
 
-## Publicar gratis
-
-GitHub Pages (Settings → Pages → rama y carpeta), Netlify o Cloudflare Pages: sube la carpeta `salma/` tal cual.
+Desde entonces, cada cambio subido a GitHub se publica solo en `https://ID-DEL-PROYECTO.web.app`
+(pestaña **Actions** de GitHub para ver si salió bien). Al entrar por primera vez al panel, toca
+**Cargar catálogo actual** y pon el inventario de cada producto.
 
 ---
 
@@ -45,8 +56,9 @@ Incluye el uso de WhatsApp/Meta y los límites de la Ley 2300 de 2023 para mensa
 
 ### 3. Política de cookies — `cookies.html` ✅ · ¿Necesitas consentimiento? **No, por ahora.**
 - La página **no usa cookies**; solo guarda en el navegador la bolsa y la copia del registro de
-  aceptación (almacenamiento estrictamente necesario).
-- Las fuentes están alojadas en tu sitio (no se llama a Google Fonts) y no hay analítica ni píxeles.
+  aceptación, y en el panel la sesión de la administradora (almacenamiento estrictamente necesario).
+- Las fuentes están alojadas en tu sitio y no hay analítica ni píxeles. Firebase se usa solo para
+  datos de la tienda, no para rastrear.
 - Colombia no tiene ley específica de cookies; lo que aplica es la Ley 1581. Como no hay rastreo, no hace falta banner.
 - **Si agregas Google Analytics, Meta Pixel, TikTok Pixel, etc., SÍ necesitarás** un aviso de
   consentimiento previo con opción de rechazar, y actualizar `cookies.html`.
@@ -62,7 +74,8 @@ de cada casilla y versión de cada documento. Queda en tres sitios:
 1. **Dentro del mensaje de WhatsApp** que te llega (es tu prueba principal — no borres esos chats;
    exporta los chats o haz copia de seguridad).
 2. En el navegador de la clienta (`salma_consentimientos`).
-3. **Opcional, recomendado:** en una Google Sheet tuya. Pasos:
+3. **En Firebase**, junto con el pedido: lo ves en el panel → Pedidos → "Registro de consentimiento".
+4. (Alternativa sin Firebase) en una Google Sheet tuya. Pasos:
    - Crea una hoja en Google Sheets → Extensiones → Apps Script, y pega:
      ```js
      function doPost(e) {
@@ -76,7 +89,7 @@ de cada casilla y versión de cada documento. Queda en tres sitios:
      }
      ```
    - Implementar → Nueva implementación → Aplicación web → Acceso: "Cualquier persona" → copia la URL.
-   - Pégala en `config.js` → `urlRegistroConsentimiento` (o en el editor).
+   - Pégala en `config.js` → `urlRegistroConsentimiento`.
 
 Si cambias el texto de los términos o de la privacidad, sube la versión (`1.0` → `1.1`) para saber
 qué versión aceptó cada persona.

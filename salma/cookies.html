@@ -23,9 +23,10 @@
       <tbody>
         <tr><td><code>salma_bolsa</code></td><td>Almacenamiento local, necesario</td><td>Recordar las prendas que agregaste a tu bolsa</td><td>Hasta que envíes el pedido o borres los datos del navegador</td></tr>
         <tr><td><code>salma_consentimientos</code></td><td>Almacenamiento local, necesario</td><td>Guardar tu copia del registro de aceptación (código, fecha, versión)</td><td>Últimos 20 registros, hasta que borres los datos del navegador</td></tr>
+        <tr><td><code>firebase:*</code> (solo administradora)</td><td>Almacenamiento local, necesario</td><td>Mantener abierta la sesión del panel de administración</td><td>Hasta cerrar sesión</td></tr>
       </tbody>
     </table>
-    <p>Esta información queda solo en tu dispositivo; nosotros no la leemos desde aquí. Las fuentes tipográficas están alojadas en nuestro propio sitio, así que no se conecta con Google ni con otros terceros al cargar la página.</p>
+    <p>Esta información queda solo en tu dispositivo; nosotros no la leemos desde aquí. Las fuentes tipográficas están alojadas en nuestro propio sitio. Para mostrar el catálogo y el inventario actualizado, la página se conecta a Google Firebase, que no usa cookies de publicidad ni de seguimiento para esto.</p>
 
     <h2>Enlaces a WhatsApp</h2>
     <p>Cuando pulsas un botón de WhatsApp sales de este sitio hacia el servicio de Meta, que aplica sus propias cookies y políticas.</p>
@@ -38,6 +39,13 @@
   </main>
   <div id="site-footer"></div>
   <script src="config.js"></script>
+  <script src="firebase-config.js"></script>
   <script src="common.js"></script>
+  <script type="module">
+    import { cargarTienda } from "./data.js";
+    Salma.init(window.SALMA_CONFIG);
+    const { cfg } = await cargarTienda();
+    Salma.init(cfg);
+  </script>
 </body>
 </html>

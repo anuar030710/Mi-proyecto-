@@ -2,7 +2,7 @@
    datos legales, enlaces de WhatsApp y registro de consentimiento.
    No necesitas editar este archivo: todo se cambia en config.js. */
 (function () {
-  const cfg = window.SALMA_CONFIG;
+  let cfg = window.SALMA_CONFIG;
   const $ = (s, r = document) => r.querySelector(s);
 
   const get = (path) => path.split(".").reduce((o, k) => (o == null ? o : o[k]), cfg);
@@ -99,9 +99,13 @@
   }
   const fechaCO = (iso) => new Date(iso).toLocaleString("es-CO", { timeZone: "America/Bogota", dateStyle: "short", timeStyle: "short" });
 
-  window.Salma = { cfg, $, esc, money, waLink, recordConsent, fechaCO, waIcon };
+  function init(newCfg) {
+    cfg = newCfg || cfg;
+    window.Salma.cfg = cfg;
+    header();
+    footer();
+    fillData();
+  }
 
-  header();
-  footer();
-  fillData();
+  window.Salma = { cfg, $, esc, money, waLink, recordConsent, fechaCO, waIcon, init };
 })();

@@ -26,7 +26,7 @@ window.SALMA_CONFIG = {
     "telefono": "314 502 6686",
     "vigencia": "2026-11-20",
     "versionTerminos": "1.0",
-    "versionPrivacidad": "1.0",
+    "versionPrivacidad": "1.1",
     "garantiaMeses": 1,
     "diasEntrega": "2 a 5 días hábiles",
     "costoEnvio": "Se informa por WhatsApp según tu ciudad antes de pagar"

@@ -44,6 +44,7 @@
     <ul>
       <li><strong>Transportadoras</strong>: nombre, dirección y teléfono, solo para entregar tu pedido.</li>
       <li><strong>WhatsApp (Meta Platforms)</strong>: la conversación ocurre en su servicio, que puede almacenar información fuera de Colombia según sus propias políticas. Al escribirnos por WhatsApp aceptas esa transferencia, que es necesaria para atenderte.</li>
+      <li><strong>Google Firebase (Google LLC)</strong>: aloja esta página y guarda los pedidos (nombre, ciudad, nota, prendas y registro de aceptación) en servidores de Google en Estados Unidos, país que la Superintendencia de Industria y Comercio reconoce con nivel adecuado de protección. Google actúa como encargado del tratamiento.</li>
       <li><strong>Bancos y billeteras</strong> (Nequi, Bancolombia) cuando realizas el pago.</li>
       <li>Autoridades, cuando una ley u orden judicial lo exija.</li>
     </ul>
@@ -63,16 +64,23 @@
     </ul>
 
     <h2>8. Prueba de la autorización</h2>
-    <p>Cuando envías un pedido, el formulario tiene dos casillas separadas y sin marcar: una para aceptar los términos y otra para autorizar el tratamiento de datos. Guardamos un registro con un código único, la fecha y hora, el texto exacto que aceptaste y la versión de cada documento. Ese registro viaja dentro del mensaje de WhatsApp que nos envías y puede guardarse también en nuestra hoja de registro.</p>
+    <p>Cuando envías un pedido, el formulario tiene dos casillas separadas y sin marcar: una para aceptar los términos y otra para autorizar el tratamiento de datos. Guardamos un registro con un código único, la fecha y hora, el texto exacto que aceptaste y la versión de cada documento. Ese registro se guarda junto con tu pedido en nuestra base de datos y además viaja dentro del mensaje de WhatsApp que nos envías.</p>
 
     <h2>9. Seguridad</h2>
-    <p>Usamos solo los canales indicados, limitamos el acceso a los datos a quien atiende tu pedido y no los publicamos. Ninguna transmisión por internet es 100 % segura, pero tomamos medidas razonables para proteger tu información.</p>
+    <p>Los pedidos solo pueden ser consultados por la administradora de la tienda, con usuario y contraseña; ninguna otra persona que visite la página puede verlos. Usamos solo los canales indicados y no los publicamos. Ninguna transmisión por internet es 100 % segura, pero tomamos medidas razonables para proteger tu información.</p>
 
     <h2>10. Cambios</h2>
     <p>Si cambiamos esta política de forma importante, publicaremos la nueva versión aquí y, si cambia la finalidad, te pediremos una nueva autorización.</p>
   </main>
   <div id="site-footer"></div>
   <script src="config.js"></script>
+  <script src="firebase-config.js"></script>
   <script src="common.js"></script>
+  <script type="module">
+    import { cargarTienda } from "./data.js";
+    Salma.init(window.SALMA_CONFIG);
+    const { cfg } = await cargarTienda();
+    Salma.init(cfg);
+  </script>
 </body>
 </html>

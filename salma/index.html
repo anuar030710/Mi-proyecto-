@@ -68,7 +68,7 @@
         <p class="muted" id="p-pieces" style="margin:0"></p>
         <p class="price" id="p-price" style="margin:0"></p>
         <fieldset><legend>Color</legend><div class="opts" id="p-colors"></div></fieldset>
-        <fieldset><legend>Talla</legend><div class="opts" id="p-sizes"></div></fieldset>
+        <fieldset><legend>Talla</legend><div class="opts" id="p-sizes"></div><p class="stock-note" id="p-stock" aria-live="polite"></p></fieldset>
         <fieldset>
           <legend>Cantidad</legend>
           <div class="qty"><button type="button" id="q-minus" aria-label="Menos">−</button><output id="q-val">1</output><button type="button" id="q-plus" aria-label="Más">+</button></div>
@@ -122,7 +122,8 @@
   </dialog>
 
   <script src="config.js"></script>
+  <script src="firebase-config.js"></script>
   <script src="common.js"></script>
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
