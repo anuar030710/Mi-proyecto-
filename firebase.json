@@ -40,12 +40,17 @@
         "type": 301
       },
       {
-        "regex": "^/(?i:admin)(?:/|\\.html)?$",
+        "source": "/editor",
         "destination": "/admin",
         "type": 301
       },
       {
-        "source": "/editor",
+        "source": "/Admin",
+        "destination": "/admin",
+        "type": 301
+      },
+      {
+        "source": "/ADMIN",
         "destination": "/admin",
         "type": 301
       }
