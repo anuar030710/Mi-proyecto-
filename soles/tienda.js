@@ -106,8 +106,8 @@ if (form) {
     }
     lineas.push(`Entrega: ${form.querySelector('#f-entrega').value}`);
     lineas.push('');
-    lineas.push(`Registro de aceptación ${registro.id}: el ${fechaColombia(new Date(registro.fecha_utc))} (hora de Colombia) marqué en la página la casilla que acepta los Términos y condiciones ${registro.documentos.terminos}, la Política de privacidad ${registro.documentos.privacidad} y la Política de cambios ${registro.documentos.reembolsos}.`);
-    lineas.push(`Promociones y sorteos por WhatsApp: ${promos.checked ? 'sí, autorizo' : 'no'}.`);
+    lineas.push(`Acepto términos, privacidad y cambios (v1, nov. 2026). Registro ${registro.id}, ${fechaColombia(new Date(registro.fecha_utc))}.`);
+    lineas.push(`Promociones por WhatsApp: ${promos.checked ? 'sí' : 'no'}.`);
     const texto_final = lineas.join('\n');
     form.querySelector('input[name="text"]').value = texto_final;
     // se abre con un enlace real: funciona en cualquier sitio, también donde el navegador bloquea ventanas nuevas

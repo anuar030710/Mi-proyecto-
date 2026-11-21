@@ -9,10 +9,10 @@
         se envía también ahí como JSON. */
 
 export const VERSIONES = {
-  terminos: 'v1 del 21-11-2026',
-  privacidad: 'v1 del 21-11-2026',
-  reembolsos: 'v1 del 21-11-2026',
-  cookies: 'v1 del 21-11-2026',
+  terminos: 'v1 de noviembre de 2026',
+  privacidad: 'v1 de noviembre de 2026',
+  reembolsos: 'v1 de noviembre de 2026',
+  cookies: 'v1 de noviembre de 2026',
 };
 
 const CLAVE = 'soles-consentimientos';
