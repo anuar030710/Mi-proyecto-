@@ -1,0 +1,439 @@
+{
+ "start": "2026-11-21T02:50:33.375Z",
+ "round": 3,
+ "idle": 0,
+ "errors": 0,
+ "status": "open",
+ "history": [
+  {
+   "at": "2026-11-21T03:27:15.268Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 5,
+   "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-21T03:30:54.821Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 1,
+   "round": 2,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-21T03:33:00.653Z",
+   "mode": "manual",
+   "status": "open",
+   "fails": 1,
+   "round": 3,
+   "reused": false,
+   "stopHookActive": false
+  }
+ ],
+ "max": 3,
+ "marker": {
+  "page": "index.html",
+  "url": null,
+  "root": null,
+  "kind": "product",
+  "category": "maquillaje",
+  "primary": "Pedir por WhatsApp",
+  "rounds": 3,
+  "start": "2026-11-21T02:50:33.375Z",
+  "by": "gate.mjs --start"
+ },
+ "manual": true,
+ "roundKey": "292d9973a6d4152a:720cc624",
+ "roundFree": false,
+ "idleFree": false,
+ "blockKey": null,
+ "fp": "292d9973a6d4152a",
+ "page": "index.html",
+ "found": {
+  "fails": [
+   {
+    "check": "copy-headings",
+    "where": "h2#rutina-h \"Una rutina de día en tres pasos\"",
+    "msg": "\"Una rutina de día en tres pasos\" names no product, part, place or section (8 headings like it; at most one brand line per page) (and 7 more like it: \"Entregas, pagos y cambio\", \"Cambios y reembolsos\", \"Preguntas sobre pedidos \", \"¿Qué datos me piden para\", ...)",
+    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "copy-headings"
+    ],
+    "wheres": [
+     "h2#rutina-h \"Una rutina de día en tres pasos\""
+    ]
+   },
+   {
+    "check": "phone-number",
+    "where": "div.closing__cta.close--word > div.section-head--split > div > p.t-lead \"+57 305 455 6549\"",
+    "msg": "a phone number in international format: \"+57 305 455 6549\"; a visitor can dial it and reach a stranger (and 3 more like it: div.grid > div.span-3.footer__col:nth-of-type(4) > ul > li:nth-of-type(1), div.section-head--split > div > p.t-lead > a.link, div.span-3.footer__col:nth-of-type(4) > ul > li:nth-of-type(1) > a)",
+    "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "phone-number"
+    ],
+    "wheres": [
+     "div.closing__cta.close--word > div.section-head--split > div > p.t-lead \"+57 305 455 6549\""
+    ]
+   },
+   {
+    "check": "photo-upscale",
+    "where": "section#preguntas > div.wrap.grid > div.frame.frame--photo > img.frame__img \"img: Esponja de maquillaje color durazno\"",
+    "msg": "photo-f85232888-500.webp: 390x491 shown at 342x768, blown up 1.56x",
+    "fix": "use a source at least as wide as the picture is shown (twice that for sharp screens)",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "photo-upscale"
+    ],
+    "wheres": [
+     "section#preguntas > div.wrap.grid > div.frame.frame--photo > img.frame__img \"img: Esponja de maquillaje color durazno\""
+    ]
+   },
+   {
+    "check": "hero-lines",
+    "where": "section.hero h1",
+    "msg": "the check fills the h1 to 40 characters (this hero's maxChars in heroes.json), not the page's own: it takes 3 lines at 390, 2 at most",
+    "fix": "the check fills the h1 to this hero's maxChars, not your own: take the next type pairing the deal printed (start.mjs); when the h1 is final and fits, waive it (target: section.hero h1)",
+    "widths": [
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "hero-lines"
+    ],
+    "wheres": [
+     "section.hero h1"
+    ]
+   }
+  ],
+  "warns": [
+   {
+    "check": "scroll-reveal",
+    "where": "section#rutina \"Una rutina de día en tres pasos Lo que u\"",
+    "msg": "starts \"opacity\" (0.4 s) the moment it is scrolled into view (an IntersectionObserver) on div.mo-ph__words (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "pinned",
+    "where": "section#rutina > div.wrap.mo-ph \"Una rutina de día en tres pasos Lo que u\"",
+    "msg": "held on screen for 2 screens of scroll (position: sticky) while the page moves on (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)",
+    "fix": "let the section scroll with the page",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "cta",
+    "where": "section#rutina \"Una rutina de día en tres pasos\"",
+    "msg": "a section over 1.5 screens long with no link or button in it",
+    "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-buttons",
+    "where": "header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"Pedir por WhatsApp\"",
+    "msg": "\"Pedir por WhatsApp\" does not start with a verb (book, buy, try, start, get, see...)",
+    "fix": "label buttons with a verb and what the visitor gets (\"Book a room\", \"Start free trial\")",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#top > section.hero.hero--product / section#productos",
+    "msg": "116px between these sections, -47% against the median 218px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#pedido / section#rutina",
+    "msg": "348px between these sections, +60% against the median 218px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#rutina / section#envios",
+    "msg": "148px between these sections, -32% against the median 218px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-credit",
+    "where": "(the page text)",
+    "msg": "1 library source (wikimedia): the page credits wikimedia; confirm each shows the client's own product, place or people",
+    "fix": "confirm the library photograph shows the client's own product, place or people; otherwise replace it",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "header.nav > div.wrap.nav__bar > a.nav__logo \"Soles Store\"",
+    "msg": "\"Soles Store\" opens a section headed \"Tienda de maquillaje en Caucasia\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "label-centre",
+    "where": "header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"Pedir por WhatsApp\"",
+    "msg": "its label sits 18px off-centre (25px of room at the left, 43px at the right) (and 1 more like it: \"Pedir por WhatsApp\")",
+    "fix": "centre the label in its button, or fill the empty side with an icon",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-current",
+    "where": "header.nav",
+    "msg": "the nav stays on screen with 4 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)",
+    "fix": "mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "action-repeat",
+    "where": "header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"pedir por whatsapp\"",
+    "msg": "\"pedir por whatsapp\" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it",
+    "fix": "show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "assumed",
+    "where": "div.hero__head:nth-of-type(1) > div:nth-of-type(1) > p.hero__lead > span \"$18.900\"",
+    "msg": "9 facts marked as assumed, for the report: \"$18.900\", \"$32.900\", \"$24.900\", \"$16.900\", \"$22.900\", \"$39.900\", \"$19.900\", \"$18.900\", \"$45.900\"",
+    "fix": "list each assumed fact in the report for the client to confirm, or take it from the brief",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav",
+    "where": "header.nav > div.wrap.nav__bar > button.nav__toggle",
+    "msg": "the nav is lopsided: its last item ends 13px inside the content's edge (366px), while its first starts on the other edge",
+    "fix": "start the nav's first item and end its last on the content's two edges",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "no-visual",
+    "where": "section#productos \"Precios del maquillaje. En pesos colombi\"",
+    "msg": "pictures, effects and mocks cover 24% of this section; a feature section needs a visual (about 25% or more)",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "no-visual",
+    "where": "section#envios \"Entregas, pagos y cambios\"",
+    "msg": "pictures, effects and mocks cover 18% of this section; a feature section needs a visual (about 25% or more)",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "cta",
+    "where": "section#preguntas \"Preguntas sobre pedidos y datos\"",
+    "msg": "a section over 1.5 screens long with no link or button in it",
+    "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#productos / section#pedido",
+    "msg": "194px between these sections, +41% against the median 138px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#envios / section#preguntas",
+    "msg": "uneven space at the edge of a band: 94px outside its edge, 48px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "proximity",
+    "where": "section#pedido > div.wrap.grid > div.frame.frame--photo \"Tu pedido por WhatsApp Lo que agregues a\"",
+    "msg": "stacked at this width, the visual starts 14px under the text and buttons above it (\"Tu pedido por WhatsApp Lo que \"): it reads glued to them",
+    "fix": "give the stacked split the section's own gap between text and visual (40px or more on a phone)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-set",
+    "where": "div.wrap > div.grid.grid--top > div.frame.frame--photo > img.frame__img \"photo-f80527912-960.webp\"",
+    "msg": "8 photographs in more than one look: saturation from 0.02 to 0.45; the odd one out is photo-f80527912-960.webp",
+    "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "orphan",
+    "where": "div.grid > div.span-3.footer__col:nth-of-type(4) > ul > li:nth-of-type(1) \"WhatsApp +57 305 455 6549\"",
+    "msg": "its last line holds only \"6549\"",
+    "fix": "rebalance the text (text-wrap: pretty, or a shorter line) so the last line holds more than one short word",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "unit-break",
+    "where": "ol.mo-ph__list > li.mo-ph__ch:nth-of-type(3) > div.mo-ph__words > p \"Rubor desde la mejilla hacia la sien y d\"",
+    "msg": "\"20 cm\" breaks across two lines: the number ends one line and its unit starts the next",
+    "fix": "keep a number with its unit: a no-break space (&nbsp;) between them",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   }
+  ],
+  "crashed": [],
+  "seconds": {
+   "consistency": 111,
+   "layout": 3
+  }
+ },
+ "open": [
+  {
+   "check": "photo-upscale",
+   "where": "section#preguntas > div.wrap.grid > div.frame.frame--photo > img.frame__img \"img: Esponja de maquillaje color durazno\"",
+   "msg": "photo-f85232888-500.webp: 390x491 shown at 342x768, blown up 1.56x",
+   "fix": "use a source at least as wide as the picture is shown (twice that for sharp screens)",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "photo-upscale"
+   ],
+   "wheres": [
+    "section#preguntas > div.wrap.grid > div.frame.frame--photo > img.frame__img \"img: Esponja de maquillaje color durazno\""
+   ]
+  }
+ ],
+ "waived": [
+  {
+   "check": "copy-headings",
+   "where": "h2#rutina-h \"Una rutina de día en tres pasos\"",
+   "msg": "\"Una rutina de día en tres pasos\" names no product, part, place or section (8 headings like it; at most one brand line per page) (and 7 more like it: \"Entregas, pagos y cambio\", \"Cambios y reembolsos\", \"Preguntas sobre pedidos \", \"¿Qué datos me piden para\", ...)",
+   "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "copy-headings"
+   ],
+   "wheres": [
+    "h2#rutina-h \"Una rutina de día en tres pasos\""
+   ],
+   "reason": "Spanish page: the checker's noun list is English; every heading names a product group, section noun (precios, pedido, entregas, preguntas) or step."
+  },
+  {
+   "check": "phone-number",
+   "where": "div.closing__cta.close--word > div.section-head--split > div > p.t-lead \"+57 305 455 6549\"",
+   "msg": "a phone number in international format: \"+57 305 455 6549\"; a visitor can dial it and reach a stranger (and 3 more like it: div.grid > div.span-3.footer__col:nth-of-type(4) > ul > li:nth-of-type(1), div.section-head--split > div > p.t-lead > a.link, div.span-3.footer__col:nth-of-type(4) > ul > li:nth-of-type(1) > a)",
+   "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "phone-number"
+   ],
+   "wheres": [
+    "div.closing__cta.close--word > div.section-head--split > div > p.t-lead \"+57 305 455 6549\""
+   ],
+   "reason": "The client's own WhatsApp number from the brief (their Instagram bio wa.me/573054556549); the brief asks for the number on the page linking to WhatsApp."
+  },
+  {
+   "check": "hero-lines",
+   "where": "section.hero h1",
+   "msg": "the check fills the h1 to 40 characters (this hero's maxChars in heroes.json), not the page's own: it takes 3 lines at 390, 2 at most",
+   "fix": "the check fills the h1 to this hero's maxChars, not your own: take the next type pairing the deal printed (start.mjs); when the h1 is final and fits, waive it (target: section.hero h1)",
+   "widths": [
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "hero-lines"
+   ],
+   "wheres": [
+    "section.hero h1"
+   ],
+   "reason": "The h1 is final (32 characters, 'Tienda de maquillaje en Caucasia') and takes 2 lines at 390 with the hero inside one screen; only the 40-character stress fill takes 3."
+  }
+ ],
+ "warnCount": 23,
+ "at": "2026-11-21T03:33:00.653Z",
+ "openTold": true
+}
