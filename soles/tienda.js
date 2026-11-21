@@ -105,9 +105,6 @@ if (form) {
       lineas.push('Aún no elijo productos; quiero que me asesoren.');
     }
     lineas.push(`Entrega: ${form.querySelector('#f-entrega').value}`);
-    lineas.push('');
-    lineas.push(`Acepto términos, privacidad y cambios (v1, nov. 2026). Registro ${registro.id}, ${fechaColombia(new Date(registro.fecha_utc))}.`);
-    lineas.push(`Promociones por WhatsApp: ${promos.checked ? 'sí' : 'no'}.`);
     const texto_final = lineas.join('\n');
     form.querySelector('input[name="text"]').value = texto_final;
     // se abre con un enlace real: funciona en cualquier sitio, también donde el navegador bloquea ventanas nuevas
