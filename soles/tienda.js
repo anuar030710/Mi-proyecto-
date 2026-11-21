@@ -108,8 +108,27 @@ if (form) {
     lineas.push('');
     lineas.push(`Registro de aceptación ${registro.id}: el ${fechaColombia(new Date(registro.fecha_utc))} (hora de Colombia) marqué en la página la casilla que acepta los Términos y condiciones ${registro.documentos.terminos}, la Política de privacidad ${registro.documentos.privacidad} y la Política de cambios ${registro.documentos.reembolsos}.`);
     lineas.push(`Promociones y sorteos por WhatsApp: ${promos.checked ? 'sí, autorizo' : 'no'}.`);
-    form.querySelector('input[name="text"]').value = lineas.join('\n');
+    const texto_final = lineas.join('\n');
+    form.querySelector('input[name="text"]').value = texto_final;
+    // se abre con un enlace real: funciona en cualquier sitio, también donde el navegador bloquea ventanas nuevas
+    e.preventDefault();
+    const url = form.action + '?text=' + encodeURIComponent(texto_final);
+    let enlace = form.querySelector('[data-wa-link]');
+    if (!enlace) {
+      enlace = document.createElement('a');
+      enlace.className = 'btn btn--secondary';
+      enlace.dataset.waLink = '';
+      enlace.target = '_blank';
+      enlace.rel = 'noopener';
+      enlace.textContent = 'Abrir WhatsApp con mi pedido';
+      form.querySelector('.btn-row').append(enlace);
+    }
+    enlace.href = url;
+    let abierta = null;
+    try { abierta = window.open(url, '_blank'); if (abierta) abierta.opener = null; } catch { abierta = null; }
     const estado = form.querySelector('[data-form-status]');
-    if (estado) estado.textContent = 'Abrimos WhatsApp con tu pedido escrito. Envía el mensaje para confirmarlo.';
+    if (estado) estado.textContent = abierta
+      ? 'Abrimos WhatsApp con tu pedido escrito. Envía el mensaje para confirmarlo.'
+      : 'Tu pedido está listo. Toca «Abrir WhatsApp con mi pedido» y envía el mensaje para confirmarlo.';
   });
 }
