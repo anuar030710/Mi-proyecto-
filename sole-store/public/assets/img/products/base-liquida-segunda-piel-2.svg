@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Base Líquida Segunda Piel: muestras de tono">
+<defs><linearGradient id="g25" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B08A3E"/><stop offset="33.33333333333333%" stop-color="#F3E2B3"/><stop offset="66.66666666666666%" stop-color="#D8B66A"/><stop offset="100%" stop-color="#B08A3E"/></linearGradient><linearGradient id="g26" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c6af9d"/><stop offset="33.33333333333333%" stop-color="#f3dbc7"/><stop offset="66.66666666666666%" stop-color="#F1D6BF"/><stop offset="100%" stop-color="#d4bca8"/></linearGradient><linearGradient id="g27" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFF8F6"/><stop offset="100%" stop-color="#F6E3E0"/></linearGradient></defs>
+<rect width="800" height="1000" fill="url(#g27)"/>
+  <circle cx="640" cy="210" r="150" fill="#FFFFFF" opacity=".45"/>
+  <circle cx="150" cy="760" r="210" fill="#EBC9C4" opacity=".35"/>
+  <circle cx="610" cy="170" r="6" fill="#D8B66A" opacity=".7"/>
+  <circle cx="200" cy="820" r="4" fill="#D8B66A" opacity=".7"/>
+  <ellipse cx="400" cy="905" rx="230" ry="26" fill="#B98580" opacity=".18"/><g transform="translate(-40 160) scale(.62)"><rect x="270" y="430" width="260" height="460" rx="34" fill="url(#g26)"/>
+    <rect x="270" y="430" width="260" height="460" rx="34" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="6"/>
+    <rect x="292" y="460" width="22" height="400" rx="11" fill="#fff" opacity=".35"/>
+    <rect x="360" y="370" width="80" height="66" fill="url(#g25)"/>
+    <rect x="330" y="300" width="140" height="74" rx="14" fill="url(#g25)"/>
+    <rect x="462" y="318" width="70" height="20" rx="8" fill="#B08A3E"/>
+    <rect x="320" y="640" width="160" height="110" rx="6" fill="#fff" opacity=".82"/>
+    <text x="400" y="688" text-anchor="middle" font-family="Georgia, serif" font-size="24" letter-spacing="5" fill="#5B4330">AUREA</text>
+    <text x="400" y="722" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" letter-spacing="3" fill="#8A6A4A">SEGUNDA PIEL</text></g><path d="M480 300 q60 -40 150 -10 q50 18 40 50 q-10 30 -90 26 q-90 -6 -100 -66z" fill="#F1D6BF"/>
+      <path d="M500 296 q60 -26 120 -8" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M480 420 q60 -40 150 -10 q50 18 40 50 q-10 30 -90 26 q-90 -6 -100 -66z" fill="#E3BC98"/>
+      <path d="M500 416 q60 -26 120 -8" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M480 540 q60 -40 150 -10 q50 18 40 50 q-10 30 -90 26 q-90 -6 -100 -66z" fill="#C9955F"/>
+      <path d="M500 536 q60 -26 120 -8" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M480 660 q60 -40 150 -10 q50 18 40 50 q-10 30 -90 26 q-90 -6 -100 -66z" fill="#A46B3E"/>
+      <path d="M500 656 q60 -26 120 -8" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M480 780 q60 -40 150 -10 q50 18 40 50 q-10 30 -90 26 q-90 -6 -100 -66z" fill="#6E4426"/>
+      <path d="M500 776 q60 -26 120 -8" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/>
+</svg>

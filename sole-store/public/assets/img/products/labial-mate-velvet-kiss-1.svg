@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Labial Mate Velvet Kiss">
+<defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FBEFEC"/><stop offset="100%" stop-color="#F2D8D4"/></linearGradient><linearGradient id="g2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B08A3E"/><stop offset="33.33333333333333%" stop-color="#F3E2B3"/><stop offset="66.66666666666666%" stop-color="#D8B66A"/><stop offset="100%" stop-color="#B08A3E"/></linearGradient><linearGradient id="g3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#976865"/><stop offset="33.33333333333333%" stop-color="#C98B86"/><stop offset="66.66666666666666%" stop-color="#d19c98"/><stop offset="100%" stop-color="#a16f6b"/></linearGradient></defs>
+<rect width="800" height="1000" fill="url(#g1)"/>
+  <circle cx="160" cy="210" r="150" fill="#FFFFFF" opacity=".45"/>
+  <circle cx="650" cy="760" r="210" fill="#EBC9C4" opacity=".35"/>
+  <circle cx="610" cy="170" r="6" fill="#D8B66A" opacity=".7"/>
+  <circle cx="200" cy="820" r="4" fill="#D8B66A" opacity=".7"/>
+  <ellipse cx="400" cy="905" rx="230" ry="26" fill="#B98580" opacity=".18"/><rect x="320" y="600" width="160" height="290" rx="12" fill="url(#g2)"/>
+    <rect x="320" y="588" width="160" height="26" rx="4" fill="#B08A3E"/>
+    <rect x="342" y="455" width="116" height="140" rx="6" fill="url(#g2)" opacity=".9"/>
+    <path d="M352 458 L352 320 Q352 292 380 276 L448 238 L448 458 Z" fill="url(#g3)"/>
+    <path d="M366 452 L366 318 Q368 300 384 290 L392 286 L392 452 Z" fill="#fff" opacity=".22"/>
+    <rect x="340" y="640" width="14" height="230" rx="7" fill="#fff" opacity=".35"/>
+    <text x="400" y="760" text-anchor="middle" font-family="Georgia, serif" font-size="22" letter-spacing="6" fill="#7A5A22">SOLE</text>
+</svg>

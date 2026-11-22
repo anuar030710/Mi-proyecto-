@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Delineador Líquido Precisión: textura">
+<defs><radialGradient id="r108" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#656465"/><stop offset="50%" stop-color="#121012"/><stop offset="100%" stop-color="#0e0d0e"/></radialGradient><radialGradient id="r109" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#89776f"/><stop offset="50%" stop-color="#4A2E22"/><stop offset="100%" stop-color="#3b251b"/></radialGradient><linearGradient id="g110" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFF8F6"/><stop offset="100%" stop-color="#F6E3E0"/></linearGradient></defs>
+<rect width="800" height="1000" fill="url(#g110)"/>
+  <circle cx="640" cy="210" r="150" fill="#FFFFFF" opacity=".45"/>
+  <circle cx="150" cy="760" r="210" fill="#EBC9C4" opacity=".35"/>
+  <circle cx="610" cy="170" r="6" fill="#D8B66A" opacity=".7"/>
+  <circle cx="200" cy="820" r="4" fill="#D8B66A" opacity=".7"/>
+  <ellipse cx="400" cy="905" rx="230" ry="26" fill="#B98580" opacity=".18"/><circle cx="250" cy="330" r="170" fill="url(#r108)"/>
+      <ellipse cx="200" cy="270" rx="50" ry="22" fill="#fff" opacity=".35" transform="rotate(-30 200 270)"/><circle cx="550" cy="330" r="160" fill="url(#r109)"/>
+      <ellipse cx="500" cy="270" rx="50" ry="22" fill="#fff" opacity=".35" transform="rotate(-30 500 270)"/>
+</svg>

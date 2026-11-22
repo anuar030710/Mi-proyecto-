@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sole Store | Maquillaje online en Colombia</title>
+  <meta name="description" content="Tienda online de maquillaje: labiales, bases, rubores, sombras, máscaras y brochas. Envío gratis desde $150.000, pago seguro con tarjeta, PSE, Nequi o contra entrega.">
+  <meta name="theme-color" content="#F2DAD7">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sole Store | Maquillaje online en Colombia">
+  <meta property="og:description" content="Labiales, bases, rubores y más. Envío gratis desde $150.000.">
+  <meta property="og:image" content="assets/img/hero.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="preload" as="image" href="assets/img/hero.svg">
+  <script type="module" src="assets/js/pages/home.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <div id="app-header"></div>
+
+  <main id="main">
+    <!-- BANNER PRINCIPAL -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <span class="eyebrow">Nueva colección · Golden Hour</span>
+          <h1 id="hero-title">Belleza que se siente <em>tuya</em></h1>
+          <p>Maquillaje de texturas suaves y tonos pensados para la piel latina. Elige, prueba y luce radiante todos los días.</p>
+          <div class="hero__ctas">
+            <a class="btn" href="catalogo.html">Comprar ahora</a>
+            <a class="btn btn--outline" href="catalogo.html?oferta=1">Ver ofertas</a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <img src="assets/img/hero.svg" alt="Labial rojo, rubor rosa y brocha de Sole Store sobre fondo rosa palo" width="1600" height="1000" fetchpriority="high">
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section class="section" aria-labelledby="cat-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Explora</span><h2 id="cat-title">Categorías destacadas</h2></div>
+          <a href="catalogo.html">Ver todo el catálogo</a>
+        </div>
+        <div class="cat-grid reveal" id="cat-grid"></div>
+      </div>
+    </section>
+
+    <!-- MÁS VENDIDOS -->
+    <section class="section section--rose" aria-labelledby="best-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Favoritos de nuestras clientas</span><h2 id="best-title">Más vendidos</h2></div>
+          <a href="catalogo.html?orden=vendidos">Ver más</a>
+        </div>
+        <div class="product-grid product-grid--4" id="bestsellers"></div>
+      </div>
+    </section>
+
+    <!-- OFERTAS -->
+    <section class="section" aria-labelledby="offers-title">
+      <div class="container">
+        <div class="promo reveal">
+          <div>
+            <span class="eyebrow">Temporada de ofertas</span>
+            <h2 id="offers-title">Hasta 25% de descuento en tus básicos</h2>
+            <p>Brochas, paletas y rubores seleccionados con precio especial. Además, usa el cupón <strong>BIENVENIDA10</strong> en tu primera compra.</p>
+            <a class="btn btn--gold" href="catalogo.html?oferta=1">Comprar ofertas</a>
+            <p class="promo__fine">Ofertas válidas hasta el 31 de diciembre de 2026 o hasta agotar existencias. Las unidades disponibles se muestran en cada producto. Cupón BIENVENIDA10: 10% sobre el subtotal, una vez por pedido, no acumulable con otros cupones.</p>
+          </div>
+          <img src="assets/img/products/paleta-sombras-desert-rose-1.svg" alt="" width="800" height="1000" loading="lazy" style="border-radius:16px;max-height:380px;object-fit:cover;width:100%">
+        </div>
+        <div class="product-grid product-grid--4" id="offers" style="margin-top:40px"></div>
+      </div>
+    </section>
+
+    <!-- RESEÑAS -->
+    <section class="section section--rose" aria-labelledby="reviews-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Lo que dicen</span><h2 id="reviews-title">Reseñas de clientas</h2></div>
+          <span class="demo-note">Reseñas de ejemplo: reemplázalas por reseñas reales verificadas</span>
+        </div>
+        <div class="reviews-grid reveal" id="reviews"></div>
+      </div>
+    </section>
+
+    <!-- BOLETÍN -->
+    <section class="section" aria-labelledby="news-title">
+      <div class="container">
+        <div class="newsletter reveal">
+          <div>
+            <span class="eyebrow">Club Sole</span>
+            <h2 id="news-title">Lanzamientos y ofertas primero en tu correo</h2>
+            <p class="muted" style="margin:0">Máximo 2 correos al mes. Nada de spam. Solo te pedimos el correo.</p>
+          </div>
+          <form id="newsletter-form" class="stack" aria-labelledby="news-title">
+            <button class="btn" type="submit">Suscribirme</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="app-footer"></div>
+</body>
+</html>

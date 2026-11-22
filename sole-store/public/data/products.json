@@ -1,0 +1,413 @@
+{
+  "_info": "Catálogo de ejemplo de Sole Store. Precios en COP con IVA incluido. 'discount' es un porcentaje (0-90). 'stock' 0 = Agotado. Las marcas son ficticias; las imágenes las genera scripts/generate-images.js. Las reseñas son DE DEMOSTRACIÓN: bórralas antes de publicar.",
+  "products": [
+    {
+      "id": "p001",
+      "slug": "labial-mate-velvet-kiss",
+      "name": "Labial Mate Velvet Kiss",
+      "brand": "Sole Beauty",
+      "category": "labiales",
+      "price": 59900,
+      "discount": 0,
+      "tones": [
+        { "name": "Rosa Nude", "hex": "#C98B86", "family": "nude" },
+        { "name": "Rojo Clásico", "hex": "#A3212F", "family": "rojo" },
+        { "name": "Malva", "hex": "#9B5A6F", "family": "malva" },
+        { "name": "Terracota", "hex": "#B5573E", "family": "coral" }
+      ],
+      "skinTypes": ["seca", "grasa", "mixta", "normal", "sensible"],
+      "stock": 34,
+      "sold": 412,
+      "createdAt": "2026-03-10",
+      "rating": 4.8,
+      "reviewsCount": 3,
+      "shape": "lipstick",
+      "image": "assets/img/products/labial-mate-velvet-kiss-1.svg",
+      "images": [
+        "assets/img/products/labial-mate-velvet-kiss-1.svg",
+        "assets/img/products/labial-mate-velvet-kiss-2.svg",
+        "assets/img/products/labial-mate-velvet-kiss-3.svg"
+      ],
+      "description": "Labial de acabado mate aterciopelado con pigmento intenso en una sola pasada. Su fórmula ligera no reseca y se mantiene cómoda hasta 8 horas.",
+      "ingredients": "Ricinus Communis Seed Oil, Isododecane, Cera Alba, Silica, Tocopheryl Acetate (vitamina E), Butyrospermum Parkii Butter (manteca de karité), puede contener CI 77491, CI 15850, CI 77891.",
+      "howToUse": "Aplica desde el centro del labio superior hacia las comisuras. Para un acabado difuminado, presiona suavemente con la yema del dedo.",
+      "nso": "NSOC00000-00CO (reemplazar por el número real de Notificación Sanitaria INVIMA)",
+      "reviews": [
+        { "author": "Laura M.", "rating": 5, "date": "2026-09-14", "text": "El tono Rosa Nude es perfecto para el día a día y no reseca nada." },
+        { "author": "Daniela R.", "rating": 5, "date": "2026-08-02", "text": "Me duró toda la jornada de trabajo, incluso después de almorzar." },
+        { "author": "Paula G.", "rating": 4, "date": "2026-07-21", "text": "Muy buen color, aunque hay que exfoliar los labios antes." }
+      ]
+    },
+    {
+      "id": "p002",
+      "slug": "gloss-brillo-cristal",
+      "name": "Gloss Brillo Cristal",
+      "brand": "Pétalo",
+      "category": "labiales",
+      "price": 42900,
+      "discount": 15,
+      "tones": [
+        { "name": "Transparente", "hex": "#F2D7D5", "family": "nude" },
+        { "name": "Rosa Glow", "hex": "#E59AA5", "family": "rosa" },
+        { "name": "Coral", "hex": "#EE8170", "family": "coral" }
+      ],
+      "skinTypes": ["seca", "grasa", "mixta", "normal", "sensible"],
+      "stock": 4,
+      "sold": 280,
+      "createdAt": "2026-06-01",
+      "rating": 4.5,
+      "reviewsCount": 2,
+      "shape": "gloss",
+      "image": "assets/img/products/gloss-brillo-cristal-1.svg",
+      "images": [
+        "assets/img/products/gloss-brillo-cristal-1.svg",
+        "assets/img/products/gloss-brillo-cristal-2.svg",
+        "assets/img/products/gloss-brillo-cristal-3.svg"
+      ],
+      "description": "Gloss de efecto espejo, no pegajoso, con aceite de jojoba que hidrata y da volumen visual a los labios.",
+      "ingredients": "Hydrogenated Polyisobutene, Simmondsia Chinensis (Jojoba) Seed Oil, Ethylene/Propylene/Styrene Copolymer, Tocopherol, Aroma, puede contener CI 77891, CI 45410.",
+      "howToUse": "Úsalo solo o sobre tu labial favorito. Aplica una capa en el centro de los labios para un efecto más voluminoso.",
+      "nso": "NSOC00000-00CO (reemplazar)",
+      "reviews": [
+        { "author": "Valentina S.", "rating": 5, "date": "2026-10-03", "text": "Brilla muchísimo y no se siente pegajoso." },
+        { "author": "Camila T.", "rating": 4, "date": "2026-09-18", "text": "Hermoso, solo que hay que retocarlo seguido." }
+      ]
+    },
+    {
+      "id": "p003",
+      "slug": "base-liquida-segunda-piel",
+      "name": "Base Líquida Segunda Piel",
+      "brand": "Aurea Cosmetics",
+      "category": "bases",
+      "price": 89900,
+      "discount": 10,
+      "tones": [
+        { "name": "110 Marfil", "hex": "#F1D6BF", "family": "nude" },
+        { "name": "210 Beige", "hex": "#E3BC98", "family": "nude" },
+        { "name": "310 Miel", "hex": "#C9955F", "family": "marron" },
+        { "name": "410 Canela", "hex": "#A46B3E", "family": "marron" },
+        { "name": "510 Cacao", "hex": "#6E4426", "family": "marron" }
+      ],
+      "skinTypes": ["grasa", "mixta", "normal"],
+      "stock": 22,
+      "sold": 530,
+      "createdAt": "2026-02-15",
+      "rating": 4.7,
+      "reviewsCount": 3,
+      "shape": "foundation",
+      "image": "assets/img/products/base-liquida-segunda-piel-1.svg",
+      "images": [
+        "assets/img/products/base-liquida-segunda-piel-1.svg",
+        "assets/img/products/base-liquida-segunda-piel-2.svg",
+        "assets/img/products/base-liquida-segunda-piel-3.svg"
+      ],
+      "description": "Base de cobertura media construible con acabado natural satinado. Controla el brillo hasta 12 horas y tiene FPS 15.",
+      "ingredients": "Aqua, Cyclopentasiloxane, Glycerin, Titanium Dioxide, Niacinamide, Sodium Hyaluronate, Phenoxyethanol, puede contener CI 77491, CI 77492, CI 77499.",
+      "howToUse": "Agita antes de usar. Aplica una pequeña cantidad en el centro del rostro y difumina hacia afuera con brocha o esponja húmeda.",
+      "nso": "NSOC00000-00CO (reemplazar)",
+      "reviews": [
+        { "author": "Natalia P.", "rating": 5, "date": "2026-10-11", "text": "Por fin una base que no se oxida en mi piel grasa." },
+        { "author": "Sara L.", "rating": 5, "date": "2026-09-02", "text": "El tono 310 Miel me quedó perfecto." },
+        { "author": "Juliana C.", "rating": 4, "date": "2026-08-25", "text": "Muy natural, necesito dos capas para cubrir manchas." }
+      ]
+    },
+    {
+      "id": "p004",
+      "slug": "base-en-barra-mate",
+      "name": "Base en Barra Mate",
+      "brand": "Velvet & Co",
+      "category": "bases",
+      "price": 74900,
+      "discount": 0,
+      "tones": [
+        { "name": "Claro", "hex": "#EBCBB0", "family": "nude" },
+        { "name": "Medio", "hex": "#C99A70", "family": "marron" },
+        { "name": "Profundo", "hex": "#7A4E31", "family": "marron" }
+      ],
+      "skinTypes": ["grasa", "mixta"],
+      "stock": 0,
+      "sold": 190,
+      "createdAt": "2026-01-20",
+      "rating": 4.3,
+      "reviewsCount": 1,
+      "shape": "stick",
+      "image": "assets/img/products/base-en-barra-mate-1.svg",
+      "images": [
+        "assets/img/products/base-en-barra-mate-1.svg",
+        "assets/img/products/base-en-barra-mate-2.svg",
+        "assets/img/products/base-en-barra-mate-3.svg"
+      ],
+      "description": "Base en barra de alta cobertura y acabado mate, ideal para retoques rápidos y para llevar en el bolso.",
+      "ingredients": "Dimethicone, Synthetic Wax, Talc, Isononyl Isononanoate, Silica, Tocopherol, puede contener CI 77491, CI 77492, CI 77499, CI 77891.",
+      "howToUse": "Desliza la barra directamente sobre el rostro en las zonas deseadas y difumina con brocha kabuki.",
+      "nso": "NSOC00000-00CO (reemplazar)",
+      "reviews": [
+        { "author": "Andrea V.", "rating": 4, "date": "2026-06-30", "text": "Práctica y cubre muy bien. Ojalá vuelva pronto." }
+      ]
+    },
+    {
+      "id": "p005",
+      "slug": "rubor-en-polvo-petalo",
+      "name": "Rubor en Polvo Pétalo",
+      "brand": "Pétalo",
+      "category": "rubores",
+      "price": 49900,
+      "discount": 0,
+      "tones": [
+        { "name": "Durazno", "hex": "#EFA08A", "family": "coral" },
+        { "name": "Rosa", "hex": "#E58C9C", "family": "rosa" },
+        { "name": "Ciruela", "hex": "#A95A6D", "family": "malva" }
+      ],
+      "skinTypes": ["seca", "grasa", "mixta", "normal", "sensible"],
+      "stock": 18,
+      "sold": 150,
+      "createdAt": "2026-10-28",
+      "rating": 4.6,
+      "reviewsCount": 2,
+      "shape": "compact",
+      "image": "assets/img/products/rubor-en-polvo-petalo-1.svg",
+      "images": [
+        "assets/img/products/rubor-en-polvo-petalo-1.svg",
+        "assets/img/products/rubor-en-polvo-petalo-2.svg",
+        "assets/img/products/rubor-en-polvo-petalo-3.svg"
+      ],
+      "description": "Rubor sedoso de pigmentación modulable que se funde con la piel para un rubor natural y luminoso.",
+      "ingredients": "Talc, Mica, Zinc Stearate, Dimethicone, Caprylyl Glycol, puede contener CI 15850, CI 77491, CI 77891.",
+      "howToUse": "Sonríe y aplica sobre la parte alta de las mejillas, difuminando hacia las sienes.",
+      "nso": "NSOC00000-00CO (reemplazar)",
+      "reviews": [
+        { "author": "Mariana F.", "rating": 5, "date": "2026-11-05", "text": "El Durazno da un efecto de buena cara increíble." },
+        { "author": "Lucía H.", "rating": 4, "date": "2026-11-01", "text": "Muy pigmentado, hay que usar poquito." }
+      ]
+    },
+    {
+      "id": "p006",
+      "slug": "rubor-liquido-cheek-tint",
+      "name": "Rubor Líquido Cheek Tint",
+      "brand": "Sole Beauty",
+      "category": "rubores",
+      "price": 54900,
+      "discount": 20,
+      "tones": [
+        { "name": "Rosa Fresa", "hex": "#E06C82", "family": "rosa" },
+        { "name": "Coral Sol", "hex": "#F08A6C", "family": "coral" }
+      ],
+      "skinTypes": ["seca", "mixta", "normal"],
+      "stock": 27,
+      "sold": 210,
+      "createdAt": "2026-11-02",
+      "rating": 4.4,
+      "reviewsCount": 1,
+      "shape": "dropper",
+      "image": "assets/img/products/rubor-liquido-cheek-tint-1.svg",
+      "images": [
+        "assets/img/products/rubor-liquido-cheek-tint-1.svg",
+        "assets/img/products/rubor-liquido-cheek-tint-2.svg",
+        "assets/img/products/rubor-liquido-cheek-tint-3.svg"
+      ],
+      "description": "Tinte líquido para mejillas con efecto piel jugosa. Unas gotas bastan para un color fresco y duradero.",
+      "ingredients": "Aqua, Glycerin, Propanediol, Sodium Hyaluronate, Polysorbate 20, Phenoxyethanol, puede contener CI 16035, CI 45410.",
+      "howToUse": "Aplica 1 o 2 gotas sobre las mejillas y difumina rápido con los dedos o una esponja.",
+      "nso": "NSOC00000-00CO (reemplazar)",
+      "reviews": [
+        { "author": "Isabella R.", "rating": 4, "date": "2026-11-10", "text": "Se ve súper natural, se seca rápido así que hay que difuminar ágil." }
+      ]
+    },
+    {
+      "id": "p007",
+      "slug": "paleta-sombras-desert-rose",
+      "name": "Paleta de Sombras Desert Rose (12 tonos)",
+      "brand": "Lumière Rose",
+      "category": "sombras",
+      "price": 129900,
+      "discount": 15,
+      "tones": [
+        { "name": "Desert Rose", "hex": "#C68B7E", "family": "rosa", "palette": ["#F3DCCB", "#E8B9A0", "#D9967E", "#C9776A", "#F0D2B0", "#C68B7E", "#A65E55", "#7E3F3B", "#E7C27D", "#B9845A", "#8C5A3C", "#4A2C25"] },
+        { "name": "Smoky Nights", "hex": "#4B3B47", "family": "negro", "palette": ["#EDE3E1", "#C7B8BE", "#9C8A96", "#6E5D6B", "#D8C3A5", "#A68C7A", "#6B4F4F", "#3E2F35", "#B9A06A", "#8A7A86", "#4B3B47", "#1E1A1D"] }
+      ],
+      "skinTypes": ["seca", "grasa", "mixta", "normal", "sensible"],
+      "stock": 12,
+      "sold": 365,
+      "createdAt": "2026-05-12",
+      "rating": 4.9,
+      "reviewsCount": 2,
+      "shape": "palette",
+      "image": "assets/img/products/paleta-sombras-desert-rose-1.svg",
+      "images": [
+        "assets/img/products/paleta-sombras-desert-rose-1.svg",
+        "assets/img/products/paleta-sombras-desert-rose-2.svg",
+        "assets/img/products/paleta-sombras-desert-rose-3.svg"
+      ],
+      "description": "12 sombras entre mates, satinadas y metálicas, pensadas para crear desde looks de día hasta ahumados intensos.",
+      "ingredients": "Talc, Mica, Magnesium Stearate, Dimethicone, Ethylhexyl Palmitate, Caprylyl Glycol, puede contener CI 77491, CI 77492, CI 77499, CI 77891, CI 77007.",
+      "howToUse": "Aplica el tono claro en todo el párpado, el medio en la cuenca y el oscuro en la esquina externa. Difumina en movimientos circulares.",
+      "nso": "NSOC00000-00CO (reemplazar)",
+      "reviews": [
+        { "author": "Gabriela N.", "rating": 5, "date": "2026-10-20", "text": "Los tonos metálicos son espectaculares, se difuminan solos." },
+        { "author": "Manuela O.", "rating": 5, "date": "2026-09-09", "text": "La mejor paleta que he tenido, vale cada peso." }
+      ]
+    },
+    {
+      "id": "p008",
+      "slug": "mascara-volumen-extremo",
+      "name": "Máscara de Pestañas Volumen Extremo",
+      "brand": "Aurea Cosmetics",
+      "category": "mascaras",
+      "price": 64900,
+      "discount": 0,
+      "tones": [
+        { "name": "Negro Intenso", "hex": "#151214", "family": "negro" },
+        { "name": "Marrón", "hex": "#3B2418", "family": "marron" }
+      ],
+      "skinTypes": ["seca", "grasa", "mixta", "normal", "sensible"],
+      "stock": 50,
+      "sold": 620,
+      "createdAt": "2026-03-28",
+      "rating": 4.7,
+      "reviewsCount": 2,
+      "shape": "mascara",
+      "image": "assets/img/products/mascara-volumen-extremo-1.svg",
+      "images": [
+        "assets/img/products/mascara-volumen-extremo-1.svg",
+        "assets/img/products/mascara-volumen-extremo-2.svg",
+        "assets/img/products/mascara-volumen-extremo-3.svg"
+      ],
+      "description": "Cepillo de fibras curvas que separa, alarga y da volumen sin grumos. Resistente a la humedad.",
+      "ingredients": "Aqua, Paraffin, Beeswax, Stearic Acid, Acacia Senegal Gum, Panthenol, Phenoxyethanol, CI 77499.",
+      "howToUse": "Coloca el cepillo en la base de las pestañas y sube en zigzag. Aplica una segunda capa antes de que la primera se seque.",
+      "nso": "NSOC00000-00CO (reemplazar)",
+      "reviews": [
+        { "author": "Carolina B.", "rating": 5, "date": "2026-10-15", "text": "Volumen real, no se corre con el calor." },
+        { "author": "Estefanía Q.", "rating": 4, "date": "2026-09-27", "text": "Muy buena, el cepillo es grande para las pestañas de abajo." }
+      ]
+    },
+    {
+      "id": "p009",
+      "slug": "delineador-liquido-precision",
+      "name": "Delineador Líquido Precisión",
+      "brand": "Velvet & Co",
+      "category": "delineadores",
+      "price": 39900,
+      "discount": 0,
+      "tones": [
+        { "name": "Negro", "hex": "#121012", "family": "negro" },
+        { "name": "Café", "hex": "#4A2E22", "family": "marron" }
+      ],
+      "skinTypes": ["seca", "grasa", "mixta", "normal", "sensible"],
+      "stock": 6,
+      "sold": 340,
+      "createdAt": "2026-04-05",
+      "rating": 4.6,
+      "reviewsCount": 1,
+      "shape": "liner",
+      "image": "assets/img/products/delineador-liquido-precision-1.svg",
+      "images": [
+        "assets/img/products/delineador-liquido-precision-1.svg",
+        "assets/img/products/delineador-liquido-precision-2.svg",
+        "assets/img/products/delineador-liquido-precision-3.svg"
+      ],
+      "description": "Punta de fieltro ultrafina para trazos precisos y delineados de gato perfectos. Secado rápido y a prueba de agua.",
+      "ingredients": "Aqua, Styrene/Acrylates Copolymer, Butylene Glycol, Laureth-21, Phenoxyethanol, CI 77266.",
+      "howToUse": "Traza una línea fina desde el lagrimal hacia afuera, pegada a las pestañas, y engrósala gradualmente.",
+      "nso": "NSOC00000-00CO (reemplazar)",
+      "reviews": [
+        { "author": "Sofía A.", "rating": 5, "date": "2026-10-01", "text": "La punta es finísima, por fin me salió el delineado de gato." }
+      ]
+    },
+    {
+      "id": "p010",
+      "slug": "iluminador-golden-hour",
+      "name": "Iluminador Golden Hour",
+      "brand": "Lumière Rose",
+      "category": "iluminadores",
+      "price": 69900,
+      "discount": 0,
+      "tones": [
+        { "name": "Champagne", "hex": "#F3DDB3", "family": "dorado" },
+        { "name": "Oro Rosa", "hex": "#E8B9A0", "family": "rosa" },
+        { "name": "Bronce", "hex": "#C9965E", "family": "dorado" }
+      ],
+      "skinTypes": ["seca", "mixta", "normal", "sensible"],
+      "stock": 15,
+      "sold": 260,
+      "createdAt": "2026-11-12",
+      "rating": 4.8,
+      "reviewsCount": 1,
+      "shape": "highlighter",
+      "image": "assets/img/products/iluminador-golden-hour-1.svg",
+      "images": [
+        "assets/img/products/iluminador-golden-hour-1.svg",
+        "assets/img/products/iluminador-golden-hour-2.svg",
+        "assets/img/products/iluminador-golden-hour-3.svg"
+      ],
+      "description": "Iluminador en polvo horneado con perlas finas que reflejan la luz como el atardecer. Sin glitter grueso.",
+      "ingredients": "Mica, Talc, Synthetic Fluorphlogopite, Dimethicone, Squalane, Tin Oxide, puede contener CI 77891, CI 77491.",
+      "howToUse": "Aplica con brocha abanico sobre pómulos, arco de cupido, puente de la nariz y lagrimal.",
+      "nso": "NSOC00000-00CO (reemplazar)",
+      "reviews": [
+        { "author": "Ana María D.", "rating": 5, "date": "2026-11-15", "text": "Brillo elegante, nada exagerado. El Champagne es hermoso." }
+      ]
+    },
+    {
+      "id": "p011",
+      "slug": "set-brochas-esenciales",
+      "name": "Set de Brochas Esenciales x8",
+      "brand": "Sole Beauty",
+      "category": "brochas",
+      "price": 149900,
+      "discount": 25,
+      "tones": [],
+      "skinTypes": ["seca", "grasa", "mixta", "normal", "sensible"],
+      "stock": 9,
+      "sold": 300,
+      "createdAt": "2026-07-07",
+      "rating": 4.9,
+      "reviewsCount": 2,
+      "shape": "brushset",
+      "image": "assets/img/products/set-brochas-esenciales-1.svg",
+      "images": [
+        "assets/img/products/set-brochas-esenciales-1.svg",
+        "assets/img/products/set-brochas-esenciales-2.svg",
+        "assets/img/products/set-brochas-esenciales-3.svg"
+      ],
+      "description": "8 brochas de fibra sintética vegana, suaves y densas, para rostro y ojos. Incluye estuche de viaje.",
+      "ingredients": "Fibras sintéticas (nailon PBT), virola de aluminio, mango de madera de abedul. Libre de crueldad animal.",
+      "howToUse": "Lava las brochas cada semana con jabón suave y agua tibia. Déjalas secar en posición horizontal.",
+      "nso": "No aplica (accesorio, no es cosmético)",
+      "reviews": [
+        { "author": "Paola E.", "rating": 5, "date": "2026-10-22", "text": "Suavecitas y no sueltan pelos. El estuche es divino." },
+        { "author": "Tatiana K.", "rating": 5, "date": "2026-09-30", "text": "Excelente relación calidad-precio con el descuento." }
+      ]
+    },
+    {
+      "id": "p012",
+      "slug": "brocha-kabuki-difuminadora",
+      "name": "Brocha Kabuki Difuminadora",
+      "brand": "Pétalo",
+      "category": "brochas",
+      "price": 45900,
+      "discount": 0,
+      "tones": [],
+      "skinTypes": ["seca", "grasa", "mixta", "normal", "sensible"],
+      "stock": 3,
+      "sold": 95,
+      "createdAt": "2026-11-18",
+      "rating": 4.5,
+      "reviewsCount": 1,
+      "shape": "kabuki",
+      "image": "assets/img/products/brocha-kabuki-difuminadora-1.svg",
+      "images": [
+        "assets/img/products/brocha-kabuki-difuminadora-1.svg",
+        "assets/img/products/brocha-kabuki-difuminadora-2.svg",
+        "assets/img/products/brocha-kabuki-difuminadora-3.svg"
+      ],
+      "description": "Brocha kabuki de cabeza densa y redondeada para difuminar bases líquidas, en crema o en polvo sin dejar marcas.",
+      "ingredients": "Fibra sintética vegana, virola de aluminio dorado, mango corto de madera.",
+      "howToUse": "Aplica la base con movimientos circulares desde el centro del rostro hacia afuera.",
+      "nso": "No aplica (accesorio, no es cosmético)",
+      "reviews": [
+        { "author": "Melissa J.", "rating": 4, "date": "2026-11-19", "text": "Deja la base como filtro. Es un poco más pequeña de lo que imaginé." }
+      ]
+    }
+  ]
+}

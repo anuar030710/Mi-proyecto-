@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /carrito.html
+Disallow: /checkout.html
+Disallow: /confirmacion.html
+Disallow: /cuenta.html
+Sitemap: https://www.TU-DOMINIO.co/sitemap.xml

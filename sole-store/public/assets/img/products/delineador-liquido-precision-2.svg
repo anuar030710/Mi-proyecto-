@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Delineador Líquido Precisión: muestras de tono">
+<defs><linearGradient id="g105" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B08A3E"/><stop offset="33.33333333333333%" stop-color="#F3E2B3"/><stop offset="66.66666666666666%" stop-color="#D8B66A"/><stop offset="100%" stop-color="#B08A3E"/></linearGradient><linearGradient id="g106" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1D1719"/><stop offset="50%" stop-color="#40343A"/><stop offset="100%" stop-color="#1D1719"/></linearGradient><linearGradient id="g107" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFF8F6"/><stop offset="100%" stop-color="#F6E3E0"/></linearGradient></defs>
+<rect width="800" height="1000" fill="url(#g107)"/>
+  <circle cx="640" cy="210" r="150" fill="#FFFFFF" opacity=".45"/>
+  <circle cx="150" cy="760" r="210" fill="#EBC9C4" opacity=".35"/>
+  <circle cx="610" cy="170" r="6" fill="#D8B66A" opacity=".7"/>
+  <circle cx="200" cy="820" r="4" fill="#D8B66A" opacity=".7"/>
+  <ellipse cx="400" cy="905" rx="230" ry="26" fill="#B98580" opacity=".18"/><g transform="translate(-40 160) scale(.62)"><g transform="rotate(-25 400 560)">
+      <rect x="370" y="300" width="60" height="560" rx="28" fill="url(#g106)"/>
+      <rect x="370" y="430" width="60" height="18" fill="url(#g105)"/>
+      <rect x="380" y="320" width="10" height="520" rx="5" fill="#fff" opacity=".18"/>
+      <path d="M380 300 L400 210 L420 300 Z" fill="#121012"/>
+      <rect x="372" y="290" width="56" height="16" fill="#D8B66A"/>
+    </g>
+    <path d="M520 760 Q600 700 690 680" stroke="#121012" stroke-width="10" fill="none" stroke-linecap="round" opacity=".85"/></g><path d="M480 300 q60 -40 150 -10 q50 18 40 50 q-10 30 -90 26 q-90 -6 -100 -66z" fill="#121012"/>
+      <path d="M500 296 q60 -26 120 -8" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M480 420 q60 -40 150 -10 q50 18 40 50 q-10 30 -90 26 q-90 -6 -100 -66z" fill="#4A2E22"/>
+      <path d="M500 416 q60 -26 120 -8" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Iluminador Golden Hour: muestras de tono">
+<defs><linearGradient id="g114" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B08A3E"/><stop offset="33.33333333333333%" stop-color="#F3E2B3"/><stop offset="66.66666666666666%" stop-color="#D8B66A"/><stop offset="100%" stop-color="#B08A3E"/></linearGradient><radialGradient id="r115" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="33.33333333333333%" stop-color="#f7e7ca"/><stop offset="66.66666666666666%" stop-color="#F3DDB3"/><stop offset="100%" stop-color="#cfbc98"/></radialGradient><linearGradient id="g116" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFF8F6"/><stop offset="100%" stop-color="#F6E3E0"/></linearGradient></defs>
+<rect width="800" height="1000" fill="url(#g116)"/>
+  <circle cx="640" cy="210" r="150" fill="#FFFFFF" opacity=".45"/>
+  <circle cx="150" cy="760" r="210" fill="#EBC9C4" opacity=".35"/>
+  <circle cx="610" cy="170" r="6" fill="#D8B66A" opacity=".7"/>
+  <circle cx="200" cy="820" r="4" fill="#D8B66A" opacity=".7"/>
+  <ellipse cx="400" cy="905" rx="230" ry="26" fill="#B98580" opacity=".18"/><g transform="translate(-40 160) scale(.62)"><circle cx="400" cy="600" r="250" fill="#B98580" opacity=".15"/>
+    <circle cx="400" cy="590" r="245" fill="url(#g114)"/>
+    <circle cx="400" cy="590" r="222" fill="#B08A3E" opacity=".5"/>
+    <circle cx="400" cy="590" r="210" fill="url(#r115)"/>
+    <circle cx="400" cy="590" r="150" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="3"/>
+         <circle cx="400" cy="590" r="100" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="3"/>
+         <circle cx="400" cy="590" r="50" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="3"/>
+    <path d="M250 470 A200 200 0 0 1 400 390" stroke="#fff" stroke-opacity=".55" stroke-width="10" fill="none" stroke-linecap="round"/></g><path d="M480 300 q60 -40 150 -10 q50 18 40 50 q-10 30 -90 26 q-90 -6 -100 -66z" fill="#F3DDB3"/>
+      <path d="M500 296 q60 -26 120 -8" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M480 420 q60 -40 150 -10 q50 18 40 50 q-10 30 -90 26 q-90 -6 -100 -66z" fill="#E8B9A0"/>
+      <path d="M500 416 q60 -26 120 -8" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M480 540 q60 -40 150 -10 q50 18 40 50 q-10 30 -90 26 q-90 -6 -100 -66z" fill="#C9965E"/>
+      <path d="M500 536 q60 -26 120 -8" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/>
+</svg>

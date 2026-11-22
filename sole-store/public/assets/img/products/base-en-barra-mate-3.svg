@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Base en Barra Mate: textura">
+<defs><radialGradient id="r39" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#f2ddcc"/><stop offset="50%" stop-color="#EBCBB0"/><stop offset="100%" stop-color="#bca28d"/></radialGradient><radialGradient id="r40" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#dcbda2"/><stop offset="50%" stop-color="#C99A70"/><stop offset="100%" stop-color="#a17b5a"/></radialGradient><radialGradient id="r41" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#a98c79"/><stop offset="50%" stop-color="#7A4E31"/><stop offset="100%" stop-color="#623e27"/></radialGradient><linearGradient id="g42" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFF8F6"/><stop offset="100%" stop-color="#F6E3E0"/></linearGradient></defs>
+<rect width="800" height="1000" fill="url(#g42)"/>
+  <circle cx="640" cy="210" r="150" fill="#FFFFFF" opacity=".45"/>
+  <circle cx="150" cy="760" r="210" fill="#EBC9C4" opacity=".35"/>
+  <circle cx="610" cy="170" r="6" fill="#D8B66A" opacity=".7"/>
+  <circle cx="200" cy="820" r="4" fill="#D8B66A" opacity=".7"/>
+  <ellipse cx="400" cy="905" rx="230" ry="26" fill="#B98580" opacity=".18"/><circle cx="250" cy="330" r="170" fill="url(#r39)"/>
+      <ellipse cx="200" cy="270" rx="50" ry="22" fill="#fff" opacity=".35" transform="rotate(-30 200 270)"/><circle cx="550" cy="330" r="160" fill="url(#r40)"/>
+      <ellipse cx="500" cy="270" rx="50" ry="22" fill="#fff" opacity=".35" transform="rotate(-30 500 270)"/><circle cx="250" cy="660" r="150" fill="url(#r41)"/>
+      <ellipse cx="200" cy="600" rx="50" ry="22" fill="#fff" opacity=".35" transform="rotate(-30 200 600)"/>
+</svg>
