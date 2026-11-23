@@ -67,7 +67,7 @@ Todo funciona con **Firebase, gratis y sin tarjeta**: Hosting (la página), Fire
 **B. Base de datos (Firestore)**
 1. **Compilación → Firestore Database → Crear base de datos** → modo **producción** → ubicación **southamerica-east1 (São Paulo)**.
 2. Pestaña **Datos** → **Iniciar colección** → ID de la colección: `admins`.
-   - ID del documento: el correo de la administradora **en minúsculas** (ej.: `barretocarolina465@gmail.com`).
+   - ID del documento: el correo de la administradora **en minúsculas** (ej.: `nombre.apellido@gmail.com`).
    - Campo: `email` (tipo string) con ese mismo correo → **Guardar**.
    - Repite con **Agregar documento** para cada administradora inicial. Las siguientes se agregan desde el panel.
 
