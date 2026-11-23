@@ -16,13 +16,14 @@ import { consentFieldset, recordConsent } from '../consent.js';
 import { currentUser, saveOrder } from '../auth.js';
 import { isConfigured, placeOrderFb, fetchInventory, invKey } from '../firebase.js';
 import { catalogSource } from '../products.js';
+import { shippingMethods, shippingCost } from '../shipping.js';
 
 const DEPARTAMENTOS = ['Amazonas', 'Antioquia', 'Arauca', 'Atlántico', 'Bogotá D.C.', 'Bolívar', 'Boyacá', 'Caldas', 'Caquetá', 'Casanare', 'Cauca', 'Cesar', 'Chocó', 'Córdoba', 'Cundinamarca', 'Guainía', 'Guaviare', 'Huila', 'La Guajira', 'Magdalena', 'Meta', 'Nariño', 'Norte de Santander', 'Putumayo', 'Quindío', 'Risaralda', 'San Andrés y Providencia', 'Santander', 'Sucre', 'Tolima', 'Valle del Cauca', 'Vaupés', 'Vichada'];
 
 const products = await initLayout();
 const root = $('#checkout-root');
 const user = currentUser();
-let shippingId = CONFIG.shippingMethods[0].id;
+let shippingId = shippingMethods()[0].id;
 
 if (!totals(products).lines.length) {
   root.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><h2>No hay productos para pagar</h2><a class="btn" href="catalogo.html">Ir al catálogo</a></div>`;
@@ -92,9 +93,22 @@ function render() {
   $('#wants-invoice').addEventListener('change', toggleInvoice);
   toggleInvoice();
 
-  $('#checkout-form').addEventListener('change', (e) => { if (e.target.name === 'shipping') { shippingId = e.target.value; updateSummary(); } });
+  $('#checkout-form').addEventListener('change', (e) => { if (e.target.name === 'shipping') { shippingId = e.target.value; lockLocalAddress(); updateSummary(); } });
   updateSummary();
   setupForm($('#checkout-form'), placeOrder);
+}
+
+/** Con domicilio local, el departamento y la ciudad se llenan solos y no se pueden cambiar. */
+function lockLocalAddress() {
+  const m = shippingMethods().find((x) => x.id === shippingId);
+  const dep = $('[name="department"]'); const city = $('[name="city"]');
+  if (m?.city) {
+    dep.value = m.department; city.value = m.city;
+    dep.disabled = true; city.readOnly = true;
+    [dep, city].forEach((el) => { el.setAttribute('aria-invalid', 'false'); const err = document.getElementById(`${el.id}-err`); if (err) err.textContent = ''; });
+  } else if (dep.disabled) {
+    dep.disabled = false; city.readOnly = false; city.value = '';
+  }
 }
 
 function updateSummary() {
@@ -102,20 +116,19 @@ function updateSummary() {
   // Las opciones se crean una vez; luego solo se actualiza el precio (así no se pierde el foco).
   const box = $('#shipping-options');
   if (!box.children.length) {
-    box.innerHTML = CONFIG.shippingMethods.map((m) => `<label class="option-card"><input type="radio" name="shipping" value="${m.id}" ${m.id === shippingId ? 'checked' : ''}>
+    box.innerHTML = shippingMethods().map((m) => `<label class="option-card"><input type="radio" name="shipping" value="${m.id}" ${m.id === shippingId ? 'checked' : ''}>
       <span><strong>${escapeHTML(m.name)}</strong><span class="opt-desc">${escapeHTML(m.desc)}</span></span>
       <span class="opt-price" data-price-for="${m.id}"></span></label>`).join('');
   }
-  CONFIG.shippingMethods.forEach((m) => {
-    const ship = totals(products, m.id).shipping;
-    box.querySelector(`[data-price-for="${m.id}"]`).textContent = ship === 0 ? 'Gratis' : formatPrice(ship);
+  shippingMethods().forEach((m) => {
+    box.querySelector(`[data-price-for="${m.id}"]`).textContent = totals(products, m.id).shippingText || shippingCost(m).text;
   });
   $('#summary-items').innerHTML = t.lines.map((l) => `
     <div class="summary-item"><img src="${l.product.thumb || l.product.image}" alt="" width="56" height="70" loading="lazy">
       <span>${escapeHTML(l.product.name)}${l.toneObj ? `<br><span class="muted">${escapeHTML(l.toneObj.name)}</span>` : ''}<br><span class="qty-pill">x${l.qty}</span></span>
       <strong>${formatPrice(l.total)}</strong></div>`).join('');
   $('#summary-totals').innerHTML = summaryRows(t, { shippingLabel: t.method.name });
-  $('#pay-btn').textContent = `Continuar a WhatsApp · ${formatPrice(t.total)}`;
+  $('#pay-btn').textContent = `Continuar a WhatsApp · ${formatPrice(t.total)}${t.shippingPending ? ' + envío' : ''}`;
 }
 
 async function placeOrder(data, form) {
@@ -135,9 +148,9 @@ async function placeOrder(data, form) {
     date: d.toISOString(),
     status: 'Por confirmar en WhatsApp',
     items: t.lines.map((l) => ({ id: l.product.id, name: l.product.name, tone: l.tone, qty: l.qty, unit: l.unit, total: l.total, image: l.product.thumb || l.product.image })),
-    totals: { subtotal: t.subtotal, discount: t.discount, shipping: t.shipping, total: t.total, coupon: t.coupon?.code || null },
+    totals: { subtotal: t.subtotal, discount: t.discount, shipping: t.shipping, shippingText: t.shippingText, total: t.total, coupon: t.coupon?.code || null },
     contact: { email: user?.email || null, name: data.name, phone: data.phone },
-    shipping: { method: t.method.name, department: data.department, city: data.city, address: data.address, address2: data.address2 || '' },
+    shipping: { method: t.method.name, department: t.method.department || data.department, city: t.method.city || data.city, address: data.address, address2: data.address2 || '' },
     payment: 'whatsapp',
     invoice: data.wantsInvoice ? { docType: data.docType, docNumber: data.docNumber } : 'Consumidor final',
     consentRecordId: consent.recordId,

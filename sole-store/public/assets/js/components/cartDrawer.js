@@ -15,18 +15,18 @@ export function shippingProgressHTML(t) {
   const pct = Math.min(100, Math.round(((CONFIG.freeShippingFrom - t.missingForFree) / CONFIG.freeShippingFrom) * 100));
   const msg = t.missingForFree > 0
     ? `Te faltan <strong>${formatPrice(t.missingForFree)}</strong> para el <strong>envío gratis</strong>.`
-    : '¡Tu pedido tiene <strong>envío estándar gratis</strong>!';
+    : '¡Tu pedido tiene <strong>envío gratis</strong>!';
   return `<div class="ship-progress"><p style="margin:0">${msg}</p><div class="ship-progress__bar" role="progressbar" aria-label="Progreso hacia el envío gratis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><span style="width:${pct}%"></span></div></div>`;
 }
 
 /** Resumen de totales: lo usan carrito y checkout. */
-export function summaryRows(t, { shippingLabel = 'Envío estándar (estimado)' } = {}) {
+export function summaryRows(t, { shippingLabel = t.method.name } = {}) {
   return `
     <div class="summary-row"><span>Subtotal</span><span>${formatPrice(t.subtotal)}</span></div>
     ${t.discount ? `<div class="summary-row summary-row--discount"><span>Descuento (${escapeHTML(t.coupon.code)})</span><span>−${formatPrice(t.discount)}</span></div>` : ''}
-    <div class="summary-row"><span>${shippingLabel}</span><span>${t.shipping === 0 ? '<strong style="color:var(--success)">Gratis</strong>' : formatPrice(t.shipping)}</span></div>
-    <div class="summary-row summary-row--total"><span>Total</span><span>${formatPrice(t.total)}</span></div>
-    <p class="small muted">Precios con IVA incluido.</p>`;
+    <div class="summary-row"><span>${escapeHTML(shippingLabel)}</span><span>${t.shipping === 0 ? '<strong style="color:var(--success)">Gratis</strong>' : escapeHTML(t.shippingText)}</span></div>
+    <div class="summary-row summary-row--total"><span>Total${t.shippingPending ? ' <small class="muted">(sin envío)</small>' : ''}</span><span>${formatPrice(t.total)}</span></div>
+    <p class="small muted">Precios con IVA incluido.${t.shippingPending ? ' El valor exacto del envío te lo confirmamos por WhatsApp.' : ''}</p>`;
 }
 
 /** HTML de una línea de carrito (drawer y página de carrito). */

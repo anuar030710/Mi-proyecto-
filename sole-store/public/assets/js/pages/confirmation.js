@@ -44,8 +44,8 @@ if (!order) {
       ${order.items.map((i) => `<div class="summary-item"><img src="${i.image}" alt="" width="56" height="70"><span>${escapeHTML(i.name)}${i.tone ? ` · ${escapeHTML(i.tone)}` : ''}<br><span class="qty-pill">x${i.qty}</span></span><strong>${formatPrice(i.total)}</strong></div>`).join('')}
       <div class="summary-row"><span>Subtotal</span><span>${formatPrice(order.totals.subtotal)}</span></div>
       ${order.totals.discount ? `<div class="summary-row summary-row--discount"><span>Descuento</span><span>−${formatPrice(order.totals.discount)}</span></div>` : ''}
-      <div class="summary-row"><span>Envío (${escapeHTML(order.shipping.method)})</span><span>${order.totals.shipping ? formatPrice(order.totals.shipping) : 'Gratis'}</span></div>
-      <div class="summary-row summary-row--total"><span>Total</span><span>${formatPrice(order.totals.total)}</span></div>
+      <div class="summary-row"><span>Envío (${escapeHTML(order.shipping.method)})</span><span>${escapeHTML((order.totals.shipping === 0 ? 'Gratis' : order.totals.shipping == null ? (order.totals.shippingText || 'Por confirmar') : formatPrice(order.totals.shipping)))}</span></div>
+      <div class="summary-row summary-row--total"><span>Total${order.totals.shipping == null ? ' <small class="muted">(sin envío)</small>' : ''}</span><span>${formatPrice(order.totals.total)}</span></div>
       <p class="small" style="margin:0"><strong>Pago:</strong> se acuerda por WhatsApp · <strong>Estado:</strong> ${escapeHTML(order.status)}</p>
       <p class="small" style="margin:0"><strong>Entrega en:</strong> ${escapeHTML(order.shipping.address)} ${escapeHTML(order.shipping.address2)}, ${escapeHTML(order.shipping.city)}, ${escapeHTML(order.shipping.department)}</p>
     </div>

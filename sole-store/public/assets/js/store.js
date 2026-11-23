@@ -5,6 +5,7 @@
 import { CONFIG } from './config.js';
 import { storage, formatPrice } from './utils.js';
 import { finalPrice, findProduct, stockOf } from './products.js';
+import { shippingMethods, shippingCost } from './shipping.js';
 
 const CART_KEY = 'sole_cart';
 const FAV_KEY = 'sole_favorites';
@@ -84,15 +85,19 @@ export function totals(products, shippingId) {
   if (coupon && coupon.minSubtotal && subtotal < coupon.minSubtotal) couponValid = false;
   if (couponValid && coupon.type === 'percent') discount = Math.round(subtotal * coupon.value / 100);
   if (couponValid && coupon.type === 'fixed') discount = Math.min(coupon.value, subtotal);
-  const method = CONFIG.shippingMethods.find((m) => m.id === shippingId) || CONFIG.shippingMethods[0];
+  const methods = shippingMethods();
+  const method = methods.find((m) => m.id === shippingId) || methods[0];
   const afterDiscount = subtotal - discount;
-  const freeByAmount = afterDiscount >= CONFIG.freeShippingFrom;
+  const freeByAmount = CONFIG.freeShippingFrom > 0 && afterDiscount >= CONFIG.freeShippingFrom;
   const freeByCoupon = couponValid && coupon.type === 'shipping';
-  // El envío gratis por monto aplica al envío estándar; express se cobra siempre salvo cupón.
-  const shippingFree = freeByCoupon || (freeByAmount && method.id === CONFIG.shippingMethods[0].id);
-  const shipping = lines.length === 0 ? 0 : shippingFree ? 0 : method.price;
+  const cost = shippingCost(method);
+  // shipping = null cuando el valor se confirma por WhatsApp (rango o "por confirmar").
+  const free = lines.length === 0 || freeByCoupon || freeByAmount;
+  const shipping = free ? 0 : cost.amount;
+  const shippingText = free ? 'Gratis' : cost.text;
   return {
-    lines, subtotal, discount, shipping, total: afterDiscount + shipping, method,
+    lines, subtotal, discount, shipping, shippingText, shippingPending: shipping === null,
+    total: afterDiscount + (shipping || 0), method,
     coupon: couponValid ? { code, ...coupon } : null, couponInvalid: !!coupon && !couponValid,
     missingForFree: Math.max(0, CONFIG.freeShippingFrom - afterDiscount),
   };

@@ -28,11 +28,10 @@ export const CONFIG = {
   /* Unidades a partir de las cuales se muestra "¡Quedan pocas!" */
   lowStockThreshold: 6,
 
-  /* Métodos de envío. price en la moneda de la tienda. */
-  shippingMethods: [
-    { id: 'estandar', name: 'Envío estándar', desc: '3 a 5 días hábiles a todo Colombia', price: 12000 },
-    { id: 'express', name: 'Envío express', desc: '1 a 2 días hábiles (ciudades principales)', price: 22000 },
-  ],
+  /* Envíos (se cambian desde el panel). Ver assets/js/shipping.js.
+     - Nacional: rango según la ciudad; el valor exacto se confirma por WhatsApp.
+     - Domicilio local: localPrice = null → "por confirmar", 0 → gratis, o un valor. */
+  shipping: { nationalMin: 18500, nationalMax: 21000, localCity: 'Caucasia', localDepartment: 'Antioquia', localPrice: null },
 
   /* Pagos: NO se hacen en la página. Al confirmar, la clienta envía su pedido por WhatsApp
      y el pago se acuerda en esa conversación (ver assets/js/whatsapp.js).

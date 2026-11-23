@@ -6,7 +6,7 @@ import { CONFIG } from './config.js';
 import { isConfigured, fetchSettings } from './firebase.js';
 
 /** Campos que la administradora puede cambiar desde el panel. */
-export const EDITABLE_KEYS = ['storeName', 'tagline', 'whatsapp', 'company', 'paymentOptions', 'freeShippingFrom', 'shippingMethods', 'coupons'];
+export const EDITABLE_KEYS = ['storeName', 'tagline', 'whatsapp', 'company', 'paymentOptions', 'freeShippingFrom', 'shipping', 'coupons'];
 
 let loaded = null;
 

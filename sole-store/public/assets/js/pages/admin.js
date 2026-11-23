@@ -474,7 +474,7 @@ async function tabOrders() {
       return `<article class="msg-item">
         <header><strong>${esc(r.id)} · ${esc(c.name || '')}</strong><span><span class="status-pill">${STATUS[r.status]}</span> ${new Date(r.createdAt).toLocaleString('es-CO')}</span></header>
         <ul class="small" style="margin:8px 0;padding-left:18px">${(o.items || []).map((i) => `<li>${i.qty} × ${esc(i.name)}${i.tone ? ` (${esc(i.tone)})` : ''} — ${formatPrice(i.total)}</li>`).join('')}</ul>
-        <p class="small" style="margin:0"><strong>Total: ${formatPrice(tt.total ?? o.serverSubtotal ?? 0)}</strong>${tt.discount ? ` · descuento ${formatPrice(tt.discount)}${tt.coupon ? ` (${esc(tt.coupon)})` : ''}` : ''} · envío ${tt.shipping ? formatPrice(tt.shipping) : 'gratis'}</p>
+        <p class="small" style="margin:0"><strong>Total: ${formatPrice(tt.total ?? o.serverSubtotal ?? 0)}</strong>${tt.discount ? ` · descuento ${formatPrice(tt.discount)}${tt.coupon ? ` (${esc(tt.coupon)})` : ''}` : ''} · envío ${tt.shipping === 0 ? 'gratis' : tt.shipping == null ? (/–/.test(tt.shippingText || '') ? `${esc(tt.shippingText)} (por confirmar)` : 'por confirmar') : formatPrice(tt.shipping)}</p>
         <p class="small" style="margin:4px 0 0">${esc(sh.address || '')} ${esc(sh.address2 || '')}, ${esc(sh.city || '')}, ${esc(sh.department || '')} · ${esc(sh.method || '')}${o.invoice && typeof o.invoice === 'object' ? ` · Factura: ${esc(o.invoice.docType)} ${esc(o.invoice.docNumber)}` : ''}</p>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
           ${wa ? `<a class="btn btn--outline btn--sm" href="${wa}" target="_blank" rel="noopener">WhatsApp ${esc(c.phone)}</a>` : ''}
@@ -506,7 +506,7 @@ async function tabStore() {
   applySettings(settings);
   const c = CONFIG.company;
   const wa = (CONFIG.whatsapp.number || '').replace(/^57/, '');
-  const ship = Object.fromEntries(CONFIG.shippingMethods.map((m) => [m.id, m.price]));
+  const ship = CONFIG.shipping;
   const coupons = Object.entries(CONFIG.coupons).map(([code, v]) => ({ code, ...v }));
   const f = (id, label, value, extra = '') => `<div class="field"><label for="${id}">${label}</label><input id="${id}" value="${esc(value ?? '')}" ${extra}></div>`;
 
@@ -538,8 +538,11 @@ async function tabStore() {
 
     <div class="editor-section"><h3>Envíos</h3><div class="form-grid form-grid--2">
       ${f('st-free', 'Envío gratis desde (pesos)', CONFIG.freeShippingFrom, 'type="number" min="0" step="1000"')}
-      ${f('st-std', 'Precio envío estándar', ship.estandar, 'type="number" min="0" step="500"')}
-      ${f('st-exp', 'Precio envío express', ship.express, 'type="number" min="0" step="500"')}
+      ${f('st-nmin', 'Envío nacional: desde', ship.nationalMin, 'type="number" min="0" step="500"')}
+      ${f('st-nmax', 'Envío nacional: hasta', ship.nationalMax, 'type="number" min="0" step="500"')}
+      ${f('st-lcity', 'Domicilio local: ciudad', ship.localCity)}
+      ${f('st-lprice', 'Domicilio local: precio', ship.localPrice ?? '', 'type="number" min="0" step="500" placeholder="Vacío = por confirmar"')}
+      <p class="small muted span-2" style="margin:0">Domicilio: deja el precio <strong>vacío</strong> para confirmarlo por WhatsApp, escribe <strong>0</strong> para que sea gratis, o escribe el valor. Envío nacional: si “desde” y “hasta” son iguales, se cobra ese valor fijo.</p>
     </div></div>
 
     <div class="editor-section"><h3>Cupones</h3>
@@ -585,7 +588,11 @@ async function tabStore() {
       paymentOptions: v('st-pay').split(',').map((s) => s.trim()).filter(Boolean),
       company: { legalName: v('st-legal'), nit: v('st-nit'), address: v('st-addr'), city: v('st-city'), phone: v('st-phone'), email: v('st-email'), privacyEmail: v('st-pemail'), hours: v('st-hours') },
       freeShippingFrom: Number(v('st-free')) || 0,
-      shippingMethods: CONFIG.shippingMethods.map((m) => ({ ...m, price: Number(v(m.id === 'express' ? 'st-exp' : 'st-std')) || 0 })),
+      shipping: {
+        nationalMin: Number(v('st-nmin')) || 0, nationalMax: Math.max(Number(v('st-nmax')) || 0, Number(v('st-nmin')) || 0),
+        localCity: v('st-lcity') || 'Caucasia', localDepartment: CONFIG.shipping.localDepartment,
+        localPrice: v('st-lprice') === '' ? null : Math.max(0, Number(v('st-lprice')) || 0),
+      },
       coupons: couponObj,
     };
     try {
