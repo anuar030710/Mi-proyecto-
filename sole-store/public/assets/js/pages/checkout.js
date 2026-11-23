@@ -70,7 +70,7 @@ function render() {
     </fieldset>
 
     ${consentFieldset('checkout')}
-    <p class="pay-note" style="margin-top:16px"><strong>No pagas nada en esta página.</strong> Al continuar se abrirá WhatsApp con tu pedido listo para enviar. Te confirmamos disponibilidad y acordamos el pago por ese chat. Tienes derecho a la garantía legal y a devoluciones según la <a href="reembolsos.html">política de reembolso</a>.</p>
+    <p class="pay-note" style="margin-top:16px"><strong>No pagas nada en esta página.</strong> Al continuar se abrirá WhatsApp con tu pedido listo para enviar. Te confirmamos disponibilidad y te enviamos los datos para pagar con <strong>${CONFIG.paymentOptions.join(' o ')}</strong>. Tienes derecho a la garantía legal y a devoluciones según la <a href="reembolsos.html">política de reembolso</a>.</p>
     <button class="btn btn--block" type="submit" id="pay-btn" style="margin-top:8px;min-height:56px"></button>
   </form>
 

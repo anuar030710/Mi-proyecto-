@@ -36,7 +36,7 @@ if (!order) {
     <h1>¡Casi listo, ${escapeHTML(order.contact.name.split(' ')[0])}!</h1>
     <p>Tu número de pedido es</p>
     <div class="order-number">${escapeHTML(order.id)}</div>
-    <p><strong>Último paso:</strong> envíanos tu pedido por WhatsApp. Ahí te confirmamos disponibilidad y te decimos cómo pagar.</p>
+    <p><strong>Último paso:</strong> envíanos tu pedido por WhatsApp. Ahí te confirmamos disponibilidad y te enviamos los datos para pagar con ${CONFIG.paymentOptions.join(' o ')}.</p>
     <a class="btn btn--whatsapp" href="${wa}" target="_blank" rel="noopener">${ICONS.whatsapp} Enviar pedido por WhatsApp</a>
     <p class="small muted" style="margin-top:12px">Se abrirá WhatsApp con tu pedido escrito. Solo tienes que tocar “Enviar”.</p>
     <div class="summary">

@@ -22,7 +22,7 @@ export function orderMessage(o) {
     `Entrega: ${o.shipping.address}${o.shipping.address2 ? `, ${o.shipping.address2}` : ''}, ${o.shipping.city}, ${o.shipping.department}`,
     `Factura: ${typeof o.invoice === 'string' ? o.invoice : `${o.invoice.docType} ${o.invoice.docNumber}`}`,
     '',
-    '¿Me confirman disponibilidad y cómo hago el pago?',
+    `¿Me confirman disponibilidad y los datos para pagar por ${CONFIG.paymentOptions.join(' o ')}?`,
   ];
   return lines.join('\n');
 }

@@ -67,7 +67,7 @@ function footerHTML() {
   return `
   <section class="trust" aria-label="Por qué comprar en ${escapeHTML(CONFIG.storeName)}">
     <ul class="container">
-      <li>${ICONS.lock}<span><strong>Compra por WhatsApp</strong>Confirmamos tu pedido y el pago contigo</span></li>
+      <li>${ICONS.lock}<span><strong>Compra por WhatsApp</strong>Paga con ${CONFIG.paymentOptions.join(' o ')}</span></li>
       <li>${ICONS.truck}<span><strong>Envíos a todo Colombia</strong>Gratis desde ${formatPrice(CONFIG.freeShippingFrom)}</span></li>
       <li>${ICONS.return}<span><strong>Devoluciones fáciles</strong>Productos sellados, 5 días hábiles</span></li>
       <li>${ICONS.shield}<span><strong>100% original</strong>Con registro sanitario INVIMA</span></li>
@@ -79,6 +79,7 @@ function footerHTML() {
         <div>
           <a class="logo" href="index.html">sole<span>.</span><small style="color:#CDBDBC">store</small></a>
           <p style="max-width:34ch;color:#CDBDBC">${escapeHTML(CONFIG.tagline)}. Maquillaje elegido con cariño para que te sientas tú, todos los días.</p>
+          <div class="pay-icons" aria-label="Medios de pago"><span>Pagos por WhatsApp:</span>${CONFIG.paymentOptions.map((m) => `<span>${escapeHTML(m)}</span>`).join('')}</div>
         </div>
         <div><h3>Tienda</h3><ul>
           ${Object.entries(CATEGORIES).slice(0, 6).map(([k, v]) => `<li><a href="catalogo.html?categoria=${k}">${v}</a></li>`).join('')}

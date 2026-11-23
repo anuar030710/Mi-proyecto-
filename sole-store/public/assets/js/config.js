@@ -28,7 +28,9 @@ export const CONFIG = {
   ],
 
   /* Pagos: NO se hacen en la página. Al confirmar, la clienta envía su pedido por WhatsApp
-     y el pago se acuerda en esa conversación (ver assets/js/whatsapp.js). */
+     y el pago se acuerda en esa conversación (ver assets/js/whatsapp.js).
+     Medios aceptados (se muestran en la página; los datos de la cuenta se envían por WhatsApp): */
+  paymentOptions: ['Nequi', 'Bancolombia'],
 
   /* Cupones de ejemplo. type: 'percent' | 'fixed' | 'shipping' */
   coupons: {
