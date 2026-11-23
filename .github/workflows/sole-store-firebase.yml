@@ -1,5 +1,5 @@
 # Publica Soles Store en Firebase (https://soles-store.web.app) cada vez que cambia la carpeta
-# sole-store/ en la rama main: primero las reglas de seguridad de Firestore y luego la página.
+# sole-store/ en la rama main: primero la página y luego (si hay permiso) las reglas de Firestore.
 # También se puede lanzar a mano: GitHub → Actions → "Publicar Soles Store" → Run workflow.
 name: Publicar Soles Store
 
@@ -20,13 +20,6 @@ jobs:
         working-directory: sole-store
     steps:
       - uses: actions/checkout@v4
-      - name: Reglas de seguridad de Firestore
-        env:
-          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLESSTORE }}
-        run: |
-          echo "$FIREBASE_SA" > "$RUNNER_TEMP/sa.json"
-          GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json" npx --yes firebase-tools@13 deploy --only firestore:rules --project soles-store --non-interactive
-          rm -f "$RUNNER_TEMP/sa.json"
       - name: Página (Hosting)
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -35,3 +28,14 @@ jobs:
           projectId: soles-store
           channelId: live
           entryPoint: sole-store
+      # Las reglas necesitan el permiso "Firebase Rules Admin" en la cuenta de servicio.
+      # Si no lo tiene, este paso avisa pero no detiene nada: las reglas se pegan a mano en
+      # Firebase → Firestore Database → Reglas (ver docs/GUIA-ADMINISTRADORA.md).
+      - name: Reglas de seguridad de Firestore (opcional)
+        continue-on-error: true
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLESSTORE }}
+        run: |
+          trap 'rm -f "$RUNNER_TEMP/sa.json"' EXIT
+          echo "$FIREBASE_SA" > "$RUNNER_TEMP/sa.json"
+          GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json" npx --yes firebase-tools@13 deploy --only firestore:rules --project soles-store --non-interactive
