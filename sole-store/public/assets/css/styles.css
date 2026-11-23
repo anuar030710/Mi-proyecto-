@@ -549,7 +549,7 @@ p { margin: 0 0 1em; }
 .legal-toc { background: var(--rose-50); border-radius: var(--radius); padding: 16px 20px; }
 .legal-toc ol { margin: 0; padding-left: 20px; }
 .callout { background: var(--warning-bg); border-left: 4px solid var(--gold-500); padding: 14px 16px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: .9rem; }
-[data-company]:empty::before { content: '[completar en config.js]'; background: #FFE9A8; }
+[data-company]:empty::before { content: '[completar en el panel]'; background: #FFE9A8; }
 .faq-list details { border: 1px solid var(--line); border-radius: var(--radius); padding: 0 18px; margin-bottom: 10px; }
 .contact-grid { display: grid; gap: 32px; padding-block: 32px 72px; }
 @media (min-width: 900px) { .contact-grid { grid-template-columns: 1fr 1.3fr; gap: 56px; } }
@@ -585,3 +585,9 @@ p { margin: 0 0 1em; }
 .dot--out { opacity: .35; }
 .tone-picker label.is-out .swatch { opacity: .4; background-image: linear-gradient(135deg, transparent 46%, #fff 47%, #fff 53%, transparent 54%) !important; }
 .tone-picker input:disabled { cursor: not-allowed; }
+
+/* Logo de Soles Store (imagen) */
+.logo { align-items: center; }
+.logo__img { height: 44px; width: auto; display: block; }
+@media (min-width: 768px) { .logo__img { height: 52px; } }
+.logo__img--lg { height: 64px; }
