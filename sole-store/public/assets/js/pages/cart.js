@@ -31,7 +31,7 @@ function render() {
         <input class="input" id="coupon" name="coupon" placeholder="Cupón de descuento" autocomplete="off" aria-describedby="coupon-msg" value="${coupon ? escapeHTML(coupon.code) : ''}" ${coupon ? 'readonly' : ''}>
         ${coupon ? '<button type="button" class="btn btn--outline btn--sm" id="coupon-remove">Quitar</button>' : '<button class="btn btn--outline btn--sm" type="submit">Aplicar</button>'}
       </form>
-      <p id="coupon-msg" class="small" role="status" style="margin:0;${coupon ? 'color:var(--success)' : ''}">${coupon ? `✓ ${escapeHTML(coupon.label)}` : t.couponInvalid ? '<span style="color:var(--danger)">El cupón guardado ya no aplica a este carrito.</span>' : 'Prueba: BIENVENIDA10, SOLE20K o ENVIOGRATIS'}</p>
+      <p id="coupon-msg" class="small" role="status" style="margin:0;${coupon ? 'color:var(--success)' : ''}">${coupon ? `✓ ${escapeHTML(coupon.label)}` : t.couponInvalid ? '<span style="color:var(--danger)">El cupón guardado ya no aplica a este carrito.</span>' : '¿Tienes un cupón? Escríbelo aquí.'}</p>
       ${summaryRows(t)}
       <a class="btn btn--block" href="checkout.html">Finalizar compra</a>
       <p class="small muted center">${ICONS.lock.replace('<svg', '<svg style="width:14px;display:inline;vertical-align:-2px"')} Pagas por WhatsApp con ${CONFIG.paymentOptions.join(' o ')}</p>

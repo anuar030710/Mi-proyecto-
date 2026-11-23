@@ -20,10 +20,8 @@ const best = [...products].sort((a, b) => b.sold - a.sold).slice(0, 8);
 $('#bestsellers').innerHTML = best.map((p) => productCard(p)).join('');
 bindCardActions($('#bestsellers'), products);
 
-/* Ofertas: productos con descuento y stock. */
-// Si no hay productos con descuento, se muestran las novedades.
-const discounted = products.filter((p) => p.discount > 0 && p.stock > 0);
-const offers = (discounted.length ? discounted : [...products].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))).slice(0, 4);
+/* Novedades: los 4 productos más recientes. */
+const offers = [...products].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 4);
 $('#offers').innerHTML = offers.map((p) => productCard(p)).join('');
 bindCardActions($('#offers'), products);
 
