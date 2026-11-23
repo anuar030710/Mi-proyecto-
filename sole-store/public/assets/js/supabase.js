@@ -84,7 +84,8 @@ export async function db(path, { method = 'GET', body, prefer, auth = false } = 
   const res = await fetch(`${base()}/rest/v1/${path}`, {
     method,
     headers: {
-      apikey: CONFIG.supabase.anonKey, Authorization: `Bearer ${token || CONFIG.supabase.anonKey}`,
+      apikey: CONFIG.supabase.anonKey, ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      // Sin sesión basta la clave pública (sirve la 'anon' antigua y la nueva 'publishable').
       'Content-Type': 'application/json', ...(prefer ? { Prefer: prefer } : {}),
     },
     body: body ? JSON.stringify(body) : undefined,
