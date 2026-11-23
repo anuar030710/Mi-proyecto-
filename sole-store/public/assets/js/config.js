@@ -15,7 +15,7 @@ export const CONFIG = {
 
   /* Modo demostración: muestra una barra avisando que no se procesan pagos reales.
      Pon false cuando los precios, el stock y los datos legales sean los reales. */
-  demoMode: true,
+  demoMode: false,
 
   /* Moneda. Para dólares: currency 'USD', locale 'en-US', decimals 2. */
   currency: 'COP',
