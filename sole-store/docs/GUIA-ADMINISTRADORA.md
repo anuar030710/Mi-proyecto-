@@ -93,13 +93,17 @@ Para que el negocio no dependa de una persona:
 
 ### Publicación en soles-store.web.app
 
-Cada cambio en el código que llega a la rama `main` se publica solo (archivo `.github/workflows/sole-store-firebase.yml`): primero las **reglas de seguridad** (`firestore.rules`) y luego la **página**. Para eso GitHub necesita una clave de Firebase guardada como secreto:
+Cada cambio en el código que llega a la rama `main` publica sola la **página** (archivo `.github/workflows/sole-store-firebase.yml`). Para eso GitHub necesita una clave de Firebase guardada como secreto:
 
 1. Firebase → ⚙️ **Configuración del proyecto → Cuentas de servicio → Generar nueva clave privada**. Se descarga un archivo `.json`.
 2. GitHub → repositorio → **Settings → Secrets and variables → Actions → New repository secret**. Nombre: `FIREBASE_SERVICE_ACCOUNT_SOLESSTORE`. Valor: pega **todo** el contenido del archivo.
 3. Borra el archivo descargado de tu computador. Esa clave nunca se comparte por chat ni correo.
 
-Si la publicación de reglas fallara por permisos, se pueden pegar a mano: **Firestore Database → Reglas** → pega el contenido de `firestore.rules` → **Publicar**.
+**Reglas de seguridad (una sola vez, y cada vez que cambie `firestore.rules`):** la clave que genera Firebase no tiene permiso para publicarlas, así que se pegan a mano:
+1. Abre `sole-store/firestore.rules` en GitHub y cópialo completo (botón de copiar).
+2. Firebase → **Firestore Database → Reglas** → borra lo que hay, pega → **Publicar**.
+
+(Opcional, para que también se publiquen solas: en Google Cloud → **IAM**, darle a la cuenta `firebase-adminsdk-…` el rol **Firebase Rules Admin**.)
 
 Los cambios hechos desde el panel (productos, precios, unidades, fotos, datos) **no** necesitan esto: se ven al instante.
 
