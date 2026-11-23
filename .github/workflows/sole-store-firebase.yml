@@ -1,0 +1,37 @@
+# Publica Soles Store en Firebase (https://soles-store.web.app) cada vez que cambia la carpeta
+# sole-store/ en la rama main: primero las reglas de seguridad de Firestore y luego la página.
+# También se puede lanzar a mano: GitHub → Actions → "Publicar Soles Store" → Run workflow.
+name: Publicar Soles Store
+
+on:
+  push:
+    branches: [main]
+    paths: ['sole-store/**', '.github/workflows/sole-store-firebase.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sole-store
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reglas de seguridad de Firestore
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLESSTORE }}
+        run: |
+          echo "$FIREBASE_SA" > "$RUNNER_TEMP/sa.json"
+          GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json" npx --yes firebase-tools@13 deploy --only firestore:rules --project soles-store --non-interactive
+          rm -f "$RUNNER_TEMP/sa.json"
+      - name: Página (Hosting)
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLESSTORE }}
+          projectId: soles-store
+          channelId: live
+          entryPoint: sole-store

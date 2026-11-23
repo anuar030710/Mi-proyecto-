@@ -1,0 +1,7 @@
+# Datos personales: nunca al repositorio
+private/*
+!private/.gitkeep
+node_modules/
+
+# Registros de los emuladores de Firebase
+*-debug.log

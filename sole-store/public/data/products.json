@@ -1,0 +1,1311 @@
+{
+  "_info": "Catálogo de Soles Store. Precios en COP con IVA incluido. IMPORTANTE: los precios y el stock (10) son PROVISIONALES: cámbialos por los reales. 'discount' es un porcentaje. 'stock' 0 = Agotado. 'nso' = Notificación Sanitaria INVIMA (cópiala del empaque).",
+  "products": [
+    {
+      "id": "s001",
+      "slug": "gloss-bonita",
+      "name": "Lip Gloss Bonita",
+      "brand": "Ani-K",
+      "category": "labiales",
+      "price": 18000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Rojo",
+          "hex": "#9E1B24",
+          "family": "rojo",
+          "stock": 10
+        },
+        {
+          "name": "Transparente",
+          "hex": "#EDE8E6",
+          "family": "nude",
+          "stock": 10
+        },
+        {
+          "name": "Rosa",
+          "hex": "#F2C4C2",
+          "family": "rosa",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 30,
+      "sold": 0,
+      "createdAt": "2026-09-01",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/gloss-bonita.webp",
+      "thumb": "assets/img/products/gloss-bonita-sm.webp",
+      "images": [
+        "assets/img/products/gloss-bonita.webp"
+      ],
+      "description": "Brillo labial de acabado cristal en tubo transparente. Contenido: 3,2 g.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Empieza con los labios limpios e hidratados. Desliza el aplicador desde el centro hacia las comisuras. Úsalo solo para un brillo natural o encima de tu labial para más volumen.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Empieza con los labios limpios e hidratados.",
+        "Desliza el aplicador desde el centro hacia las comisuras.",
+        "Úsalo solo para un brillo natural o encima de tu labial para más volumen."
+      ],
+      "tip": "El tono Transparente va con todo: úsalo sobre cualquier labial para darle brillo."
+    },
+    {
+      "id": "s002",
+      "slug": "rubor-atenea-1st-scene",
+      "name": "Rubor 1st Scene",
+      "brand": "Atenea",
+      "category": "rubores",
+      "price": 42000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Dusty Rose",
+          "hex": "#C46F6A",
+          "family": "rosa",
+          "stock": 10
+        },
+        {
+          "name": "Coral",
+          "hex": "#C9694F",
+          "family": "coral",
+          "stock": 10
+        },
+        {
+          "name": "Rosa Malva",
+          "hex": "#B4615E",
+          "family": "malva",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 30,
+      "sold": 0,
+      "createdAt": "2026-09-01",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/rubor-atenea-1st-scene.webp",
+      "thumb": "assets/img/products/rubor-atenea-1st-scene-sm.webp",
+      "images": [
+        "assets/img/products/rubor-atenea-1st-scene.webp"
+      ],
+      "description": "Rubor compacto en estuche dorado con espejo. Acabado satinado y pigmento modulable. Contenido neto: 4,5 g.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Sonríe para encontrar la parte más alta de tus mejillas. Toma poco producto con la brocha y sacude el exceso. Aplica en las mejillas y difumina hacia las sienes.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Sonríe para encontrar la parte más alta de tus mejillas.",
+        "Toma poco producto con la brocha y sacude el exceso.",
+        "Aplica en las mejillas y difumina hacia las sienes."
+      ],
+      "tip": "Empieza con poquito y ve sumando capas: es más fácil agregar color que quitarlo."
+    },
+    {
+      "id": "s003",
+      "slug": "contorno-liquido-ani-k",
+      "name": "Contorno Líquido Liquid Contour",
+      "brand": "Ani-K",
+      "category": "contorno",
+      "price": 22000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Tono único",
+          "hex": "#8A6A55",
+          "family": "marron",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "grasa",
+        "mixta",
+        "normal"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/contorno-liquido-ani-k.webp",
+      "thumb": "assets/img/products/contorno-liquido-ani-k-sm.webp",
+      "images": [
+        "assets/img/products/contorno-liquido-ani-k.webp"
+      ],
+      "description": "Contorno líquido con aplicador de esponja para esculpir y dar dimensión al rostro. Contenido: 5 ml.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Agita un poco y saca producto con el aplicador. Haz pequeños puntos bajo el pómulo, en la mandíbula y a los lados de la frente. Difumina enseguida con brocha o esponja húmeda, hacia arriba.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Agita un poco y saca producto con el aplicador.",
+        "Haz pequeños puntos bajo el pómulo, en la mandíbula y a los lados de la frente.",
+        "Difumina enseguida con brocha o esponja húmeda, hacia arriba."
+      ],
+      "tip": "Aplícalo antes del polvo para que se funda con tu base."
+    },
+    {
+      "id": "s004",
+      "slug": "contorno-barra-bloom-define",
+      "name": "Contorno en Barra Bloom Define",
+      "brand": "Bloomshell",
+      "category": "contorno",
+      "price": 32000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Claro",
+          "hex": "#A97F69",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Medio",
+          "hex": "#9B6D58",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Profundo",
+          "hex": "#8A5E4C",
+          "family": "marron",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 30,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/contorno-barra-bloom-define.webp",
+      "thumb": "assets/img/products/contorno-barra-bloom-define-sm.webp",
+      "images": [
+        "assets/img/products/contorno-barra-bloom-define.webp"
+      ],
+      "description": "Contorno en barra de punta triangular para trazos precisos. Textura cremosa que se difumina fácil.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Desliza la barra justo debajo del pómulo, desde la oreja hacia la boca. Marca suave a los lados de la nariz y en la línea de la mandíbula. Difumina con brocha o esponja hasta que no se vean líneas.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Desliza la barra justo debajo del pómulo, desde la oreja hacia la boca.",
+        "Marca suave a los lados de la nariz y en la línea de la mandíbula.",
+        "Difumina con brocha o esponja hasta que no se vean líneas."
+      ],
+      "tip": "Usa la punta del triángulo para las zonas pequeñas, como la nariz."
+    },
+    {
+      "id": "s005",
+      "slug": "lapiz-cejas-kiss-beauty",
+      "name": "Lápiz de Cejas Fit Eye",
+      "brand": "Kiss Beauty",
+      "category": "cejas",
+      "price": 8000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "01#",
+          "hex": "#2A2421",
+          "family": "negro",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-09-01",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/lapices-cejas-delineador.webp",
+      "thumb": "assets/img/products/lapices-cejas-delineador-sm.webp",
+      "images": [
+        "assets/img/products/lapices-cejas-delineador.webp"
+      ],
+      "description": "Lápiz para cejas con tajalápiz incorporado en la tapa.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Peina las cejas hacia arriba. Rellena con trazos cortos y suaves en la dirección del vello. Vuelve a peinar para que el color se vea natural.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Peina las cejas hacia arriba.",
+        "Rellena con trazos cortos y suaves en la dirección del vello.",
+        "Vuelve a peinar para que el color se vea natural."
+      ],
+      "tip": "Empieza más claro al inicio de la ceja y más definido hacia la punta."
+    },
+    {
+      "id": "s006",
+      "slug": "delineador-lapiz-samy",
+      "name": "Delineador en Lápiz Smooth Pencil Liner",
+      "brand": "Samy",
+      "category": "delineadores",
+      "price": 9000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Negro",
+          "hex": "#151214",
+          "family": "negro",
+          "stock": 10
+        },
+        {
+          "name": "Tabaco",
+          "hex": "#5A3A2A",
+          "family": "marron",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 20,
+      "sold": 0,
+      "createdAt": "2026-09-01",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/lapices-cejas-delineador.webp",
+      "thumb": "assets/img/products/lapices-cejas-delineador-sm.webp",
+      "images": [
+        "assets/img/products/lapices-cejas-delineador.webp"
+      ],
+      "description": "Delineador en lápiz de trazo suave, con tajalápiz en la tapa.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Saca punta con el tajalápiz de la tapa. Delinea pegado a las pestañas, de adentro hacia afuera. Para un efecto ahumado, difumina la línea con el dedo o un pincel.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Saca punta con el tajalápiz de la tapa.",
+        "Delinea pegado a las pestañas, de adentro hacia afuera.",
+        "Para un efecto ahumado, difumina la línea con el dedo o un pincel."
+      ],
+      "tip": "Si se te endurece la punta, caliéntala unos segundos entre los dedos."
+    },
+    {
+      "id": "s007",
+      "slug": "mascara-prosa-4-en-1",
+      "name": "Máscara de Pestañas 4 en 1",
+      "brand": "Prosa",
+      "category": "mascaras",
+      "price": 16000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Micro Fibra",
+          "hex": "#151214",
+          "family": "negro",
+          "stock": 10
+        },
+        {
+          "name": "Maxi-Volumen",
+          "hex": "#151214",
+          "family": "negro",
+          "stock": 10
+        },
+        {
+          "name": "Profesional Silicón",
+          "hex": "#151214",
+          "family": "negro",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 30,
+      "sold": 0,
+      "createdAt": "2026-09-01",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/mascara-prosa-4-en-1.webp",
+      "thumb": "assets/img/products/mascara-prosa-4-en-1-sm.webp",
+      "images": [
+        "assets/img/products/mascara-prosa-4-en-1.webp"
+      ],
+      "description": "Máscara de pestañas con fórmula contra agua. Elige tu versión: Micro Fibra (efecto extensiones), Maxi-Volumen (más espesor) o Profesional Silicón (cepillo de silicona).",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Coloca el cepillo en la raíz de las pestañas. Sube moviéndolo en zigzag hasta las puntas. Aplica una segunda capa antes de que la primera se seque.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "variantLabel": "Versión",
+      "howToSteps": [
+        "Coloca el cepillo en la raíz de las pestañas.",
+        "Sube moviéndolo en zigzag hasta las puntas.",
+        "Aplica una segunda capa antes de que la primera se seque."
+      ],
+      "tip": "Elige Micro Fibra para alargar, Maxi-Volumen para más espesor o Silicón para separar pestaña por pestaña."
+    },
+    {
+      "id": "s008",
+      "slug": "brocha-hidrals-duo-sculpt",
+      "name": "Brocha Dúo Sculpt Corrector y Sombra",
+      "brand": "Hidrals Beauty",
+      "category": "brochas",
+      "price": 15000,
+      "discount": 0,
+      "tones": [],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/brocha-hidrals-duo-sculpt.webp",
+      "thumb": "assets/img/products/brocha-hidrals-duo-sculpt-sm.webp",
+      "images": [
+        "assets/img/products/brocha-hidrals-duo-sculpt.webp"
+      ],
+      "description": "Brocha profesional de cerdas suaves para corrector y sombras. Vegana y libre de crueldad animal.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Toma corrector o sombra con la punta de la brocha. Aplica a toques suaves en la zona. Difumina con movimientos cortos hasta que no se noten bordes.",
+      "nso": "No aplica (accesorio, no es un cosmético)",
+      "reviews": [],
+      "howToSteps": [
+        "Toma corrector o sombra con la punta de la brocha.",
+        "Aplica a toques suaves en la zona.",
+        "Difumina con movimientos cortos hasta que no se noten bordes."
+      ],
+      "tip": "Lávala cada semana con jabón suave y déjala secar acostada."
+    },
+    {
+      "id": "s009",
+      "slug": "brocha-hidrals-angular-031",
+      "name": "Brocha Angular Profesional 031",
+      "brand": "Hidrals Beauty",
+      "category": "brochas",
+      "price": 18000,
+      "discount": 0,
+      "tones": [],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-09-01",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/brocha-hidrals-angular-031.webp",
+      "thumb": "assets/img/products/brocha-hidrals-angular-031-sm.webp",
+      "images": [
+        "assets/img/products/brocha-hidrals-angular-031.webp"
+      ],
+      "description": "Brocha profesional de corte angular, ideal para rubor y contorno.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Toma rubor o contorno con la parte más larga de la brocha. Apóyala siguiendo el hueso del pómulo. Difumina con movimientos hacia arriba y hacia afuera.",
+      "nso": "No aplica (accesorio, no es un cosmético)",
+      "reviews": [],
+      "howToSteps": [
+        "Toma rubor o contorno con la parte más larga de la brocha.",
+        "Apóyala siguiendo el hueso del pómulo.",
+        "Difumina con movimientos hacia arriba y hacia afuera."
+      ],
+      "tip": "Su corte angular se adapta solo a la forma de tu rostro."
+    },
+    {
+      "id": "s010",
+      "slug": "brocha-hidrals-base",
+      "name": "Brocha Plana para Base Profesional",
+      "brand": "Hidrals Beauty",
+      "category": "brochas",
+      "price": 18000,
+      "discount": 0,
+      "tones": [],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-09-01",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/brocha-hidrals-base.webp",
+      "thumb": "assets/img/products/brocha-hidrals-base-sm.webp",
+      "images": [
+        "assets/img/products/brocha-hidrals-base.webp"
+      ],
+      "description": "Brocha profesional de cerdas densas y corte plano para aplicar base líquida o en crema.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Pon un poco de base en el dorso de tu mano. Toma producto con la brocha y aplica desde el centro del rostro. Difumina con movimientos circulares hacia afuera.",
+      "nso": "No aplica (accesorio, no es un cosmético)",
+      "reviews": [],
+      "howToSteps": [
+        "Pon un poco de base en el dorso de tu mano.",
+        "Toma producto con la brocha y aplica desde el centro del rostro.",
+        "Difumina con movimientos circulares hacia afuera."
+      ],
+      "tip": "Pásala al final, sin producto, para pulir y dejar acabado de piel."
+    },
+    {
+      "id": "s011",
+      "slug": "pomos-samy",
+      "name": "Pomos de Maquillaje Makeup Puffs",
+      "brand": "Samy",
+      "category": "accesorios",
+      "price": 12000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Negro",
+          "hex": "#1E1A1D",
+          "family": "negro",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-09-01",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/pomos-samy.webp",
+      "thumb": "assets/img/products/pomos-samy-sm.webp",
+      "images": [
+        "assets/img/products/pomos-samy.webp"
+      ],
+      "description": "Pomos de maquillaje para aplicar y sellar polvos.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Toma polvo con el pomo y retira el exceso en el dorso de la mano. Presiona suavemente sobre la piel, sin arrastrar. Insiste en la zona T y bajo los ojos.",
+      "nso": "No aplica (accesorio, no es un cosmético)",
+      "reviews": [],
+      "howToSteps": [
+        "Toma polvo con el pomo y retira el exceso en el dorso de la mano.",
+        "Presiona suavemente sobre la piel, sin arrastrar.",
+        "Insiste en la zona T y bajo los ojos."
+      ],
+      "tip": "Lávalos con frecuencia para que no acumulen bacterias."
+    },
+    {
+      "id": "s012",
+      "slug": "corrector-bloomshell-my-concealer",
+      "name": "Corrector My Concealer",
+      "brand": "Bloomshell",
+      "category": "correctores",
+      "price": 28000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Tono 1",
+          "hex": "#EBCDB4",
+          "family": "nude",
+          "stock": 10
+        },
+        {
+          "name": "Tono 2",
+          "hex": "#E3C1A4",
+          "family": "nude",
+          "stock": 10
+        },
+        {
+          "name": "Tono 3",
+          "hex": "#D9B392",
+          "family": "nude",
+          "stock": 10
+        },
+        {
+          "name": "Tono 4",
+          "hex": "#CFA683",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Tono 5",
+          "hex": "#C29573",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Tono 6",
+          "hex": "#B5865F",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Tono 7",
+          "hex": "#A57651",
+          "family": "marron",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 70,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/corrector-bloomshell-my-concealer.webp",
+      "thumb": "assets/img/products/corrector-bloomshell-my-concealer-sm.webp",
+      "images": [
+        "assets/img/products/corrector-bloomshell-my-concealer.webp"
+      ],
+      "description": "Corrector líquido con vitamina E y ácido hialurónico. Contenido: 10 ml.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Aplica pequeños puntos en ojeras, alrededor de la nariz e imperfecciones. Difumina a toques con la esponja húmeda o con el dedo. Sella con un poco de polvo si tienes piel grasa.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Aplica pequeños puntos en ojeras, alrededor de la nariz e imperfecciones.",
+        "Difumina a toques con la esponja húmeda o con el dedo.",
+        "Sella con un poco de polvo si tienes piel grasa."
+      ],
+      "tip": "Para las ojeras, elige un tono un poquito más claro que tu piel."
+    },
+    {
+      "id": "s013",
+      "slug": "corrector-ojeras-ani-k",
+      "name": "Corrector de Ojeras",
+      "brand": "Ani-K",
+      "category": "correctores",
+      "price": 20000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Tono 1",
+          "hex": "#EAD3BF",
+          "family": "nude",
+          "stock": 10
+        },
+        {
+          "name": "Tono 2",
+          "hex": "#E3C6AC",
+          "family": "nude",
+          "stock": 10
+        },
+        {
+          "name": "Tono 3",
+          "hex": "#DDBC9C",
+          "family": "nude",
+          "stock": 10
+        },
+        {
+          "name": "Tono 4",
+          "hex": "#D2AC86",
+          "family": "nude",
+          "stock": 10
+        },
+        {
+          "name": "Tono 5",
+          "hex": "#C99D74",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Tono 6",
+          "hex": "#B98760",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Tono 7",
+          "hex": "#9C6A47",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Tono 8",
+          "hex": "#7A4C32",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Tono 9",
+          "hex": "#5C3624",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Tono 10",
+          "hex": "#C9A27A",
+          "family": "marron",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 100,
+      "sold": 0,
+      "createdAt": "2026-09-01",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/corrector-ojeras-ani-k.webp",
+      "thumb": "assets/img/products/corrector-ojeras-ani-k-sm.webp",
+      "images": [
+        "assets/img/products/corrector-ojeras-ani-k.webp"
+      ],
+      "description": "Corrector de ojeras de buena cobertura en 10 tonos. Contenido: 9 ml.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Dibuja un triángulo invertido bajo cada ojo. Difumina a toques con esponja húmeda. Sella con polvo suelto para que dure todo el día.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Dibuja un triángulo invertido bajo cada ojo.",
+        "Difumina a toques con esponja húmeda.",
+        "Sella con polvo suelto para que dure todo el día."
+      ],
+      "tip": "Si no sabes cuál de los 10 tonos te va, escríbenos por WhatsApp con una foto y te ayudamos."
+    },
+    {
+      "id": "s014",
+      "slug": "fijador-bloom-fix",
+      "name": "Fijador de Maquillaje Bloom Fix",
+      "brand": "Bloomshell",
+      "category": "fijadores",
+      "price": 30000,
+      "discount": 0,
+      "tones": [],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/fijador-bloom-fix.webp",
+      "thumb": "assets/img/products/fijador-bloom-fix-sm.webp",
+      "images": [
+        "assets/img/products/fijador-bloom-fix.webp"
+      ],
+      "description": "Fijador de maquillaje en spray para rostro que ayuda a que tu maquillaje dure más.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Termina todo tu maquillaje. Agita el envase y cierra los ojos. Rocía a unos 20 cm del rostro, en forma de X y luego de T.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Termina todo tu maquillaje.",
+        "Agita el envase y cierra los ojos.",
+        "Rocía a unos 20 cm del rostro, en forma de X y luego de T."
+      ],
+      "tip": "También puedes rociarlo en la esponja antes de aplicar la base para un acabado más fresco."
+    },
+    {
+      "id": "s015",
+      "slug": "esponja-bloom-swirl-xl",
+      "name": "Esponja Bloom Swirl XL",
+      "brand": "Bloomshell",
+      "category": "accesorios",
+      "price": 14000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Rosa",
+          "hex": "#F4B8C6",
+          "family": "rosa",
+          "stock": 10
+        },
+        {
+          "name": "Negra",
+          "hex": "#2A2A2A",
+          "family": "negro",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 20,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/esponja-bloom-swirl-xl.webp",
+      "thumb": "assets/img/products/esponja-bloom-swirl-xl-sm.webp",
+      "images": [
+        "assets/img/products/esponja-bloom-swirl-xl.webp"
+      ],
+      "description": "Esponja para maquillaje en forma de gota, tamaño XL, para base, corrector y polvos.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Humedece la esponja y escúrrela muy bien. Aplica la base, el corrector o el polvo a toquecitos. Lávala después de cada uso y déjala secar al aire.",
+      "nso": "No aplica (accesorio, no es un cosmético)",
+      "reviews": [],
+      "howToSteps": [
+        "Humedece la esponja y escúrrela muy bien.",
+        "Aplica la base, el corrector o el polvo a toquecitos.",
+        "Lávala después de cada uso y déjala secar al aire."
+      ],
+      "tip": "Húmeda rinde más: absorbe menos producto y deja la piel más natural."
+    },
+    {
+      "id": "s016",
+      "slug": "llavero-bloom-me",
+      "name": "Llavero Bloom Me",
+      "brand": "Bloomshell",
+      "category": "accesorios",
+      "price": 35000,
+      "discount": 0,
+      "tones": [],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/llavero-bloom-me.webp",
+      "thumb": "assets/img/products/llavero-bloom-me-sm.webp",
+      "images": [
+        "assets/img/products/llavero-bloom-me.webp"
+      ],
+      "description": "Llavero Bloom Me en tono rosa con corazón y accesorio de maquillaje, ideal para llevar en el bolso o regalar.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Engancha el llavero a tu bolso o tus llaves con el mosquetón. Úsalo para retocarte cuando estés fuera de casa.",
+      "nso": "No aplica (accesorio, no es un cosmético)",
+      "reviews": [],
+      "howToSteps": [
+        "Engancha el llavero a tu bolso o tus llaves con el mosquetón.",
+        "Úsalo para retocarte cuando estés fuera de casa."
+      ],
+      "tip": "Es un detalle perfecto para regalar."
+    },
+    {
+      "id": "s017",
+      "slug": "polvo-suelto-bloomshell",
+      "name": "Polvo Suelto con Pomo",
+      "brand": "Bloomshell",
+      "category": "polvos",
+      "price": 32000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Translúcido",
+          "hex": "#F0DCCF",
+          "family": "nude",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "grasa",
+        "mixta",
+        "normal"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/polvo-suelto-bloomshell.webp",
+      "thumb": "assets/img/products/polvo-suelto-bloomshell-sm.webp",
+      "images": [
+        "assets/img/products/polvo-suelto-bloomshell.webp"
+      ],
+      "description": "Polvo suelto para sellar el maquillaje y controlar el brillo. Incluye pomo de terciopelo.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Toma polvo con el pomo incluido y retira el exceso. Presiona sobre la zona T y bajo los ojos. Retira lo que sobre con una brocha limpia.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Toma polvo con el pomo incluido y retira el exceso.",
+        "Presiona sobre la zona T y bajo los ojos.",
+        "Retira lo que sobre con una brocha limpia."
+      ],
+      "tip": "Aplícalo apenas termines la base y el corrector para sellarlos."
+    },
+    {
+      "id": "s018",
+      "slug": "iluminador-crema-ani-k",
+      "name": "Iluminador en Crema Cream Highlighter",
+      "brand": "Ani-K",
+      "category": "iluminadores",
+      "price": 25000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Dorado",
+          "hex": "#D9A57A",
+          "family": "dorado",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/iluminador-crema-ani-k.webp",
+      "thumb": "assets/img/products/iluminador-crema-ani-k-sm.webp",
+      "images": [
+        "assets/img/products/iluminador-crema-ani-k.webp"
+      ],
+      "description": "Iluminador en crema en estuche con tapa de estrella. Da un brillo luminoso y natural a los puntos altos del rostro.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Toma un poco de producto con la yema del dedo. Da toquecitos en lo alto del pómulo, el puente de la nariz y el arco de cupido. Difumina los bordes con el dedo.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Toma un poco de producto con la yema del dedo.",
+        "Da toquecitos en lo alto del pómulo, el puente de la nariz y el arco de cupido.",
+        "Difumina los bordes con el dedo."
+      ],
+      "tip": "Póntelo antes del polvo: así el brillo se ve más natural."
+    },
+    {
+      "id": "s019",
+      "slug": "iluminador-suelto-bonita",
+      "name": "Iluminador Suelto Bonita",
+      "brand": "Ani-K",
+      "category": "iluminadores",
+      "price": 22000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Angel Glow",
+          "hex": "#EDE6DA",
+          "family": "dorado",
+          "stock": 10
+        },
+        {
+          "name": "Diva Glow",
+          "hex": "#D9A08E",
+          "family": "rosa",
+          "stock": 10
+        },
+        {
+          "name": "Cookie",
+          "hex": "#DCC9A4",
+          "family": "dorado",
+          "stock": 10
+        },
+        {
+          "name": "Cosmic Lover",
+          "hex": "#EEDDE6",
+          "family": "rosa",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 40,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/iluminador-suelto-bonita.webp",
+      "thumb": "assets/img/products/iluminador-suelto-bonita-sm.webp",
+      "images": [
+        "assets/img/products/iluminador-suelto-bonita.webp",
+        "assets/img/products/iluminador-suelto-bonita-2.webp",
+        "assets/img/products/iluminador-suelto-bonita-3.webp"
+      ],
+      "description": "Iluminador en polvo suelto de destellos finos, en 4 tonos. Contenido: 8 g.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Toma poco producto con una brocha abanico. Sacude el exceso para evitar que caiga en el rostro. Aplica en lo alto del pómulo, la nariz y el lagrimal.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Toma poco producto con una brocha abanico.",
+        "Sacude el exceso para evitar que caiga en el rostro.",
+        "Aplica en lo alto del pómulo, la nariz y el lagrimal."
+      ],
+      "tip": "Angel Glow y Cosmic Lover van mejor en pieles claras; Cookie y Diva Glow en pieles medias y trigueñas."
+    },
+    {
+      "id": "s020",
+      "slug": "rubor-serum-flushy-blushy",
+      "name": "Rubor Sérum Flushy Blushy",
+      "brand": "Ani-K",
+      "category": "rubores",
+      "price": 28000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Tono 1",
+          "hex": "#D95A6B",
+          "family": "rosa",
+          "stock": 10
+        },
+        {
+          "name": "Tono 2",
+          "hex": "#E0567A",
+          "family": "rosa",
+          "stock": 10
+        },
+        {
+          "name": "Tono 3",
+          "hex": "#F07A5E",
+          "family": "coral",
+          "stock": 10
+        },
+        {
+          "name": "Tono 4",
+          "hex": "#B8323C",
+          "family": "rojo",
+          "stock": 10
+        },
+        {
+          "name": "Tono 5",
+          "hex": "#C42E4A",
+          "family": "rojo",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 50,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/rubor-serum-flushy-blushy.webp",
+      "thumb": "assets/img/products/rubor-serum-flushy-blushy-sm.webp",
+      "images": [
+        "assets/img/products/rubor-serum-flushy-blushy.webp"
+      ],
+      "description": "Rubor líquido tipo sérum de textura ligera para un color fresco y natural. Contenido: 10 ml.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Aplica 1 o 2 gotas en cada mejilla. Difumina enseguida con los dedos o una esponja. Agrega otra gota si quieres más color.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Aplica 1 o 2 gotas en cada mejilla.",
+        "Difumina enseguida con los dedos o una esponja.",
+        "Agrega otra gota si quieres más color."
+      ],
+      "tip": "Se seca rápido, así que difumina mejilla por mejilla."
+    },
+    {
+      "id": "s021",
+      "slug": "fijador-cejas-freeze-babes",
+      "name": "Fijador de Cejas Freeze Babes",
+      "brand": "Ani-K",
+      "category": "cejas",
+      "price": 22000,
+      "discount": 0,
+      "tones": [],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/fijador-cejas-freeze-babes.webp",
+      "thumb": "assets/img/products/fijador-cejas-freeze-babes-sm.webp",
+      "images": [
+        "assets/img/products/fijador-cejas-freeze-babes.webp"
+      ],
+      "description": "Fijador de cejas de fijación extrema, con ácido hialurónico y aceite de ricino. Contenido: 4,8 g.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Peina las cejas hacia arriba con el cepillo. Dales la forma que quieras. Deja secar unos segundos sin tocarlas.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Peina las cejas hacia arriba con el cepillo.",
+        "Dales la forma que quieras.",
+        "Deja secar unos segundos sin tocarlas."
+      ],
+      "tip": "Úsalo después del lápiz de cejas para que el color no se mueva en todo el día."
+    },
+    {
+      "id": "s022",
+      "slug": "pomos-triangulares-ani-k",
+      "name": "Pomos Triangulares",
+      "brand": "Ani-K",
+      "category": "accesorios",
+      "price": 12000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Rosa",
+          "hex": "#F3C9BE",
+          "family": "rosa",
+          "stock": 10
+        },
+        {
+          "name": "Café",
+          "hex": "#A97B5C",
+          "family": "marron",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 20,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/pomos-triangulares-ani-k.webp",
+      "thumb": "assets/img/products/pomos-triangulares-ani-k-sm.webp",
+      "images": [
+        "assets/img/products/pomos-triangulares-ani-k.webp"
+      ],
+      "description": "Pomos de terciopelo en forma triangular con cinta para sujetar. Su punta llega a esquinas como el contorno de ojos y la nariz.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Toma polvo con el pomo y retira el exceso. Presiona con la parte plana en mejillas y frente. Usa la punta para la nariz y bajo los ojos.",
+      "nso": "No aplica (accesorio, no es un cosmético)",
+      "reviews": [],
+      "howToSteps": [
+        "Toma polvo con el pomo y retira el exceso.",
+        "Presiona con la parte plana en mejillas y frente.",
+        "Usa la punta para la nariz y bajo los ojos."
+      ],
+      "tip": "Puedes doblarlo en dos para llegar a zonas muy pequeñas."
+    },
+    {
+      "id": "s023",
+      "slug": "bloom-lamination-xl",
+      "name": "Bloom Lamination XL",
+      "brand": "Bloomshell",
+      "category": "cejas",
+      "price": 30000,
+      "discount": 0,
+      "tones": [],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/bloom-lamination-xl.webp",
+      "thumb": "assets/img/products/bloom-lamination-xl-sm.webp",
+      "images": [
+        "assets/img/products/bloom-lamination-xl.webp"
+      ],
+      "description": "Gel para efecto laminado de cejas. Contenido: 10 ml.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Peina las cejas hacia arriba con el cepillo. Acomódalas con el cepillo para dar forma de laminado. Deja secar sin tocarlas.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Peina las cejas hacia arriba con el cepillo.",
+        "Acomódalas con el cepillo para dar forma de laminado.",
+        "Deja secar sin tocarlas."
+      ],
+      "tip": "Aplícalo sobre las cejas limpias y secas para que dure más."
+    },
+    {
+      "id": "s024",
+      "slug": "rubor-bloom-floral-liquid",
+      "name": "Rubor Líquido Bloom Floral Liquid",
+      "brand": "Bloomshell",
+      "category": "rubores",
+      "price": 26000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Durazno",
+          "hex": "#E08870",
+          "family": "coral",
+          "stock": 10
+        },
+        {
+          "name": "Fucsia",
+          "hex": "#E9507F",
+          "family": "rosa",
+          "stock": 10
+        },
+        {
+          "name": "Caramelo",
+          "hex": "#9C4E22",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Terracota",
+          "hex": "#8C3A2C",
+          "family": "coral",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 40,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/rubor-bloom-floral-liquid.webp",
+      "thumb": "assets/img/products/rubor-bloom-floral-liquid-sm.webp",
+      "images": [
+        "assets/img/products/rubor-bloom-floral-liquid.webp"
+      ],
+      "description": "Rubor líquido en 4 tonos de acabado natural y fácil de difuminar.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Aplica una gota en cada mejilla. Difumina a toques con los dedos o una esponja. Construye el color poco a poco.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Aplica una gota en cada mejilla.",
+        "Difumina a toques con los dedos o una esponja.",
+        "Construye el color poco a poco."
+      ],
+      "tip": "Durazno y Fucsia dan un efecto fresco; Caramelo y Terracota un efecto bronceado."
+    },
+    {
+      "id": "s025",
+      "slug": "polvo-suelto-ani-k",
+      "name": "Polvo Facial Suelto Loose Powder",
+      "brand": "Ani-K",
+      "category": "polvos",
+      "price": 24000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Scarlett",
+          "hex": "#D9AC7C",
+          "family": "nude",
+          "stock": 10
+        },
+        {
+          "name": "Cinnamon",
+          "hex": "#A8643A",
+          "family": "marron",
+          "stock": 10
+        },
+        {
+          "name": "Rosa",
+          "hex": "#F0B3A8",
+          "family": "rosa",
+          "stock": 10
+        },
+        {
+          "name": "Carlota",
+          "hex": "#EADCB0",
+          "family": "nude",
+          "stock": 10
+        }
+      ],
+      "skinTypes": [
+        "grasa",
+        "mixta",
+        "normal"
+      ],
+      "stock": 40,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/polvo-suelto-ani-k.webp",
+      "thumb": "assets/img/products/polvo-suelto-ani-k-sm.webp",
+      "images": [
+        "assets/img/products/polvo-suelto-ani-k.webp"
+      ],
+      "description": "Polvo facial suelto para sellar el maquillaje y controlar el brillo, en 4 tonos.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Toma polvo con un pomo o una brocha. Presiona sobre la zona T y bajo los ojos. Retira el exceso con una brocha limpia.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": [],
+      "howToSteps": [
+        "Toma polvo con un pomo o una brocha.",
+        "Presiona sobre la zona T y bajo los ojos.",
+        "Retira el exceso con una brocha limpia."
+      ],
+      "tip": "Elige el tono más parecido a tu piel o tu base; el rosa ayuda a dar luz a pieles claras."
+    }
+  ]
+}

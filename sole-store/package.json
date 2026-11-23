@@ -1,0 +1,12 @@
+{
+  "name": "sole-store",
+  "version": "1.0.0",
+  "description": "Tienda online de maquillaje en HTML, CSS y JavaScript puro",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
