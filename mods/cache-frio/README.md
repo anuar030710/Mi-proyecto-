@@ -6,7 +6,7 @@ Mod para Claude Code que avisa cuando la caché de prompts está a punto de enfr
 - **Aviso previo:** 5 minutos antes (caché de 1 h) o 1 minuto antes (caché de 5 min).
 - **Al enfriarse:** aviso de que el próximo mensaje volverá a escribir todo el contexto en la caché.
 - Avisa con notificación nativa (la app la lanza aunque no estés mirando la sesión) y con un aviso dentro de la sesión.
-- Línea de estado: `🔥 caché caliente · 42 min` / `🧊 caché fría`.
+- Barra encima de la caja de texto (también en la app del móvil) y línea de estado: `🔥 Caché caliente · se enfría en 42 min` / `🧊 Caché fría`.
 - Comando `/cache`: muestra cuánto le queda.
 
 ## Instalar
