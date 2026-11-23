@@ -1,0 +1,5 @@
+{
+  "name": "mi-proyecto-mods",
+  "owner": { "name": "anuar030710" },
+  "plugins": [{ "name": "cache-frio", "source": "./mods/cache-frio" }]
+}

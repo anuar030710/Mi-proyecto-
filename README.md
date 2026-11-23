@@ -7,3 +7,7 @@ Para usarlas en un proyecto real, copia la carpeta `.claude/skills/` a la raíz 
 ## Soles Store
 
 Tienda online de maquillaje en `sole-store/`. Instrucciones en [`sole-store/README.md`](sole-store/README.md).
+
+## Mods de Claude Code
+
+- [`mods/cache-frio`](mods/cache-frio/README.md): avisa cuando la caché de prompts se enfría.
