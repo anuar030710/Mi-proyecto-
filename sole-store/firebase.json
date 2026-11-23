@@ -28,16 +28,16 @@
         ]
       },
       {
-        "source": "**/*.@(webp|jpg|png|svg|css|js|woff2)",
+        "source": "**/*.@(webp|jpg|png|svg|woff2)",
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "public, max-age=3600"
+            "value": "public, max-age=86400"
           }
         ]
       },
       {
-        "source": "**/*.@(html|json)",
+        "source": "**/*.@(html|json|js|css)",
         "headers": [
           {
             "key": "Cache-Control",
