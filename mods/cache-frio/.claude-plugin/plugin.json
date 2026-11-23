@@ -1,0 +1,1 @@
+{ "name": "cache-frio", "version": "0.1.0", "description": "Avisa cuando la caché de prompts está a punto de enfriarse y cuando ya se enfrió" }
