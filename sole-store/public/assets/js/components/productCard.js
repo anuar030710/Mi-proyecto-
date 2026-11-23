@@ -17,7 +17,7 @@ export function productCard(p, { eager = false } = {}) {
   return `
   <article class="card ${out ? 'card--out' : ''}">
     <div class="card__media">
-      <img class="main" src="${p.image}" alt="${escapeHTML(p.name)}, ${escapeHTML(p.brand)}" width="800" height="1000" loading="${loading}" decoding="async">
+      <img class="main" src="${p.thumb || p.image}" alt="${escapeHTML(p.name)}, ${escapeHTML(p.brand)}" width="800" height="1000" loading="${loading}" decoding="async">
       ${p.images[1] ? `<img class="alt" src="${p.images[1]}" alt="" width="800" height="1000" loading="lazy" decoding="async">` : ''}
       <div class="card__badges">${badges(p).map((b) => `<span class="badge ${b.cls}">${b.text}</span>`).join('')}</div>
       <button class="icon-btn card__fav" data-fav="${p.id}" aria-pressed="${fav}" aria-label="${fav ? 'Quitar de' : 'Agregar a'} favoritos: ${escapeHTML(p.name)}">${ICONS.heart}</button>
@@ -30,7 +30,7 @@ export function productCard(p, { eager = false } = {}) {
     <div class="card__body">
       <span class="card__brand">${escapeHTML(p.brand)}</span>
       <h3 class="card__title"><a href="${productUrl(p)}">${escapeHTML(p.name)}</a></h3>
-      <span class="rating-line">${starsHTML(p.rating)} <span>(${p.reviewsCount})</span></span>
+      ${p.reviewsCount ? `<span class="rating-line">${starsHTML(p.rating)} <span>(${p.reviewsCount})</span></span>` : ''}
       <span class="price">
         <span class="price__now ${p.discount ? 'price__now--sale' : ''}">${formatPrice(fp)}</span>
         ${p.discount ? `<span class="price__old"><span class="sr-only">Antes</span>${formatPrice(p.price)}</span>` : ''}

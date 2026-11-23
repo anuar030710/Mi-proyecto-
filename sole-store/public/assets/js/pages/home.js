@@ -9,25 +9,28 @@ import { consentFieldset, recordConsent } from '../consent.js';
 const products = await initLayout();
 
 /* Categorías destacadas: usa la imagen del primer producto de cada categoría. */
-const featured = ['labiales', 'bases', 'sombras', 'rubores'];
+const featured = ['rubores', 'correctores', 'contorno', 'brochas'];
 $('#cat-grid').innerHTML = featured.map((c) => {
   const p = products.find((x) => x.category === c);
-  return `<a class="cat-card" href="catalogo.html?categoria=${c}"><img src="${p?.image || ''}" alt="" width="800" height="1000" loading="lazy"><span>${CATEGORIES[c]}</span></a>`;
+  return `<a class="cat-card" href="catalogo.html?categoria=${c}"><img src="${p?.thumb || p?.image || ''}" alt="" width="400" height="500" loading="lazy"><span>${CATEGORIES[c]}</span></a>`;
 }).join('');
 
 /* Más vendidos (por unidades vendidas). */
-const best = [...products].sort((a, b) => b.sold - a.sold).slice(0, 4);
+const best = [...products].sort((a, b) => b.sold - a.sold).slice(0, 8);
 $('#bestsellers').innerHTML = best.map((p) => productCard(p)).join('');
 bindCardActions($('#bestsellers'), products);
 
 /* Ofertas: productos con descuento y stock. */
-const offers = products.filter((p) => p.discount > 0 && p.stock > 0).slice(0, 4);
+// Si no hay productos con descuento, se muestran las novedades.
+const discounted = products.filter((p) => p.discount > 0 && p.stock > 0);
+const offers = (discounted.length ? discounted : [...products].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))).slice(0, 4);
 $('#offers').innerHTML = offers.map((p) => productCard(p)).join('');
 bindCardActions($('#offers'), products);
 
 /* Reseñas: las mejores de los productos. Se marcan como contenido de demostración. */
 const quotes = products.flatMap((p) => p.reviews.map((r) => ({ ...r, product: p.name })))
   .filter((r) => r.rating === 5).slice(0, 3);
+if (quotes.length) $('#reviews-section').hidden = false;
 $('#reviews').innerHTML = quotes.map((r) => `
   <figure class="quote">
     ${starsHTML(r.rating)}

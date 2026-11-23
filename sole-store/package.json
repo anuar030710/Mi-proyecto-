@@ -4,8 +4,9 @@
   "description": "Tienda online de maquillaje en HTML, CSS y JavaScript puro",
   "private": true,
   "scripts": {
-    "start": "node server.js",
-    "images": "node scripts/generate-images.js"
+    "start": "node server.js"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  }
 }

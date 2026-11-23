@@ -38,6 +38,7 @@ document.head.appendChild(ld);
 const REVIEWS_KEY = 'sole_reviews';
 const localReviews = () => (storage.get(REVIEWS_KEY, {})[p.id] || []);
 const allReviews = () => [...localReviews().map((r) => ({ ...r, pending: true })), ...p.reviews];
+const avgRating = () => { const l = allReviews(); return l.length ? Math.round((l.reduce((s, r) => s + r.rating, 0) / l.length) * 10) / 10 : 0; };
 
 /* ---------- Render principal ---------- */
 const fp = finalPrice(p);
@@ -55,8 +56,8 @@ root.innerHTML = `
         <img id="main-img" src="${p.images[0]}" alt="${escapeHTML(p.name)} — imagen 1 de ${p.images.length}" width="800" height="1000" fetchpriority="high">
         <span class="gallery__hint" aria-hidden="true">${ICONS.search.replace('<svg', '<svg style="width:14px;display:inline;vertical-align:-2px"')} Zoom</span>
       </button>
-      <div class="gallery__thumbs" role="group" aria-label="Imágenes del producto">
-        ${p.images.map((src, i) => `<button type="button" data-img="${i}" aria-current="${i === 0}" aria-label="Ver imagen ${i + 1}"><img src="${src}" alt="" width="72" height="90" loading="lazy"></button>`).join('')}
+      <div class="gallery__thumbs" role="group" aria-label="Imágenes del producto" ${p.images.length < 2 ? 'hidden' : ''}>
+        ${p.images.map((src, i) => `<button type="button" data-img="${i}" aria-current="${i === 0}" aria-label="Ver imagen ${i + 1}"><img src="${i === 0 && p.thumb ? p.thumb : src}" alt="" width="72" height="90" loading="lazy"></button>`).join('')}
       </div>
     </div>
 
@@ -64,7 +65,7 @@ root.innerHTML = `
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">${badges(p).map((b) => `<span class="badge ${b.cls}">${b.text}</span>`).join('')}</div>
       <span class="card__brand">${escapeHTML(p.brand)}</span>
       <h1>${escapeHTML(p.name)}</h1>
-      <a href="#reviews" class="rating-line">${starsHTML(p.rating)} <span>${String(p.rating).replace('.', ',')} · ${allReviews().length} reseñas</span></a>
+      <a href="#reviews" class="rating-line">${allReviews().length ? `${starsHTML(avgRating())} <span>${String(avgRating()).replace('.', ',')} · ${allReviews().length} reseñas</span>` : 'Sin reseñas todavía · Escribe la primera'}</a>
 
       <div class="pdp__price price">
         <span class="price__now ${p.discount ? 'price__now--sale' : ''}">${formatPrice(fp)}</span>
@@ -74,7 +75,7 @@ root.innerHTML = `
 
       ${p.tones.length ? `
       <div class="pdp__block">
-        <span class="pdp__label" id="tone-label">Tono: <strong id="tone-name">${escapeHTML(tone)}</strong></span>
+        <span class="pdp__label" id="tone-label">${escapeHTML(p.variantLabel || 'Tono')}: <strong id="tone-name">${escapeHTML(tone)}</strong></span>
         <fieldset class="tone-picker" aria-labelledby="tone-label">
           ${p.tones.map((t, i) => `<label title="${escapeHTML(t.name)}"><input type="radio" name="tone" value="${escapeHTML(t.name)}" ${i === 0 ? 'checked' : ''} aria-label="${escapeHTML(t.name)}"><span class="swatch" style="background:${t.palette ? `conic-gradient(${t.palette.join(',')})` : t.hex}"></span></label>`).join('')}
         </fieldset>
@@ -188,11 +189,11 @@ paintFav();
 function renderReviews() {
   const list = allReviews();
   const dist = [5, 4, 3, 2, 1].map((n) => list.filter((r) => r.rating === n).length);
-  $('#rev-summary').innerHTML = `
-    <div class="reviews__score">${String(p.rating).replace('.', ',')}</div>
-    ${starsHTML(p.rating)}<p class="small muted" style="margin-top:6px">${list.length} reseñas</p>
-    <div class="bars">${dist.map((c, i) => `<div><span>${5 - i}★</span><i><b style="width:${list.length ? (c / list.length) * 100 : 0}%"></b></i><span>${c}</span></div>`).join('')}</div>
-    <span class="demo-note">Reseñas de ejemplo</span>`;
+  $('#rev-summary').innerHTML = list.length ? `
+    <div class="reviews__score">${String(avgRating()).replace('.', ',')}</div>
+    ${starsHTML(avgRating())}<p class="small muted" style="margin-top:6px">${list.length} ${list.length === 1 ? 'reseña' : 'reseñas'}</p>
+    <div class="bars">${dist.map((c, i) => `<div><span>${5 - i}★</span><i><b style="width:${(c / list.length) * 100}%"></b></i><span>${c}</span></div>`).join('')}</div>`
+    : '<p style="margin:0">Este producto aún no tiene reseñas.</p><p class="small muted">¿Ya lo probaste? Cuéntanos qué te pareció.</p>';
   $('#rev-list').innerHTML = list.map((r) => `
     <article class="review">
       <header><span><strong>${escapeHTML(r.author)}</strong> ${r.pending ? '<span class="status-pill">Pendiente de moderación · solo tú la ves</span>' : ''}</span><time datetime="${r.date}">${new Date(r.date).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}</time></header>

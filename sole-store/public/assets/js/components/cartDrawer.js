@@ -34,10 +34,10 @@ export function lineItemHTML(l, { showTotal = false } = {}) {
   const p = l.product;
   return `
   <div class="line-item" data-key="${escapeHTML(l.key)}">
-    <a href="${productUrl(p)}" tabindex="-1" aria-hidden="true"><img src="${p.image}" alt="" width="78" height="98" loading="lazy"></a>
+    <a href="${productUrl(p)}" tabindex="-1" aria-hidden="true"><img src="${p.thumb || p.image}" alt="" width="78" height="98" loading="lazy"></a>
     <div>
       <a class="line-item__title" href="${productUrl(p)}">${escapeHTML(p.name)}</a>
-      ${l.toneObj ? `<span class="line-item__tone"><span class="dot" style="background:${l.toneObj.hex}"></span>Tono: ${escapeHTML(l.toneObj.name)}</span>` : '<span class="line-item__tone"></span>'}
+      ${l.toneObj ? `<span class="line-item__tone"><span class="dot" style="background:${l.toneObj.hex}"></span>${escapeHTML(l.product.variantLabel || 'Tono')}: ${escapeHTML(l.toneObj.name)}</span>` : '<span class="line-item__tone"></span>'}
       <div class="small muted">${formatPrice(l.unit)} c/u</div>
       <div class="line-item__row" style="margin-top:8px">
         <div class="qty" role="group" aria-label="Cantidad de ${escapeHTML(p.name)}">

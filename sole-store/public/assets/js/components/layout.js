@@ -78,7 +78,7 @@ function footerHTML() {
       <div class="footer-grid">
         <div>
           <a class="logo" href="index.html">sole<span>.</span><small style="color:#CDBDBC">store</small></a>
-          <p style="max-width:34ch;color:#CDBDBC">Maquillaje elegido con cariño para que te sientas tú, todos los días.</p>
+          <p style="max-width:34ch;color:#CDBDBC">${escapeHTML(CONFIG.tagline)}. Maquillaje elegido con cariño para que te sientas tú, todos los días.</p>
           <div class="pay-icons" aria-label="Medios de pago"><span>VISA</span><span>Mastercard</span><span>PSE</span><span>Nequi</span><span>Contra entrega</span></div>
         </div>
         <div><h3>Tienda</h3><ul>
@@ -137,7 +137,7 @@ function initSearch(products) {
     const nq = normalize(q);
     const hits = products.filter((p) => normalize(`${p.name} ${p.brand} ${CATEGORIES[p.category]} ${p.tones.map((t) => t.name).join(' ')}`).includes(nq)).slice(0, 6);
     list.innerHTML = hits.length
-      ? hits.map((p, i) => `<li role="option" id="sug-${i}"><a href="${productUrl(p)}"><img src="${p.image}" alt="" width="44" height="55" loading="lazy"><span><span>${highlight(p.name, q)}</span><br><span class="s-meta">${escapeHTML(p.brand)} · ${CATEGORIES[p.category]}</span></span></a></li>`).join('')
+      ? hits.map((p, i) => `<li role="option" id="sug-${i}"><a href="${productUrl(p)}"><img src="${p.thumb || p.image}" alt="" width="44" height="55" loading="lazy"><span><span>${highlight(p.name, q)}</span><br><span class="s-meta">${escapeHTML(p.brand)} · ${CATEGORIES[p.category]}</span></span></a></li>`).join('')
         + `<li role="option" id="sug-all"><a href="catalogo.html?q=${encodeURIComponent(q)}"><span>Ver todos los resultados para “${escapeHTML(q)}”</span></a></li>`
       : `<li><span class="s-empty">Sin resultados para “${escapeHTML(q)}”. Prueba con “labial” o “base”.</span></li>`;
     list.hidden = false; input.setAttribute('aria-expanded', 'true'); active = -1;

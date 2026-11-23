@@ -1,34 +1,49 @@
 # Registro de derechos de imágenes
 
-Antes de publicar, cada imagen de la tienda debe tener una fila en esta tabla con su origen y su licencia. Si no puedes llenar la fila, no publiques la imagen.
+Antes de publicar, cada imagen de la tienda debe tener una fila con su origen y su permiso. Si no puedes llenar la fila, no publiques esa imagen.
 
-## Imágenes actuales (verificadas)
+**Revisión del 23 de noviembre de 2026.** Las fotos las entregó la dueña de la tienda. Solo se puede confirmar el origen de las que se ven tomadas en el local (aparece el letrero de Sole Store). Las demás tienen fondo de estudio y estilo publicitario: lo más probable es que vengan de las marcas o del distribuidor.
 
-| Archivo | Origen | Autor / titular | Licencia o permiso | Uso comercial |
+## Fotos actuales
+
+| Archivo (`assets/img/products/`) | Producto | Origen probable | Estado | Qué hacer |
 |---|---|---|---|---|
-| `assets/img/products/*.svg` (36 archivos) | Generadas por `scripts/generate-images.js` | Creadas para este proyecto | Propia: no hay terceros | Sí |
-| `assets/img/hero.svg` | Generada por `scripts/generate-images.js` | Creada para este proyecto | Propia | Sí |
-| `assets/img/favicon.svg` | Escrita a mano en el proyecto | Creada para este proyecto | Propia | Sí |
-| Íconos en `assets/js/icons.js` | Dibujados para el proyecto | Creados para este proyecto | Propia | Sí |
-| Ícono de WhatsApp (`icons.js`) | Logotipo de WhatsApp / Meta | Meta Platforms | Marca de un tercero: se usa solo como enlace al servicio, según sus guías de marca | Solo para enlazar a WhatsApp |
-| Fuentes Cormorant Garamond y Jost | Google Fonts | Sus autores | SIL Open Font License | Sí |
+| `lapices-cejas-delineador.webp` | Lápices Kiss Beauty y Samy | Tomada en la tienda | ✅ Propia | Nada |
+| `mascara-prosa-4-en-1.webp` | Máscara Prosa | Tomada en la tienda | ✅ Propia | Nada |
+| `brocha-hidrals-duo-sculpt.webp` | Brocha Dúo Sculpt | Tomada en la tienda | ✅ Propia | Nada |
+| `brocha-hidrals-angular-031.webp` | Brocha angular 031 | Tomada en la tienda | ✅ Propia | Nada |
+| `brocha-hidrals-base.webp` | Brocha para base | Tomada en la tienda | ✅ Propia | Nada |
+| `pomos-samy.webp` | Pomos Samy | Tomada en la tienda | ✅ Propia | Nada |
+| `gloss-bonita.webp` | Lip Gloss Bonita | Foto promocional de la marca | ⚠️ Por confirmar | Permiso escrito de la marca/distribuidor o foto propia |
+| `rubor-atenea-1st-scene.webp` (y `hero.webp`) | Rubor Atenea | Foto promocional de la marca | ⚠️ Por confirmar | Ídem. Es la foto del banner principal: prioridad alta |
+| `contorno-liquido-ani-k.webp` | Contorno Ani-K | Foto de catálogo de la marca | ⚠️ Por confirmar | Ídem |
+| `contorno-barra-bloom-define.webp` | Bloom Define | Foto promocional (sale el brazo de una persona) | ⚠️ Por confirmar | Ídem + autorización de la persona si es identificable |
+| `corrector-bloomshell-my-concealer.webp` | My Concealer | Foto promocional | ⚠️ Por confirmar | Ídem |
+| `corrector-ojeras-ani-k.webp` | Corrector Ani-K | Foto promocional | ⚠️ Por confirmar | Ídem |
+| `fijador-bloom-fix.webp` | Bloom Fix | Foto de catálogo | ⚠️ Por confirmar | Ídem |
+| `esponja-bloom-swirl-xl.webp` | Bloom Swirl XL | Foto promocional | ⚠️ Por confirmar | Ídem |
+| `llavero-bloom-me.webp` | Bloom Me | Render de catálogo | ⚠️ Por confirmar | Ídem |
+| `polvo-suelto-bloomshell.webp` | Polvo suelto | Foto promocional | ⚠️ Por confirmar | Ídem |
 
-Verificación hecha: las imágenes no se descargaron de internet; se dibujan con código y los nombres que aparecen (Sole, Aurea, Velvet, Lumière Rose) son **marcas ficticias**. Los logos de VISA, Mastercard, PSE y Nequi del footer son **solo texto**, no logos.
+Las marcas que aparecen en las fotos (Bloomshell, Ani-K, Atenea, Samy, Prosa, Kiss Beauty, Hidrals Beauty) pertenecen a sus titulares. Usarlas para identificar productos originales que revendes está permitido; no las uses como si fueran tu propia marca.
 
-## Cuando agregues fotos reales
+**Lo más rápido:** escribe a tu distribuidor o a cada marca: *“Soy distribuidora autorizada y quiero usar sus fotos de producto en mi tienda online. ¿Me autorizan por escrito?”*. Guarda la respuesta y marca la fila como ✅.
 
-| Origen de la foto | ¿Puedo usarla? | Qué guardar como prueba |
+## Otros recursos
+
+| Recurso | Licencia |
+|---|---|
+| `favicon.svg`, íconos de `icons.js` | Creados para este proyecto |
+| Ícono de WhatsApp | Marca de Meta, usado solo para enlazar al servicio |
+| Fuentes Cormorant Garamond y Jost | SIL Open Font License |
+
+## Cómo decidir si puedes usar una foto nueva
+
+| Origen | ¿Se puede? | Prueba que debes guardar |
 |---|---|---|
-| Fotos que tomas tú | Sí | Nada especial. Si sale una persona: su **autorización escrita de uso de imagen** |
-| Fotógrafo contratado | Sí, si el contrato te **cede los derechos patrimoniales** (o da licencia comercial) | El contrato o la cesión firmada |
-| Fotos que entrega la marca o el distribuidor | Normalmente sí, para vender **sus** productos | Correo o contrato donde lo autorizan |
-| Unsplash / Pexels | Sí para uso comercial, pero no las uses para simular que son tus productos ni con personas reconocibles promocionando algo sin autorización | Enlace a la foto y captura de la licencia el día que la descargaste |
-| Bancos pagos (Shutterstock, Adobe Stock) | Sí, según la licencia comprada | Factura y número de licencia |
-| Fotos de Google, Instagram, Pinterest o de otras tiendas | **No** | — |
-| Fotos de clientas (reseñas, Instagram) | Solo con su **permiso expreso** | Mensaje o formulario donde lo autoriza |
-
-Plantilla para nuevas filas:
-
-| Archivo | Origen | Autor / titular | Licencia o permiso | Uso comercial | Fecha | Prueba guardada en |
-|---|---|---|---|---|---|---|
-| `products/mi-foto.webp` | | | | | | |
+| La tomaste tú | Sí | Nada. Si sale una persona: su autorización escrita |
+| Fotógrafo contratado | Sí, si te cede los derechos | Contrato o cesión firmada |
+| Marca o distribuidor | Sí, con su permiso | Correo o contrato |
+| Unsplash / Pexels | Sí, con cuidado (no para fingir que es tu producto) | Enlace y captura de la licencia |
+| Google, Instagram, otras tiendas | **No** | — |
+| Fotos de clientas | Solo con su permiso expreso | Mensaje donde lo autoriza |

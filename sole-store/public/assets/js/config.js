@@ -4,6 +4,7 @@
  */
 export const CONFIG = {
   storeName: 'Sole Store',
+  tagline: 'Tu luz, a tu manera',
 
   /* Modo demostración: muestra una barra avisando que no se procesan pagos reales.
      Pon false SOLO cuando hayas conectado una pasarela de pago y un backend. */
@@ -77,8 +78,9 @@ export const CONFIG = {
 
 /* Nombres legibles de categorías, tipos de piel y familias de tono. */
 export const CATEGORIES = {
-  labiales: 'Labiales', bases: 'Bases', rubores: 'Rubores', sombras: 'Sombras',
-  mascaras: 'Máscaras de pestañas', delineadores: 'Delineadores', iluminadores: 'Iluminadores', brochas: 'Brochas',
+  labiales: 'Labiales', rubores: 'Rubores', contorno: 'Contorno', correctores: 'Correctores', polvos: 'Polvos',
+  fijadores: 'Fijadores', cejas: 'Cejas', delineadores: 'Delineadores', mascaras: 'Máscaras de pestañas',
+  brochas: 'Brochas', accesorios: 'Esponjas y accesorios',
 };
 export const SKIN_TYPES = { seca: 'Seca', grasa: 'Grasa', mixta: 'Mixta', normal: 'Normal', sensible: 'Sensible' };
 export const TONE_FAMILIES = {

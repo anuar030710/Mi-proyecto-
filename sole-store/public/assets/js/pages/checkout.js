@@ -113,7 +113,7 @@ function updateSummary() {
     box.querySelector(`[data-price-for="${m.id}"]`).textContent = ship === 0 ? 'Gratis' : formatPrice(ship);
   });
   $('#summary-items').innerHTML = t.lines.map((l) => `
-    <div class="summary-item"><img src="${l.product.image}" alt="" width="56" height="70" loading="lazy">
+    <div class="summary-item"><img src="${l.product.thumb || l.product.image}" alt="" width="56" height="70" loading="lazy">
       <span>${escapeHTML(l.product.name)}${l.toneObj ? `<br><span class="muted">${escapeHTML(l.toneObj.name)}</span>` : ''}<br><span class="qty-pill">x${l.qty}</span></span>
       <strong>${formatPrice(l.total)}</strong></div>`).join('');
   $('#summary-totals').innerHTML = summaryRows(t, { shippingLabel: t.method.name });
@@ -128,7 +128,7 @@ async function placeOrder(data, form) {
     id: `SOLE-${d.toISOString().slice(2, 10).replace(/-/g, '')}-${randomId(4)}`,
     date: d.toISOString(),
     status: data.payment === 'contraentrega' ? 'Confirmado · pago contra entrega' : 'Pendiente de pago',
-    items: t.lines.map((l) => ({ id: l.product.id, name: l.product.name, tone: l.tone, qty: l.qty, unit: l.unit, total: l.total, image: l.product.image })),
+    items: t.lines.map((l) => ({ id: l.product.id, name: l.product.name, tone: l.tone, qty: l.qty, unit: l.unit, total: l.total, image: l.product.thumb || l.product.image })),
     totals: { subtotal: t.subtotal, discount: t.discount, shipping: t.shipping, total: t.total, coupon: t.coupon?.code || null },
     contact: { email: data.email.toLowerCase(), name: data.name, phone: data.phone },
     shipping: { method: t.method.name, department: data.department, city: data.city, address: data.address, address2: data.address2 || '' },

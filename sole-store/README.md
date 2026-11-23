@@ -28,7 +28,6 @@ La carpeta `private/` no se publica en la web y está en `.gitignore`, así que 
 ```
 sole-store/
 ├── server.js                  Servidor: archivos estáticos + /api/consent + /api/contact
-├── scripts/generate-images.js Dibuja las imágenes de ejemplo (SVG)
 ├── docs/                      Revisión legal y registro de imágenes
 ├── private/                   Registros con datos personales (no públicos)
 └── public/                    LA TIENDA
@@ -58,7 +57,7 @@ Todo está en **`public/data/products.json`**. Cada producto tiene:
 | `id` | Código único | `"p013"` |
 | `slug` | Nombre para la URL, sin tildes ni espacios | `"labial-satin-rosa"` |
 | `name`, `brand` | Nombre y marca | |
-| `category` | `labiales`, `bases`, `rubores`, `sombras`, `mascaras`, `delineadores`, `iluminadores`, `brochas` | |
+| `category` | `labiales`, `rubores`, `contorno`, `correctores`, `polvos`, `fijadores`, `cejas`, `delineadores`, `mascaras`, `brochas`, `accesorios` (se cambian en `CATEGORIES` de `config.js`) | |
 | `price` | Precio **con IVA**, sin puntos | `59900` |
 | `discount` | % de descuento (0 = sin oferta) | `15` |
 | `tones` | Tonos: `name`, `hex` (color) y `family` (para el filtro) | |
@@ -66,12 +65,13 @@ Todo está en **`public/data/products.json`**. Cada producto tiene:
 | `stock` | Unidades. `0` = Agotado; 6 o menos = “Últimas unidades” | |
 | `sold` | Unidades vendidas (orden “Más vendidos”) | |
 | `createdAt` | Fecha de alta. Menos de 45 días = etiqueta “Nuevo” | `"2026-11-20"` |
-| `image`, `images` | Foto principal y galería (la 2.ª aparece al pasar el mouse) | |
+| `image`, `thumb`, `images` | Foto grande (1000×1250), miniatura para tarjetas (400×500) y galería (la 2.ª foto aparece al pasar el mouse) | |
+| `variantLabel` | Opcional: cambia la palabra “Tono” (p. ej. “Versión”) | |
 | `description`, `ingredients`, `howToUse` | Textos de la ficha | |
 | `nso` | Notificación Sanitaria del INVIMA | |
-| `reviews` | Reseñas. **Las actuales son de ejemplo: bórralas** (`[]`) | |
+| `reviews` | Reseñas reales verificadas (empieza vacío) | |
 
-**Fotos propias:** guárdalas en `public/assets/img/products/` (JPG o WebP de unos 1200×1500 px, formato 4:5, menos de 200 KB; [Squoosh](https://squoosh.app) las comprime gratis) y cambia las rutas en `image` e `images`. Cuando todas sean fotos reales, ya no necesitas `generate-images.js`. Anota cada foto en `docs/DERECHOS-IMAGENES.md`.
+**Fotos:** guárdalas en `public/assets/img/products/` en formato vertical 4:5 (WebP o JPG, menos de 200 KB; [Squoosh](https://squoosh.app) las comprime gratis) y pon las rutas en `image`, `thumb` e `images`. Para que se vean mejor, fotografía cada producto solo, de cerca y con buena luz. Anota cada foto en `docs/DERECHOS-IMAGENES.md`.
 
 **Precios, envío gratis, cupones, WhatsApp, moneda:** en `public/assets/js/config.js`. Para dólares: `currency: 'USD'`, `locale: 'en-US'`, `decimals: 2`.
 
@@ -81,7 +81,7 @@ Todo está en **`public/data/products.json`**. Cada producto tiene:
 
 1. Completa `company` en `config.js` (razón social, NIT, dirección, teléfono). Mientras falten, aparecen resaltados en amarillo.
 2. Revisa los textos legales con un abogado y ajusta `policyVersions` cuando los cambies.
-3. Borra las reseñas de ejemplo y cambia los `nso` por los números reales del INVIMA.
+3. Pon los **precios y el stock reales** (los actuales son provisionales) y los números `nso` del INVIMA.
 4. Conecta pagos y base de datos (abajo) y pon `demoMode: false`.
 5. Cambia `TU-DOMINIO.co` en `robots.txt` y `sitemap.xml`, y el número de WhatsApp.
 6. Publica con HTTPS (Render, Railway o un VPS para `server.js`).
