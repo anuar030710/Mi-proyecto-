@@ -4,7 +4,7 @@
  */
 import { CONFIG } from './config.js';
 import { storage, formatPrice } from './utils.js';
-import { finalPrice, findProduct } from './products.js';
+import { finalPrice, findProduct, stockOf } from './products.js';
 
 const CART_KEY = 'sole_cart';
 const FAV_KEY = 'sole_favorites';
@@ -30,8 +30,8 @@ export const cartCount = () => getCart().reduce((n, i) => n + i.qty, 0);
 export function addToCart(product, tone, qty = 1) {
   const items = getCart();
   const key = keyOf(product.id, tone);
-  const inCart = items.filter((i) => i.id === product.id).reduce((n, i) => n + i.qty, 0);
-  const allowed = Math.max(0, Math.min(qty, product.stock - inCart));
+  const inCart = items.filter((i) => i.key === key).reduce((n, i) => n + i.qty, 0);
+  const allowed = Math.max(0, Math.min(qty, stockOf(product, tone) - inCart));
   if (!allowed) return 0;
   const existing = items.find((i) => i.key === key);
   if (existing) existing.qty += allowed;
@@ -58,7 +58,7 @@ export function cartLines(products) {
     if (!p) return null;
     const tone = p.tones.find((t) => t.name === i.tone) || null;
     const unit = finalPrice(p);
-    return { ...i, product: p, toneObj: tone, unit, total: unit * i.qty };
+    return { ...i, product: p, toneObj: tone, unit, total: unit * i.qty, max: stockOf(p, i.tone) };
   }).filter(Boolean);
 }
 

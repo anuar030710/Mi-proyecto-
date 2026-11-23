@@ -14,6 +14,7 @@ import { totals, onChange, clearCart } from '../store.js';
 import { field, setupForm } from '../forms.js';
 import { consentFieldset, recordConsent } from '../consent.js';
 import { currentUser, saveOrder } from '../auth.js';
+import { isConfigured, db } from '../supabase.js';
 
 const DEPARTAMENTOS = ['Amazonas', 'Antioquia', 'Arauca', 'Atlántico', 'Bogotá D.C.', 'Bolívar', 'Boyacá', 'Caldas', 'Caquetá', 'Casanare', 'Cauca', 'Cesar', 'Chocó', 'Córdoba', 'Cundinamarca', 'Guainía', 'Guaviare', 'Huila', 'La Guajira', 'Magdalena', 'Meta', 'Nariño', 'Norte de Santander', 'Putumayo', 'Quindío', 'Risaralda', 'San Andrés y Providencia', 'Santander', 'Sucre', 'Tolima', 'Valle del Cauca', 'Vaupés', 'Vichada'];
 
@@ -118,6 +119,14 @@ function updateSummary() {
 
 async function placeOrder(data, form) {
   const t = totals(products, shippingId);
+  const alertBox = form.querySelector('.form-alert');
+  const fail = (html) => { alertBox.hidden = false; alertBox.innerHTML = html; alertBox.scrollIntoView({ block: 'center' }); };
+  // Antes de enviar: ¿alguna línea supera las unidades disponibles?
+  const short = t.lines.find((l) => l.qty > l.max);
+  if (short) {
+    fail(`${escapeHTML(short.product.name)}${short.tone ? ` (${escapeHTML(short.tone)})` : ''} ${short.max ? `solo tiene ${short.max} disponibles` : 'se agotó'}. <a href="carrito.html">Ajusta tu carrito</a> para continuar.`);
+    return;
+  }
   const consent = await recordConsent(form, { extra: { subject: { phone: data.phone, email: user?.email || null } } });
   const d = new Date();
   const order = {
@@ -132,6 +141,20 @@ async function placeOrder(data, form) {
     invoice: data.wantsInvoice ? { docType: data.docType, docNumber: data.docNumber } : 'Consumidor final',
     consentRecordId: consent.recordId,
   };
+  // Con el panel conectado, la base de datos revisa y DESCUENTA las unidades en este momento.
+  if (isConfigured()) {
+    try {
+      const res = await db('rpc/place_order', { method: 'POST', body: { p_order: order } });
+      order.items = order.items.map((i, n) => ({ ...i, unit: res.items[n]?.unit ?? i.unit, total: res.items[n]?.total ?? i.total }));
+    } catch (err) {
+      if (err.message.startsWith('SIN_STOCK:')) {
+        fail(`Lo sentimos: <strong>${escapeHTML(err.message.slice(10))}</strong> ya no tiene unidades suficientes (alguien acaba de comprarlo). <a href="carrito.html">Revisa tu carrito</a>.`);
+      } else {
+        fail('No pudimos registrar tu pedido. Revisa tu conexión e inténtalo de nuevo, o escríbenos por WhatsApp.');
+      }
+      return;
+    }
+  }
   saveOrder(order);
   clearCart();
   // La confirmación muestra el botón para enviar el pedido por WhatsApp (el navegador bloquea abrirlo solo aquí).

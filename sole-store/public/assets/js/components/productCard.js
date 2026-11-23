@@ -3,7 +3,7 @@
  * Los clics de "Agregar" y "Favorito" se manejan por delegación en bindCardActions().
  */
 import { formatPrice, escapeHTML, starsHTML, toast } from '../utils.js';
-import { finalPrice, badges, isOut, productUrl, findProduct } from '../products.js';
+import { finalPrice, badges, isOut, productUrl, findProduct, firstAvailableTone, stockOf } from '../products.js';
 import { addToCart, isFavorite, toggleFavorite } from '../store.js';
 import { ICONS } from '../icons.js';
 import { openCartDrawer } from './cartDrawer.js';
@@ -13,7 +13,7 @@ export function productCard(p, { eager = false } = {}) {
   const out = isOut(p);
   const fav = isFavorite(p.id);
   const loading = eager ? 'eager" fetchpriority="high' : 'lazy';
-  const swatches = p.tones.slice(0, 5).map((t) => `<span class="dot" style="background:${t.hex}" title="${escapeHTML(t.name)}"></span>`).join('');
+  const swatches = p.tones.slice(0, 5).map((t) => `<span class="dot ${stockOf(p, t.name) ? '' : 'dot--out'}" style="background:${t.hex}" title="${escapeHTML(t.name)}${stockOf(p, t.name) ? '' : ' (agotado)'}"></span>`).join('');
   return `
   <article class="card ${out ? 'card--out' : ''}">
     <div class="card__media">
@@ -23,7 +23,7 @@ export function productCard(p, { eager = false } = {}) {
       <button class="icon-btn card__fav" data-fav="${p.id}" aria-pressed="${fav}" aria-label="${fav ? 'Quitar de' : 'Agregar a'} favoritos: ${escapeHTML(p.name)}">${ICONS.heart}</button>
       <div class="card__quick">
         <button class="btn btn--sm btn--block ${out ? '' : 'btn--gold'}" data-quick-add="${p.id}" ${out ? 'disabled' : ''}>
-          ${out ? 'Agotado' : p.tones.length > 1 ? `Agregar (${escapeHTML(p.tones[0].name)})` : 'Agregar al carrito'}
+          ${out ? 'Agotado' : p.tones.length > 1 ? `Agregar (${escapeHTML(firstAvailableTone(p).name)})` : 'Agregar al carrito'}
         </button>
       </div>
     </div>
@@ -46,7 +46,7 @@ export function bindCardActions(container, products, onFavChange) {
     const add = e.target.closest('[data-quick-add]');
     if (add) {
       const p = findProduct(products, add.dataset.quickAdd);
-      const added = addToCart(p, p.tones[0]?.name || null, 1);
+      const added = addToCart(p, firstAvailableTone(p)?.name || null, 1);
       if (added) openCartDrawer();
       else toast('No hay más unidades disponibles de este producto.', 'error');
       return;

@@ -13,17 +13,20 @@
         {
           "name": "Rojo",
           "hex": "#9E1B24",
-          "family": "rojo"
+          "family": "rojo",
+          "stock": 10
         },
         {
           "name": "Transparente",
           "hex": "#EDE8E6",
-          "family": "nude"
+          "family": "nude",
+          "stock": 10
         },
         {
           "name": "Rosa",
           "hex": "#F2C4C2",
-          "family": "rosa"
+          "family": "rosa",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -33,7 +36,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 30,
       "sold": 0,
       "createdAt": "2026-09-01",
       "rating": 0,
@@ -67,17 +70,20 @@
         {
           "name": "Dusty Rose",
           "hex": "#C46F6A",
-          "family": "rosa"
+          "family": "rosa",
+          "stock": 10
         },
         {
           "name": "Coral",
           "hex": "#C9694F",
-          "family": "coral"
+          "family": "coral",
+          "stock": 10
         },
         {
           "name": "Rosa Malva",
           "hex": "#B4615E",
-          "family": "malva"
+          "family": "malva",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -87,7 +93,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 30,
       "sold": 0,
       "createdAt": "2026-09-01",
       "rating": 0,
@@ -121,7 +127,8 @@
         {
           "name": "Tono único",
           "hex": "#8A6A55",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -163,17 +170,20 @@
         {
           "name": "Claro",
           "hex": "#A97F69",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Medio",
           "hex": "#9B6D58",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Profundo",
           "hex": "#8A5E4C",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -183,7 +193,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 30,
       "sold": 0,
       "createdAt": "2026-11-23",
       "rating": 0,
@@ -217,7 +227,8 @@
         {
           "name": "01#",
           "hex": "#2A2421",
-          "family": "negro"
+          "family": "negro",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -261,12 +272,14 @@
         {
           "name": "Negro",
           "hex": "#151214",
-          "family": "negro"
+          "family": "negro",
+          "stock": 10
         },
         {
           "name": "Tabaco",
           "hex": "#5A3A2A",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -276,7 +289,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 20,
       "sold": 0,
       "createdAt": "2026-09-01",
       "rating": 0,
@@ -310,17 +323,20 @@
         {
           "name": "Micro Fibra",
           "hex": "#151214",
-          "family": "negro"
+          "family": "negro",
+          "stock": 10
         },
         {
           "name": "Maxi-Volumen",
           "hex": "#151214",
-          "family": "negro"
+          "family": "negro",
+          "stock": 10
         },
         {
           "name": "Profesional Silicón",
           "hex": "#151214",
-          "family": "negro"
+          "family": "negro",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -330,7 +346,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 30,
       "sold": 0,
       "createdAt": "2026-09-01",
       "rating": 0,
@@ -479,7 +495,8 @@
         {
           "name": "Negro",
           "hex": "#1E1A1D",
-          "family": "negro"
+          "family": "negro",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -523,37 +540,44 @@
         {
           "name": "Tono 1",
           "hex": "#EBCDB4",
-          "family": "nude"
+          "family": "nude",
+          "stock": 10
         },
         {
           "name": "Tono 2",
           "hex": "#E3C1A4",
-          "family": "nude"
+          "family": "nude",
+          "stock": 10
         },
         {
           "name": "Tono 3",
           "hex": "#D9B392",
-          "family": "nude"
+          "family": "nude",
+          "stock": 10
         },
         {
           "name": "Tono 4",
           "hex": "#CFA683",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Tono 5",
           "hex": "#C29573",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Tono 6",
           "hex": "#B5865F",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Tono 7",
           "hex": "#A57651",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -563,7 +587,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 70,
       "sold": 0,
       "createdAt": "2026-11-23",
       "rating": 0,
@@ -597,52 +621,62 @@
         {
           "name": "Tono 1",
           "hex": "#EAD3BF",
-          "family": "nude"
+          "family": "nude",
+          "stock": 10
         },
         {
           "name": "Tono 2",
           "hex": "#E3C6AC",
-          "family": "nude"
+          "family": "nude",
+          "stock": 10
         },
         {
           "name": "Tono 3",
           "hex": "#DDBC9C",
-          "family": "nude"
+          "family": "nude",
+          "stock": 10
         },
         {
           "name": "Tono 4",
           "hex": "#D2AC86",
-          "family": "nude"
+          "family": "nude",
+          "stock": 10
         },
         {
           "name": "Tono 5",
           "hex": "#C99D74",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Tono 6",
           "hex": "#B98760",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Tono 7",
           "hex": "#9C6A47",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Tono 8",
           "hex": "#7A4C32",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Tono 9",
           "hex": "#5C3624",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Tono 10",
           "hex": "#C9A27A",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -652,7 +686,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 100,
       "sold": 0,
       "createdAt": "2026-09-01",
       "rating": 0,
@@ -724,12 +758,14 @@
         {
           "name": "Rosa",
           "hex": "#F4B8C6",
-          "family": "rosa"
+          "family": "rosa",
+          "stock": 10
         },
         {
           "name": "Negra",
           "hex": "#2A2A2A",
-          "family": "negro"
+          "family": "negro",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -739,7 +775,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 20,
       "sold": 0,
       "createdAt": "2026-11-23",
       "rating": 0,
@@ -810,7 +846,8 @@
         {
           "name": "Translúcido",
           "hex": "#F0DCCF",
-          "family": "nude"
+          "family": "nude",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -852,7 +889,8 @@
         {
           "name": "Dorado",
           "hex": "#D9A57A",
-          "family": "dorado"
+          "family": "dorado",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -896,22 +934,26 @@
         {
           "name": "Angel Glow",
           "hex": "#EDE6DA",
-          "family": "dorado"
+          "family": "dorado",
+          "stock": 10
         },
         {
           "name": "Diva Glow",
           "hex": "#D9A08E",
-          "family": "rosa"
+          "family": "rosa",
+          "stock": 10
         },
         {
           "name": "Cookie",
           "hex": "#DCC9A4",
-          "family": "dorado"
+          "family": "dorado",
+          "stock": 10
         },
         {
           "name": "Cosmic Lover",
           "hex": "#EEDDE6",
-          "family": "rosa"
+          "family": "rosa",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -921,7 +963,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 40,
       "sold": 0,
       "createdAt": "2026-11-23",
       "rating": 0,
@@ -957,27 +999,32 @@
         {
           "name": "Tono 1",
           "hex": "#D95A6B",
-          "family": "rosa"
+          "family": "rosa",
+          "stock": 10
         },
         {
           "name": "Tono 2",
           "hex": "#E0567A",
-          "family": "rosa"
+          "family": "rosa",
+          "stock": 10
         },
         {
           "name": "Tono 3",
           "hex": "#F07A5E",
-          "family": "coral"
+          "family": "coral",
+          "stock": 10
         },
         {
           "name": "Tono 4",
           "hex": "#B8323C",
-          "family": "rojo"
+          "family": "rojo",
+          "stock": 10
         },
         {
           "name": "Tono 5",
           "hex": "#C42E4A",
-          "family": "rojo"
+          "family": "rojo",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -987,7 +1034,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 50,
       "sold": 0,
       "createdAt": "2026-11-23",
       "rating": 0,
@@ -1059,12 +1106,14 @@
         {
           "name": "Rosa",
           "hex": "#F3C9BE",
-          "family": "rosa"
+          "family": "rosa",
+          "stock": 10
         },
         {
           "name": "Café",
           "hex": "#A97B5C",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -1074,7 +1123,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 20,
       "sold": 0,
       "createdAt": "2026-11-23",
       "rating": 0,
@@ -1146,22 +1195,26 @@
         {
           "name": "Durazno",
           "hex": "#E08870",
-          "family": "coral"
+          "family": "coral",
+          "stock": 10
         },
         {
           "name": "Fucsia",
           "hex": "#E9507F",
-          "family": "rosa"
+          "family": "rosa",
+          "stock": 10
         },
         {
           "name": "Caramelo",
           "hex": "#9C4E22",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Terracota",
           "hex": "#8C3A2C",
-          "family": "coral"
+          "family": "coral",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -1171,7 +1224,7 @@
         "normal",
         "sensible"
       ],
-      "stock": 10,
+      "stock": 40,
       "sold": 0,
       "createdAt": "2026-11-23",
       "rating": 0,
@@ -1205,22 +1258,26 @@
         {
           "name": "Scarlett",
           "hex": "#D9AC7C",
-          "family": "nude"
+          "family": "nude",
+          "stock": 10
         },
         {
           "name": "Cinnamon",
           "hex": "#A8643A",
-          "family": "marron"
+          "family": "marron",
+          "stock": 10
         },
         {
           "name": "Rosa",
           "hex": "#F0B3A8",
-          "family": "rosa"
+          "family": "rosa",
+          "stock": 10
         },
         {
           "name": "Carlota",
           "hex": "#EADCB0",
-          "family": "nude"
+          "family": "nude",
+          "stock": 10
         }
       ],
       "skinTypes": [
@@ -1228,7 +1285,7 @@
         "mixta",
         "normal"
       ],
-      "stock": 10,
+      "stock": 40,
       "sold": 0,
       "createdAt": "2026-11-23",
       "rating": 0,

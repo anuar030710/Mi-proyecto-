@@ -7,7 +7,7 @@ import { productCard, bindCardActions } from '../components/productCard.js';
 import { openCartDrawer } from '../components/cartDrawer.js';
 import { CONFIG, CATEGORIES } from '../config.js';
 import { $, $$, escapeHTML, formatPrice, starsHTML, getParam, toast, storage } from '../utils.js';
-import { findProduct, finalPrice, badges, isOut, isLow } from '../products.js';
+import { findProduct, finalPrice, badges, isOut, isLow, stockOf, firstAvailableTone } from '../products.js';
 import { addToCart, isFavorite, toggleFavorite } from '../store.js';
 import { ICONS } from '../icons.js';
 import { field, setupForm } from '../forms.js';
@@ -53,7 +53,7 @@ const avgRating = () => { const l = allReviews(); return l.length ? Math.round((
 /* ---------- Render principal ---------- */
 const fp = finalPrice(p);
 const out = isOut(p);
-let tone = p.tones[0]?.name || null;
+let tone = firstAvailableTone(p)?.name || null;
 let qty = 1;
 
 root.innerHTML = `
@@ -87,19 +87,16 @@ root.innerHTML = `
       <div class="pdp__block">
         <span class="pdp__label" id="tone-label">${escapeHTML(p.variantLabel || 'Tono')}: <strong id="tone-name">${escapeHTML(tone)}</strong></span>
         <fieldset class="tone-picker" aria-labelledby="tone-label">
-          ${p.tones.map((t, i) => `<label title="${escapeHTML(t.name)}"><input type="radio" name="tone" value="${escapeHTML(t.name)}" ${i === 0 ? 'checked' : ''} aria-label="${escapeHTML(t.name)}"><span class="swatch" style="background:${t.palette ? `conic-gradient(${t.palette.join(',')})` : t.hex}"></span></label>`).join('')}
+          ${p.tones.map((t) => { const none = stockOf(p, t.name) === 0; return `<label title="${escapeHTML(t.name)}${none ? ' (agotado)' : ''}" class="${none ? 'is-out' : ''}"><input type="radio" name="tone" value="${escapeHTML(t.name)}" ${t.name === tone ? 'checked' : ''} ${none ? 'disabled' : ''} aria-label="${escapeHTML(t.name)}${none ? ', agotado' : ''}"><span class="swatch" style="background:${t.palette ? `conic-gradient(${t.palette.join(',')})` : t.hex}"></span></label>`; }).join('')}
         </fieldset>
       </div>` : ''}
 
-      <div class="pdp__block">
-        ${out ? `<p class="stock-alert stock-alert--out">${ICONS.alert.replace('<svg', '<svg style="width:18px"')} Agotado. Escríbenos por WhatsApp y te avisamos cuando vuelva.</p>`
-          : isLow(p) ? `<p class="stock-alert">${ICONS.alert.replace('<svg', '<svg style="width:18px"')} ¡Quedan solo ${p.stock} ${p.stock === 1 ? 'unidad' : 'unidades'}!</p>` : '<p class="small" style="color:var(--success)">✓ Disponible para envío inmediato</p>'}
-      </div>
+      <div class="pdp__block" id="stock-box" aria-live="polite"></div>
 
       <div class="buy-row">
         <div class="qty qty--lg" role="group" aria-label="Cantidad">
           <button type="button" data-q="-1" aria-label="Disminuir cantidad" ${out ? 'disabled' : ''}>−</button>
-          <input id="qty" type="number" inputmode="numeric" min="1" max="${p.stock}" value="1" aria-label="Cantidad" ${out ? 'disabled' : ''}>
+          <input id="qty" type="number" inputmode="numeric" min="1" value="1" aria-label="Cantidad" ${out ? 'disabled' : ''}>
           <button type="button" data-q="1" aria-label="Aumentar cantidad" ${out ? 'disabled' : ''}>+</button>
         </div>
         <button class="btn" id="add-btn" ${out ? 'disabled' : ''}>${ICONS.bag.replace('<svg', '<svg style="width:20px"')} ${out ? 'Agotado' : 'Agregar al carrito'}</button>
@@ -180,9 +177,22 @@ main.addEventListener('touchend', (e) => {
 });
 
 /* ---------- Tono, cantidad, carrito y favoritos ---------- */
-$$('[name="tone"]').forEach((r) => r.addEventListener('change', () => { tone = r.value; $('#tone-name').textContent = tone; }));
+/** Aviso de unidades según el tono elegido (o el producto, si no tiene tonos). */
+function paintStock() {
+  const n = stockOf(p, tone);
+  const alertIcon = ICONS.alert.replace('<svg', '<svg style="width:18px"');
+  $('#stock-box').innerHTML = n === 0
+    ? `<p class="stock-alert stock-alert--out">${alertIcon} Agotado${p.tones.length && !out ? ' en este tono' : ''}. Escríbenos por WhatsApp y te avisamos cuando vuelva.</p>`
+    : isLow(p, tone) ? `<p class="stock-alert">${alertIcon} ¡${n === 1 ? 'Queda solo 1 unidad' : `Quedan solo ${n} unidades`}!</p>`
+      : '<p class="small" style="color:var(--success)">✓ Disponible para envío inmediato</p>';
+  $('#qty').max = Math.max(1, n);
+  if (qty > n) setQ(n);
+  $('#add-btn').disabled = n === 0;
+}
+$$('[name="tone"]').forEach((r) => r.addEventListener('change', () => { tone = r.value; $('#tone-name').textContent = tone; paintStock(); }));
 const qtyInput = $('#qty');
-const setQ = (n) => { qty = Math.max(1, Math.min(n, p.stock || 1)); qtyInput.value = qty; };
+function setQ(n) { qty = Math.max(1, Math.min(n, stockOf(p, tone) || 1)); qtyInput.value = qty; }
+paintStock();
 $$('[data-q]').forEach((b) => b.addEventListener('click', () => setQ(qty + Number(b.dataset.q))));
 qtyInput.addEventListener('change', () => setQ(parseInt(qtyInput.value, 10) || 1));
 $('#add-btn').addEventListener('click', () => {

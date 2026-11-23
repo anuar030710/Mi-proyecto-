@@ -580,3 +580,8 @@ p { margin: 0 0 1em; }
 .btn--whatsapp { background: #1F8F4E; border-color: #1F8F4E; min-height: 56px; font-size: 1.05rem; }
 .btn--whatsapp:hover { background: #17713D; border-color: #17713D; }
 .btn--whatsapp svg { width: 24px; height: 24px; }
+
+/* Tonos agotados */
+.dot--out { opacity: .35; }
+.tone-picker label.is-out .swatch { opacity: .4; background-image: linear-gradient(135deg, transparent 46%, #fff 47%, #fff 53%, transparent 54%) !important; }
+.tone-picker input:disabled { cursor: not-allowed; }

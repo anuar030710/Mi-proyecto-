@@ -4,7 +4,7 @@
  */
 import { CONFIG } from '../config.js';
 import { $, formatPrice, escapeHTML, trapFocus } from '../utils.js';
-import { loadProducts, productUrl } from '../products.js';
+import { loadProducts, productUrl, stockOf } from '../products.js';
 import { totals, setQty, removeFromCart, onChange } from '../store.js';
 import { ICONS } from '../icons.js';
 
@@ -42,13 +42,13 @@ export function lineItemHTML(l, { showTotal = false } = {}) {
       <div class="line-item__row" style="margin-top:8px">
         <div class="qty" role="group" aria-label="Cantidad de ${escapeHTML(p.name)}">
           <button type="button" data-dec aria-label="Disminuir cantidad" ${l.qty <= 1 ? 'disabled' : ''}>−</button>
-          <input type="number" inputmode="numeric" min="1" max="${p.stock}" value="${l.qty}" aria-label="Cantidad" data-qty>
-          <button type="button" data-inc aria-label="Aumentar cantidad" ${l.qty >= p.stock ? 'disabled' : ''}>+</button>
+          <input type="number" inputmode="numeric" min="1" max="${l.max}" value="${l.qty}" aria-label="Cantidad" data-qty>
+          <button type="button" data-inc aria-label="Aumentar cantidad" ${l.qty >= l.max ? 'disabled' : ''}>+</button>
         </div>
         ${showTotal ? '' : `<strong>${formatPrice(l.total)}</strong>`}
         <button type="button" class="remove-btn" data-remove aria-label="Eliminar ${escapeHTML(p.name)} del carrito">Eliminar</button>
       </div>
-      ${l.qty >= p.stock ? `<p class="small" style="color:#6B4A00;margin:6px 0 0">Máximo disponible: ${p.stock}</p>` : ''}
+      ${l.max === 0 ? '<p class="small" style="color:var(--danger);margin:6px 0 0">Se agotó. Quítalo del carrito para continuar.</p>' : l.qty > l.max ? `<p class="small" style="color:var(--danger);margin:6px 0 0">Solo quedan ${l.max}. Ajusta la cantidad.</p>` : l.qty === l.max ? `<p class="small" style="color:#6B4A00;margin:6px 0 0">Máximo disponible: ${l.max}</p>` : ''}
     </div>
     ${showTotal ? `<div class="line-total">${formatPrice(l.total)}</div>` : ''}
   </div>`;
@@ -65,18 +65,22 @@ export function keepFocus(container, renderFn) {
 
 /** Maneja +, −, escribir cantidad y eliminar dentro de un contenedor. */
 export function bindLineControls(container, products) {
-  const stockOf = (key) => products.find((p) => key.startsWith(`${p.id}::`))?.stock || 1;
+  const maxFor = (key) => {
+    const [id, tone] = key.split('::');
+    const p = products.find((x) => x.id === id);
+    return p ? Math.max(1, stockOf(p, tone || null)) : 1;
+  };
   container.addEventListener('click', (e) => {
     const row = e.target.closest('.line-item'); if (!row) return;
     const key = row.dataset.key; const input = row.querySelector('[data-qty]');
-    if (e.target.closest('[data-inc]')) setQty(key, Number(input.value) + 1, stockOf(key));
-    if (e.target.closest('[data-dec]')) setQty(key, Number(input.value) - 1, stockOf(key));
+    if (e.target.closest('[data-inc]')) setQty(key, Number(input.value) + 1, maxFor(key));
+    if (e.target.closest('[data-dec]')) setQty(key, Number(input.value) - 1, maxFor(key));
     if (e.target.closest('[data-remove]')) removeFromCart(key);
   });
   container.addEventListener('change', (e) => {
     if (!e.target.matches('[data-qty]')) return;
     const key = e.target.closest('.line-item').dataset.key;
-    setQty(key, parseInt(e.target.value, 10) || 1, stockOf(key));
+    setQty(key, parseInt(e.target.value, 10) || 1, maxFor(key));
   });
 }
 

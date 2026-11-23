@@ -91,6 +91,8 @@ export async function db(path, { method = 'GET', body, prefer, auth = false } = 
   });
   if (!res.ok) {
     const e = await res.json().catch(() => ({}));
+    // Errores de negocio de place_order (inventario) se devuelven tal cual para mostrarlos a la clienta.
+    if (/^(SIN_STOCK|PEDIDO_INVALIDO)/.test(e.message || '')) throw new Error(e.message);
     throw new Error(res.status === 401 || res.status === 403 || e.code === '42501'
       ? 'No tienes permiso para hacer esto. ¿Tu correo está registrado como administradora?'
       : 'No se pudo guardar. Revisa tu conexión e inténtalo de nuevo.');

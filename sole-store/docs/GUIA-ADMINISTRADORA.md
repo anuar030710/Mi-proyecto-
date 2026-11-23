@@ -13,7 +13,10 @@ Las clientas no ven ningún enlace al panel, y aunque alguien llegue a esa pági
 
 | Quiero… | Pasos |
 |---|---|
-| Cambiar un precio o las unidades | **Productos** → **Editar** → cambia el número → **Guardar cambios** |
+| Cambiar un precio | **Productos** → **Editar** → cambia el número → **Guardar cambios** |
+| Cambiar las unidades (inventario) | **Productos** → **Editar** → usa **−** y **+**. Si el producto tiene tonos, cada tono tiene sus propias unidades |
+| Ver y atender pedidos | **Pedidos** → escribe a la clienta con el botón de WhatsApp → **Marcar pagado** → **Marcar enviado** |
+| Un pedido no se concretó | **Pedidos** → **Cancelar y devolver unidades** |
 | Agregar un producto | **Productos** → **+ Nuevo producto** → nombre, precio, unidades y al menos una foto → **Guardar** |
 | Cambiar o agregar fotos | **Editar** → **+ Agregar fotos** (puedes tomarla con el celular). Se recortan y optimizan solas. Con **Principal** eliges la foto de portada |
 | Poner un producto en oferta | **Editar** → escribe el porcentaje en **Descuento %**. Si anuncias la oferta, di hasta cuándo es válida |
@@ -28,6 +31,15 @@ Las clientas no ven ningún enlace al panel, y aunque alguien llegue a esa pági
 Los cambios se ven en la tienda apenas guardas (recarga la página de la tienda).
 
 ---
+
+## Cómo funciona el inventario
+
+- Cada producto (o cada tono) tiene sus **unidades**.
+- Cuando una clienta envía su pedido, las unidades **se descuentan solas**.
+- Si un tono llega a 0, ese tono aparece **Agotado** y no se puede elegir. Si se agotan todos, el producto completo sale **Agotado**.
+- La tienda no deja pedir más unidades de las que hay, aunque dos personas compren al mismo tiempo.
+- Si un pedido no se paga o no se concreta, **cancélalo** en **Pedidos**: las unidades vuelven solas.
+- Cuando llegue mercancía nueva, súmala con **+** en el producto.
 
 ## Pasarle la tienda a otra persona
 

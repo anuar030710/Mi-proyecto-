@@ -12,6 +12,9 @@ import {
   consumeLinkFromEmail, db, uploadImage,
 } from '../supabase.js';
 import { applySettings } from '../settings.js';
+import { totalStock } from '../products.js';
+
+const outTones = (p) => { const o = (p.tones || []).filter((t) => typeof t.stock === 'number' && t.stock <= 0).map((t) => t.name); return o.length && o.length < p.tones.length ? ` · Agotado: ${esc(o.join(', '))}` : ''; };
 
 const root = $('#admin-root');
 const userBox = $('#admin-user');
@@ -156,7 +159,7 @@ function renderNotAdmin() {
 /* ======================================================================
    PANEL
    ====================================================================== */
-const TABS = [['productos', 'Productos'], ['tienda', 'Datos de la tienda'], ['admins', 'Administradoras'], ['mensajes', 'Mensajes'], ['autorizaciones', 'Autorizaciones'], ['ayuda', 'Ayuda']];
+const TABS = [['productos', 'Productos'], ['pedidos', 'Pedidos'], ['tienda', 'Datos de la tienda'], ['admins', 'Administradoras'], ['mensajes', 'Mensajes'], ['autorizaciones', 'Autorizaciones'], ['ayuda', 'Ayuda']];
 let products = [];
 let settings = {};
 
@@ -173,7 +176,7 @@ async function renderPanel() {
 
 function openTab(id) {
   body().onclick = null;
-  ({ productos: tabProducts, tienda: tabStore, admins: tabAdmins, mensajes: tabMessages, autorizaciones: tabConsents, ayuda: tabHelp })[id]();
+  ({ productos: tabProducts, pedidos: tabOrders, tienda: tabStore, admins: tabAdmins, mensajes: tabMessages, autorizaciones: tabConsents, ayuda: tabHelp })[id]();
 }
 const body = () => $('#tab-body');
 
@@ -206,8 +209,8 @@ async function tabProducts() {
     $('#p-list').innerHTML = products.filter((p) => !q || normalize(`${p.name} ${p.brand}`).includes(q)).map((p) => `
       <div class="prod-row ${p._active ? '' : 'prod-row--off'}">
         <img src="${esc(p.thumb || p.image || '')}" alt="" loading="lazy">
-        <div><strong>${esc(p.name)}</strong>${p._active ? '' : '<span class="pill">Oculto</span>'}${p.stock <= 0 ? '<span class="pill pill--warn">Agotado</span>' : ''}
-          <div class="prod-row__meta">${esc(p.brand)} · ${esc(CATEGORIES[p.category] || p.category)} · ${formatPrice(p.price)}${p.discount ? ` (-${p.discount}%)` : ''} · Stock: ${p.stock}</div></div>
+        <div><strong>${esc(p.name)}</strong>${p._active ? '' : '<span class="pill">Oculto</span>'}${totalStock(p) <= 0 ? '<span class="pill pill--warn">Agotado</span>' : ''}
+          <div class="prod-row__meta">${esc(p.brand)} · ${esc(CATEGORIES[p.category] || p.category)} · ${formatPrice(p.price)}${p.discount ? ` (-${p.discount}%)` : ''} · <strong>${totalStock(p)} unidades</strong>${outTones(p)}</div></div>
         <div class="prod-row__actions">
           <button class="btn btn--outline btn--sm" data-up="${esc(p.id)}" aria-label="Subir ${esc(p.name)}">↑</button>
           <button class="btn btn--outline btn--sm" data-down="${esc(p.id)}" aria-label="Bajar ${esc(p.name)}">↓</button>
@@ -285,7 +288,7 @@ function editProduct(p) {
       <div class="field"><label for="e-cat">Categoría</label><select id="e-cat">${Object.entries(CATEGORIES).map(([k, v]) => `<option value="${k}" ${k === d.category ? 'selected' : ''}>${v}</option>`).join('')}</select></div>
       <div class="field"><label for="e-price">Precio con IVA (sin puntos)</label><input id="e-price" type="number" inputmode="numeric" min="0" step="100" value="${d.price}"></div>
       <div class="field"><label for="e-disc">Descuento % <span class="opt">(0 = sin oferta)</span></label><input id="e-disc" type="number" inputmode="numeric" min="0" max="90" value="${d.discount || 0}"></div>
-      <div class="field"><label for="e-stock">Unidades disponibles</label><input id="e-stock" type="number" inputmode="numeric" min="0" value="${d.stock}"><span class="hint">0 = Agotado. ${CONFIG.lowStockThreshold} o menos = “Últimas unidades”.</span></div>
+      <div class="field" id="e-stock-wrap"><label for="e-stock">Unidades disponibles</label><div class="qty stepper"><button type="button" data-step="-1" aria-label="Restar una unidad">−</button><input id="e-stock" type="number" inputmode="numeric" min="0" value="${d.stock}" ><button type="button" data-step="1" aria-label="Sumar una unidad">+</button></div><span class="hint" id="e-stock-hint"></span></div>
       <div class="field"><label class="check" style="margin-top:30px"><input type="checkbox" id="e-active" ${d._active ? 'checked' : ''}> Mostrar en la tienda</label></div>
     </div>
 
@@ -355,17 +358,39 @@ function editProduct(p) {
     tonesBox.innerHTML = d.tones.map((t, i) => `<div class="tone-row" data-i="${i}">
         <div class="field"><label for="t-n-${i}">Nombre</label><input id="t-n-${i}" data-k="name" value="${esc(t.name)}"></div>
         <div class="field"><label for="t-c-${i}">Color</label><input id="t-c-${i}" type="color" data-k="hex" value="${HEX.test(t.hex) ? t.hex : '#cccccc'}"></div>
+        <div class="field"><label for="t-s-${i}">Unidades</label><div class="qty stepper"><button type="button" data-step="-1" aria-label="Restar una unidad">−</button><input id="t-s-${i}" type="number" inputmode="numeric" min="0" value="${Number(t.stock) || 0}" data-k="stock"><button type="button" data-step="1" aria-label="Sumar una unidad">+</button></div></div>
         <div class="field tone-family"><label for="t-f-${i}">Familia (para el filtro)</label><select id="t-f-${i}" data-k="family">${famOpts(t.family)}</select></div>
         <button type="button" class="icon-btn" data-rm-tone="${i}" aria-label="Quitar tono ${esc(t.name)}">✕</button>
       </div>`).join('') || '<p class="small muted">Sin tonos (por ejemplo, brochas). Si tiene varios tonos o versiones, agrégalos aquí.</p>';
+    paintStockWrap();
   };
+  /* Con tonos, las unidades se cuentan por tono; sin tonos, en el campo del producto. */
+  function paintStockWrap() {
+    const byTone = d.tones.length > 0;
+    $('#e-stock').disabled = byTone;
+    $('#e-stock-wrap').querySelectorAll('button').forEach((b) => { b.disabled = byTone; });
+    if (byTone) $('#e-stock').value = d.tones.reduce((s, t) => s + (Number(t.stock) || 0), 0);
+    $('#e-stock-hint').textContent = byTone
+      ? 'Este producto tiene tonos: escribe las unidades de cada tono abajo. Aquí ves el total.'
+      : `0 = Agotado. ${CONFIG.lowStockThreshold} o menos = “Últimas unidades”. Se descuentan solas con cada pedido.`;
+  }
+  let stockTouched = false;
+  $('#editor').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-step]'); if (!b) return;
+    const input = b.parentElement.querySelector('input');
+    input.value = Math.max(0, (Number(input.value) || 0) + Number(b.dataset.step));
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  $('#editor').addEventListener('input', (e) => { if (e.target.id === 'e-stock' || e.target.dataset.k === 'stock') stockTouched = true; });
   paintTones();
   tonesBox.addEventListener('input', (e) => {
     const row = e.target.closest('.tone-row'); if (!row || !e.target.dataset.k) return;
-    d.tones[Number(row.dataset.i)][e.target.dataset.k] = e.target.value;
+    const k = e.target.dataset.k;
+    d.tones[Number(row.dataset.i)][k] = k === 'stock' ? Math.max(0, Number(e.target.value) || 0) : e.target.value;
+    if (k === 'stock') paintStockWrap();
   });
   tonesBox.addEventListener('click', (e) => { const b = e.target.closest('[data-rm-tone]'); if (b) { d.tones.splice(Number(b.dataset.rmTone), 1); paintTones(); } });
-  $('#add-tone').addEventListener('click', () => { d.tones.push({ name: '', hex: '#d9a98f', family: 'nude' }); paintTones(); tonesBox.querySelector('.tone-row:last-child input')?.focus(); });
+  $('#add-tone').addEventListener('click', () => { d.tones.push({ name: '', hex: '#d9a98f', family: 'nude', stock: 0 }); paintTones(); tonesBox.querySelector('.tone-row:last-child input')?.focus(); });
 
   /* Guardar / cancelar / eliminar */
   const back = () => tabProducts();
@@ -390,16 +415,27 @@ function editProduct(p) {
 
     const data = {
       ...d, name, brand: $('#e-brand').value.trim(), category: $('#e-cat').value, price,
-      discount: Math.min(90, Math.max(0, Number($('#e-disc').value) || 0)), stock: Math.max(0, Number($('#e-stock').value) || 0),
+      discount: Math.min(90, Math.max(0, Number($('#e-disc').value) || 0)), 
       variantLabel: $('#e-vlabel').value, description: $('#e-desc').value.trim(),
       howToSteps: $('#e-steps').value.split('\n').map((s) => s.trim()).filter(Boolean), tip: $('#e-tip').value.trim(),
       ingredients: $('#e-ingr').value.trim(), nso: $('#e-nso').value.trim(),
-      tones: d.tones.map((t) => ({ name: t.name.trim(), hex: HEX.test(t.hex) ? t.hex : '#cccccc', family: TONE_FAMILIES[t.family] ? t.family : 'nude' })),
+      tones: d.tones.map((t) => ({ name: t.name.trim(), hex: HEX.test(t.hex) ? t.hex : '#cccccc', family: TONE_FAMILIES[t.family] ? t.family : 'nude', stock: Math.max(0, Number(t.stock) || 0) })),
       image: d.images[0], thumb: d.thumbs[0] || d.images[0],
     };
     data.slug = d.slug || slugify(name);
     if (products.some((x) => x.slug === data.slug && x.id !== data.id)) data.slug = `${data.slug}-${randomId(3).toLowerCase()}`;
     data.howToUse = data.howToSteps.join(' ');
+    data.stock = data.tones.length ? data.tones.reduce((s, t) => s + t.stock, 0) : Math.max(0, Number($('#e-stock').value) || 0);
+    // Si no tocaste las unidades, conservamos las actuales (pudo haber pedidos mientras editabas).
+    if (!isNew && !stockTouched) {
+      try {
+        const [fresh] = await db(`products?select=data&id=eq.${encodeURIComponent(d.id)}`, { auth: true });
+        if (fresh) {
+          data.stock = fresh.data.stock;
+          data.tones = data.tones.map((t) => ({ ...t, stock: fresh.data.tones?.find((x) => x.name === t.name)?.stock ?? t.stock }));
+        }
+      } catch { /* si falla, se guarda lo que hay en pantalla */ }
+    }
     const active = $('#e-active').checked;
     delete data._active; delete data._sort;
     try {
@@ -409,6 +445,49 @@ function editProduct(p) {
       back();
     } catch (err) { alert.hidden = false; alert.textContent = err.message; }
   });
+}
+
+/* ---------------- Pedidos ---------------- */
+const STATUS = { nuevo: 'Nuevo', pagado: 'Pagado', enviado: 'Enviado', cancelado: 'Cancelado' };
+let orderFilter = 'activos';
+
+async function tabOrders() {
+  body().innerHTML = '<p class="muted">Cargando pedidos…</p>';
+  let rows = [];
+  try { rows = await db('orders?select=id,status,data,created_at&order=created_at.desc&limit=300', { auth: true }); } catch (e) { body().innerHTML = `<p class="form-alert">${esc(e.message)}</p>`; return; }
+  const filters = [['activos', 'Por atender'], ['todos', 'Todos'], ['pagado', 'Pagados'], ['enviado', 'Enviados'], ['cancelado', 'Cancelados']];
+  const show = rows.filter((r) => (orderFilter === 'todos' ? true : orderFilter === 'activos' ? r.status === 'nuevo' : r.status === orderFilter));
+  body().innerHTML = `<div class="admin-card"><h2>Pedidos</h2>
+    <p class="small muted">Cada pedido ya descontó sus unidades del inventario. Si no se concreta, usa <strong>Cancelar</strong> y las unidades vuelven.</p>
+    <div class="active-filters" style="margin:12px 0">${filters.map(([k, l]) => `<button type="button" data-of="${k}" style="${k === orderFilter ? 'background:var(--ink);color:#fff;border-color:var(--ink)' : ''}">${l} (${rows.filter((r) => (k === 'todos' ? true : k === 'activos' ? r.status === 'nuevo' : r.status === k)).length})</button>`).join('')}</div>
+    ${show.map((r) => { const o = r.data || {}; const c = o.contact || {}; const sh = o.shipping || {}; const tt = o.totals || {};
+      const wa = c.phone ? `https://wa.me/57${String(c.phone).replace(/\D/g, '').slice(-10)}` : '';
+      return `<article class="msg-item">
+        <header><strong>${esc(r.id)} · ${esc(c.name || '')}</strong><span><span class="status-pill">${STATUS[r.status]}</span> ${new Date(r.created_at).toLocaleString('es-CO')}</span></header>
+        <ul class="small" style="margin:8px 0;padding-left:18px">${(o.items || []).map((i) => `<li>${i.qty} × ${esc(i.name)}${i.tone ? ` (${esc(i.tone)})` : ''} — ${formatPrice(i.total)}</li>`).join('')}</ul>
+        <p class="small" style="margin:0"><strong>Total: ${formatPrice(tt.total ?? o.serverSubtotal ?? 0)}</strong>${tt.discount ? ` · descuento ${formatPrice(tt.discount)}${tt.coupon ? ` (${esc(tt.coupon)})` : ''}` : ''} · envío ${tt.shipping ? formatPrice(tt.shipping) : 'gratis'}</p>
+        <p class="small" style="margin:4px 0 0">${esc(sh.address || '')} ${esc(sh.address2 || '')}, ${esc(sh.city || '')}, ${esc(sh.department || '')} · ${esc(sh.method || '')}${o.invoice && typeof o.invoice === 'object' ? ` · Factura: ${esc(o.invoice.docType)} ${esc(o.invoice.docNumber)}` : ''}</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+          ${wa ? `<a class="btn btn--outline btn--sm" href="${wa}" target="_blank" rel="noopener">WhatsApp ${esc(c.phone)}</a>` : ''}
+          ${r.status === 'nuevo' ? `<button class="btn btn--sm" data-set="pagado" data-id="${esc(r.id)}">Marcar pagado</button>` : ''}
+          ${r.status === 'pagado' ? `<button class="btn btn--sm" data-set="enviado" data-id="${esc(r.id)}">Marcar enviado</button>` : ''}
+          ${r.status === 'nuevo' || r.status === 'pagado' ? `<button class="btn btn--outline btn--sm" data-cancel="${esc(r.id)}">Cancelar y devolver unidades</button>` : ''}
+        </div></article>`; }).join('') || '<p class="muted">No hay pedidos en esta lista.</p>'}
+  </div>`;
+  body().onclick = async (e) => {
+    const f = e.target.closest('[data-of]');
+    if (f) { orderFilter = f.dataset.of; tabOrders(); return; }
+    const set = e.target.closest('[data-set]');
+    if (set) {
+      try { await db(`orders?id=eq.${encodeURIComponent(set.dataset.id)}`, { method: 'PATCH', body: { status: set.dataset.set, updated_at: new Date().toISOString() }, auth: true }); toast(`Pedido marcado como ${STATUS[set.dataset.set].toLowerCase()}`); tabOrders(); } catch (err) { toast(err.message, 'error'); }
+      return;
+    }
+    const can = e.target.closest('[data-cancel]');
+    if (can) {
+      if (!confirm(`¿Cancelar el pedido ${can.dataset.cancel}? Las unidades vuelven al inventario.`)) return;
+      try { await db('rpc/cancel_order', { method: 'POST', body: { p_id: can.dataset.cancel }, auth: true }); toast('Pedido cancelado. Unidades devueltas.'); tabOrders(); } catch (err) { toast(err.message, 'error'); }
+    }
+  };
 }
 
 /* ---------------- Datos de la tienda ---------------- */
@@ -593,7 +672,8 @@ async function tabConsents() {
 function tabHelp() {
   body().innerHTML = `<div class="admin-card legal" style="padding-top:24px">
     <h2 style="margin-top:0">Ayuda rápida</h2>
-    <h3>Cambiar un precio o el stock</h3><p>Productos → Editar → cambia el número → Guardar cambios.</p>
+    <h3>Cambiar un precio o las unidades</h3><p>Productos → Editar → cambia el número (o usa − y +) → Guardar cambios. Si el producto tiene tonos, cada tono tiene sus propias unidades.</p>
+    <h3>¿Cómo funciona el inventario?</h3><p>Cuando una clienta envía su pedido, las unidades se descuentan solas. Si un tono llega a 0, aparece “Agotado” en ese tono; si todos llegan a 0, el producto completo sale “Agotado”. Si un pedido no se concreta, ve a Pedidos → Cancelar: las unidades vuelven al inventario.</p>
     <h3>Agregar un producto</h3><p>Productos → + Nuevo producto. Llena nombre, precio y unidades, sube al menos una foto y guarda.</p>
     <h3>Ocultar un producto sin borrarlo</h3><p>Editar → desmarca “Mostrar en la tienda”.</p>
     <h3>Poner un producto en oferta</h3><p>Editar → escribe el porcentaje en “Descuento %”. En la tienda aparece la etiqueta “Oferta” y el precio anterior tachado. Si publicas una promoción, indica hasta cuándo es válida.</p>

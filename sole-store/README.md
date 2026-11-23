@@ -103,7 +103,8 @@ Si algún día quieres cobrar en la página, las opciones en Colombia son **Womp
 - Instalación y uso: **`docs/GUIA-ADMINISTRADORA.md`**.
 - Reglas de seguridad y tablas: **`supabase/setup.sql`**.
 - Con Supabase conectado, las autorizaciones y los mensajes de contacto también se guardan ahí (funciona en GitHub Pages, sin `server.js`).
-- Si Supabase no está configurado o no responde, la tienda usa `data/products.json`.
+- **Inventario:** unidades por producto o por tono; se descuentan solas con cada pedido (función `place_order` en la base de datos) y vuelven al cancelar el pedido desde el panel.
+- Si Supabase no está configurado o no responde, la tienda usa `data/products.json` (en ese caso el inventario no se descuenta).
 
 ## 7. Qué incluye
 

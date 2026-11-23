@@ -36,8 +36,21 @@ const DAYS_NEW = 45;
 export function isNew(p) {
   return (Date.now() - new Date(p.createdAt).getTime()) / 86400000 <= DAYS_NEW;
 }
-export const isOut = (p) => p.stock <= 0;
-export const isLow = (p) => p.stock > 0 && p.stock <= CONFIG.lowStockThreshold;
+/* ---------- Inventario ----------
+   Si el producto tiene tonos con "stock", las unidades se cuentan por tono (cada tono es una
+   referencia). Si no, se usa el "stock" del producto. */
+export const hasToneStock = (p) => p.tones.length > 0 && p.tones.some((t) => typeof t.stock === 'number');
+export const totalStock = (p) => (hasToneStock(p) ? p.tones.reduce((s, t) => s + Math.max(0, t.stock || 0), 0) : Math.max(0, p.stock || 0));
+/** Unidades disponibles de un producto en un tono concreto. */
+export function stockOf(p, toneName) {
+  if (!hasToneStock(p)) return Math.max(0, p.stock || 0);
+  const t = p.tones.find((x) => x.name === toneName);
+  return t ? Math.max(0, t.stock || 0) : 0;
+}
+/** Primer tono con unidades (o el primero, si todos están agotados). */
+export const firstAvailableTone = (p) => (p.tones.find((t) => stockOf(p, t.name) > 0) || p.tones[0] || null);
+export const isOut = (p) => totalStock(p) <= 0;
+export const isLow = (p, toneName) => { const n = toneName === undefined ? totalStock(p) : stockOf(p, toneName); return n > 0 && n <= CONFIG.lowStockThreshold; };
 
 /** Etiquetas visibles: Agotado, Oferta -X%, Nuevo, Últimas unidades. */
 export function badges(p) {
