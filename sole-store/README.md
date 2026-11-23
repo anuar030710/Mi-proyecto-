@@ -83,7 +83,7 @@ Todo está en **`public/data/products.json`**. Cada producto tiene:
 2. Revisa los textos legales con un abogado y ajusta `policyVersions` cuando los cambies.
 3. Pon los **precios y el stock reales** (los actuales son provisionales) y los números `nso` del INVIMA.
 4. Conecta pagos y base de datos (abajo) y pon `demoMode: false`.
-5. Cambia `TU-DOMINIO.co` en `robots.txt` y `sitemap.xml`, y el número de WhatsApp.
+5. Cambia `TU-DOMINIO.co` en `robots.txt` y `sitemap.xml`.
 6. Publica con HTTPS (Render, Railway o un VPS para `server.js`).
 
 ## 5. Conectar pagos reales

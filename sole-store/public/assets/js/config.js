@@ -43,7 +43,7 @@ export const CONFIG = {
   },
 
   /* WhatsApp: número en formato internacional sin "+" ni espacios. */
-  whatsapp: { number: '573000000000', message: 'Hola Sole Store, tengo una pregunta sobre un producto.' },
+  whatsapp: { number: '573054556549', message: 'Hola Sole Store, tengo una pregunta sobre un producto.' },
 
   /* Datos legales del comercio (Ley 1480 de 2011, art. 50, y Ley 1581 de 2012).
      OBLIGATORIO completarlos antes de publicar. Se muestran en el footer y en las políticas. */
