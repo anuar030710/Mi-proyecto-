@@ -1,9 +1,9 @@
 /**
  * Ajustes editables desde el panel (nombre, WhatsApp, datos legales, envíos, pagos, cupones).
- * Se leen de Supabase y reemplazan los valores por defecto de config.js.
+ * Se leen de Firebase y reemplazan los valores por defecto de config.js.
  */
 import { CONFIG } from './config.js';
-import { isConfigured, fetchSettings } from './supabase.js';
+import { isConfigured, fetchSettings } from './firebase.js';
 
 /** Campos que la administradora puede cambiar desde el panel. */
 export const EDITABLE_KEYS = ['storeName', 'tagline', 'whatsapp', 'company', 'paymentOptions', 'freeShippingFrom', 'shippingMethods', 'coupons'];

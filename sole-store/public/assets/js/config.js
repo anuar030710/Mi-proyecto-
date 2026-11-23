@@ -3,10 +3,11 @@
  * Casi todo lo que una dueña de tienda necesita cambiar está aquí.
  */
 export const CONFIG = {
-  /* Panel de administración (admin.html). Se llena UNA sola vez al crear el proyecto en
-     supabase.com (Project Settings → API). Ambas son públicas: es seguro que estén aquí.
-     NUNCA pongas aquí la clave "service_role". Si se dejan vacías, la tienda usa data/products.json. */
-  supabase: { url: '', anonKey: '' },
+  /* Firebase (panel de administración, inventario y pedidos). Se llena UNA sola vez con la
+     "configuración web" del proyecto: Firebase → ⚙️ Configuración del proyecto → General →
+     Tus apps → app web. Estos datos son públicos: es seguro que estén aquí.
+     Si apiKey está vacía, la tienda usa data/products.json y el panel no funciona. */
+  firebase: { apiKey: '', projectId: 'solesstore' },
 
   /* Todo lo de abajo son valores por defecto: la administradora los cambia desde el panel. */
   storeName: 'Soles Store',

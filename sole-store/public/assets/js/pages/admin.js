@@ -2,15 +2,17 @@
  * Panel de administración de Soles Store.
  *
  * Pensado para alguien que NO programa: todo se edita con formularios.
- * La seguridad real la pone Supabase (supabase/setup.sql): aunque alguien abra esta página,
+ * La seguridad real la ponen las reglas de Firestore (firestore.rules): aunque alguien abra esta página,
  * solo las personas de la tabla "admins" pueden guardar cambios.
  */
 import { CONFIG, CATEGORIES, TONE_FAMILIES } from '../config.js';
 import { $, $$, escapeHTML, formatPrice, normalize, toast, randomId } from '../utils.js';
 import {
-  isConfigured, getSession, signIn, signUp, sendRecovery, setNewPassword, signOut,
-  consumeLinkFromEmail, db, uploadImage,
-} from '../supabase.js';
+  isConfigured, getSession, signIn, signUp, sendRecovery, resendVerification, signOut, amIAdmin,
+  adminProducts, adminInventory, adminGallery, saveProductFb, deleteProductFb, setProductFields, seedFb,
+  saveSettingsFb, fetchSettings, listAdmins, addAdmin, removeAdmin, listOrders, setOrderStatus, cancelOrderFb,
+  listCollection, deleteDoc, invKey,
+} from '../firebase.js';
 import { applySettings } from '../settings.js';
 import { totalStock } from '../products.js';
 
@@ -26,11 +28,8 @@ const HEX = /^#[0-9a-f]{6}$/i;
    ====================================================================== */
 async function start() {
   if (!isConfigured()) { renderNotConfigured(); return; }
-  const linkType = consumeLinkFromEmail();
-  if (linkType === 'recovery') { renderNewPassword(); return; }
-  if (!getSession()) { renderLogin(linkType === 'signup' ? 'Correo confirmado. Ya puedes entrar.' : ''); return; }
-  let admin = false;
-  try { admin = await db('rpc/is_admin', { method: 'POST', body: {}, auth: true }); } catch { /* sesión vencida */ }
+  if (!getSession()) { renderLogin(); return; }
+  const admin = await amIAdmin();
   if (getSession() === null) { renderLogin(); return; }
   if (!admin) { renderNotAdmin(); return; }
   renderPanel();
@@ -50,7 +49,7 @@ function renderUserBar() {
 function renderNotConfigured() {
   root.innerHTML = `<div class="admin-card admin-login">
     <h1 style="font-size:1.8rem">Falta conectar el panel</h1>
-    <p>El panel necesita una cuenta gratuita de Supabase. Una sola vez, la persona que instala la tienda debe seguir la guía <strong>docs/GUIA-ADMINISTRADORA.md</strong> (sección “Instalación”) y poner la dirección y la clave pública en <code>assets/js/config.js</code>.</p>
+    <p>El panel necesita el proyecto gratuito de Firebase. Una sola vez, la persona que instala la tienda debe seguir la guía <strong>docs/GUIA-ADMINISTRADORA.md</strong> (sección “Instalación”) y poner la configuración web en <code>assets/js/config.js</code>.</p>
     <p class="small muted">Mientras tanto, la tienda funciona con los productos del archivo <code>data/products.json</code>.</p>
   </div>`;
 }
@@ -78,7 +77,14 @@ function renderLogin(notice = '') {
     const alert = $('.form-alert', form);
     const email = $('#l-email').value.trim(); const pass = $('#l-pass').value;
     if (!email || !pass) { alert.hidden = false; alert.textContent = 'Escribe tu correo y tu contraseña.'; return; }
-    try { await signIn(email, pass); start(); } catch (err) { alert.hidden = false; alert.textContent = err.message; }
+    try { await signIn(email, pass); start(); } catch (err) {
+      alert.hidden = false; alert.textContent = err.message;
+      if (err.unverifiedToken) {
+        const again = document.createElement('button'); again.type = 'button'; again.className = 'link-btn small'; again.textContent = 'Reenviar el correo de confirmación';
+        again.addEventListener('click', async () => { try { await resendVerification(err.unverifiedToken); again.replaceWith('Correo reenviado.'); } catch (e2) { again.replaceWith(e2.message); } });
+        alert.append(' ', again);
+      }
+    }
   });
   $('#to-signup').addEventListener('click', renderSignup);
   $('#to-recover').addEventListener('click', renderRecover);
@@ -125,25 +131,7 @@ function renderRecover() {
     e.preventDefault();
     const email = $('#r-email').value.trim();
     try { await sendRecovery(email); } catch { /* no revelamos si el correo existe */ }
-    root.innerHTML = '<div class="admin-card admin-login"><h1 style="font-size:1.8rem">Revisa tu correo</h1><p>Si ese correo tiene acceso, te llegará un enlace para crear una contraseña nueva.</p></div>';
-  });
-}
-
-function renderNewPassword() {
-  root.innerHTML = `<div class="admin-card admin-login">
-    <h1 style="font-size:1.8rem">Nueva contraseña</h1>
-    <form id="newpass" class="stack" novalidate>
-      <div class="field"><label for="n-pass">Contraseña nueva</label><input id="n-pass" type="password" autocomplete="new-password"><span class="hint">Mínimo 8 caracteres.</span></div>
-      <p class="form-alert" role="alert" hidden></p>
-      <button class="btn btn--block" type="submit">Guardar</button>
-    </form>
-  </div>`;
-  $('#newpass').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const alert = $('.form-alert', e.target);
-    const pass = $('#n-pass').value;
-    if (pass.length < 8) { alert.hidden = false; alert.textContent = 'Mínimo 8 caracteres.'; return; }
-    try { await setNewPassword(pass); toast('Contraseña actualizada'); start(); } catch (err) { alert.hidden = false; alert.textContent = err.message; }
+    root.innerHTML = '<div class="admin-card admin-login"><h1 style="font-size:1.8rem">Revisa tu correo</h1><p>Si ese correo tiene acceso, te llegará un enlace para crear una contraseña nueva. Después vuelve a esta página y entra con ella.</p></div>';
   });
 }
 
@@ -161,6 +149,7 @@ function renderNotAdmin() {
    ====================================================================== */
 const TABS = [['productos', 'Productos'], ['pedidos', 'Pedidos'], ['tienda', 'Datos de la tienda'], ['admins', 'Administradoras'], ['mensajes', 'Mensajes'], ['autorizaciones', 'Autorizaciones'], ['ayuda', 'Ayuda']];
 let products = [];
+let inventory = {};
 let settings = {};
 
 async function renderPanel() {
@@ -182,8 +171,13 @@ const body = () => $('#tab-body');
 
 /* ---------------- Productos ---------------- */
 async function loadAdminProducts() {
-  const rows = await db('products?select=id,sort,active,data&order=sort.asc', { auth: true });
-  products = rows.map((r) => ({ ...r.data, id: r.id, _sort: r.sort, _active: r.active }));
+  const [rows, inv] = await Promise.all([adminProducts(), adminInventory()]);
+  inventory = inv;
+  products = rows.map((p) => {
+    const tones = (p.tones || []).map((t) => ({ ...t, stock: inv[invKey(p.id, t.name)] ?? 0 }));
+    const stock = tones.length ? tones.reduce((n, t) => n + t.stock, 0) : (inv[invKey(p.id)] ?? 0);
+    return { ...p, tones, stock, _sort: p.sort ?? 0, _active: p.active !== false };
+  });
 }
 
 async function tabProducts() {
@@ -233,7 +227,7 @@ async function tabProducts() {
     [products[i], products[j]] = [products[j], products[i]];
     paint();
     try {
-      await Promise.all([i, j].map((k) => db(`products?id=eq.${encodeURIComponent(products[k].id)}`, { method: 'PATCH', body: { sort: k }, auth: true })));
+      await Promise.all([i, j].map((k) => setProductFields(products[k].id, { sort: k })));
     } catch (err) { toast(err.message, 'error'); }
   });
 }
@@ -243,38 +237,48 @@ async function seedProducts() {
   try {
     const res = await fetch('data/products.json', { cache: 'no-cache' });
     const { products: list } = await res.json();
-    const rows = list.map((p, i) => ({ id: p.id, sort: i, active: true, data: { ...p, thumbs: p.thumbs || [p.thumb || p.image, ...p.images.slice(1)] } }));
-    await db('products', { method: 'POST', body: rows, prefer: 'resolution=merge-duplicates,return=minimal', auth: true });
-    toast(`${rows.length} productos copiados`);
+    await seedFb(list);
+    toast(`${list.length} productos copiados`);
     tabProducts();
   } catch (e) { toast(e.message, 'error'); btn.disabled = false; btn.textContent = 'Copiar los productos actuales'; }
 }
 
-/** Reduce y recorta una foto a formato 4:5 (grande y miniatura) en el navegador. */
-async function processPhoto(file) {
-  const bmp = await createImageBitmap(file);
-  const make = (W, H, q) => {
-    const c = document.createElement('canvas'); c.width = W; c.height = H;
-    const s = Math.max(W / bmp.width, H / bmp.height);
-    const w = bmp.width * s, h = bmp.height * s;
-    const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
-    ctx.drawImage(bmp, (W - w) / 2, (H - h) / 2, w, h);
-    return new Promise((r) => c.toBlob(r, 'image/webp', q));
-  };
-  return { big: await make(1000, 1250, 0.82), small: await make(400, 500, 0.8) };
+/* Las fotos se guardan reducidas DENTRO de Firestore (gratis, sin Storage).
+   Cada producto admite hasta 4 fotos; juntas deben pesar menos de ~900 KB. */
+const MAX_PHOTOS = 4;
+const MAX_GALLERY_CHARS = 900000;
+
+/** Dibuja una imagen (archivo, ruta o dataURL) recortada a 4:5 y la devuelve como dataURL WebP. */
+async function toDataURL(source, W, H, q) {
+  let bmp;
+  if (source instanceof Blob) bmp = await createImageBitmap(source);
+  else {
+    bmp = await new Promise((ok, bad) => { const im = new Image(); im.onload = () => ok(im); im.onerror = bad; im.src = source; });
+  }
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const bw = bmp.width || bmp.naturalWidth; const bh = bmp.height || bmp.naturalHeight;
+  const sc = Math.max(W / bw, H / bh);
+  const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+  ctx.drawImage(bmp, (W - bw * sc) / 2, (H - bh * sc) / 2, bw * sc, bh * sc);
+  let out = c.toDataURL('image/webp', q);
+  if (!out.startsWith('data:image/webp')) out = c.toDataURL('image/jpeg', q);
+  return out;
 }
+const processPhoto = (file) => toDataURL(file, 800, 1000, 0.8);
+const isData = (src) => String(src).startsWith('data:');
 
 function slugify(s) { return normalize(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || `producto-${randomId(4).toLowerCase()}`; }
 
-function editProduct(p) {
+async function editProduct(p) {
   const isNew = !p;
+  if (p?.gallery) { try { p = { ...p, images: (await adminGallery(p.id)) || p.images }; } catch { /* usa las que hay */ } }
   const d = p ? structuredClone(p) : {
     id: `p${Date.now().toString(36)}`, slug: '', name: '', brand: '', category: 'labiales', price: 0, discount: 0, tones: [],
     skinTypes: ['seca', 'grasa', 'mixta', 'normal', 'sensible'], stock: 0, sold: 0, createdAt: new Date().toISOString().slice(0, 10),
-    rating: 0, reviewsCount: 0, images: [], thumbs: [], description: '', ingredients: 'Consulta la lista completa de ingredientes en el empaque del producto.',
+    rating: 0, reviewsCount: 0, images: [], description: '', ingredients: 'Consulta la lista completa de ingredientes en el empaque del producto.',
     howToSteps: [], tip: '', nso: '', reviews: [], _active: true,
   };
-  d.thumbs ||= [d.thumb || d.image, ...(d.images || []).slice(1)].filter(Boolean);
+  const oldKeys = (p?.tones?.length ? p.tones.map((t) => invKey(p.id, t.name)) : (p ? [invKey(p.id)] : []));
   const famOpts = (sel) => Object.entries(TONE_FAMILIES).map(([k, t]) => `<option value="${k}" ${k === sel ? 'selected' : ''}>${t.label}</option>`).join('');
 
   body().innerHTML = `<form class="admin-card" id="editor" novalidate>
@@ -293,7 +297,7 @@ function editProduct(p) {
     </div>
 
     <div class="editor-section"><h3>Fotos</h3>
-      <p class="small muted">La primera foto (borde dorado) es la principal. Puedes subirlas desde el celular: se recortan y optimizan solas.</p>
+      <p class="small muted">La primera foto (borde dorado) es la principal. Puedes subirlas desde el celular: se recortan y reducen solas. Máximo ${MAX_PHOTOS} fotos.</p>
       <div class="photo-grid" id="photos"></div>
     </div>
 
@@ -324,32 +328,26 @@ function editProduct(p) {
   /* Fotos */
   const paintPhotos = () => {
     $('#photos').innerHTML = d.images.map((src, i) => `<div class="photo">
-        <img src="${esc(d.thumbs[i] || src)}" alt="Foto ${i + 1}">
+        <img src="${esc(src)}" alt="Foto ${i + 1}">
         <div class="photo__tools">
           ${i ? `<button type="button" data-first="${i}">Principal</button>` : '<span class="small muted">Principal</span>'}
           <button type="button" data-rm="${i}" aria-label="Quitar foto ${i + 1}">Quitar</button>
         </div></div>`).join('')
-      + `<label class="photo-add"><input type="file" accept="image/*" multiple id="photo-input"><span>+ Agregar fotos</span></label>`;
+      + (d.images.length < MAX_PHOTOS ? `<label class="photo-add"><input type="file" accept="image/*" multiple id="photo-input"><span>+ Agregar fotos</span></label>` : '');
   };
   paintPhotos();
   $('#photos').addEventListener('click', (e) => {
     const first = e.target.closest('[data-first]'); const rm = e.target.closest('[data-rm]');
-    if (first) { const i = Number(first.dataset.first); d.images.unshift(...d.images.splice(i, 1)); d.thumbs.unshift(...d.thumbs.splice(i, 1)); paintPhotos(); }
-    if (rm) { const i = Number(rm.dataset.rm); d.images.splice(i, 1); d.thumbs.splice(i, 1); paintPhotos(); }
+    if (first) { const i = Number(first.dataset.first); d.images.unshift(...d.images.splice(i, 1)); paintPhotos(); }
+    if (rm) { const i = Number(rm.dataset.rm); d.images.splice(i, 1); paintPhotos(); }
   });
   $('#photos').addEventListener('change', async (e) => {
     if (e.target.id !== 'photo-input') return;
-    const files = [...e.target.files];
-    toast(`Subiendo ${files.length} ${files.length === 1 ? 'foto' : 'fotos'}…`);
+    const files = [...e.target.files].slice(0, MAX_PHOTOS - d.images.length);
     for (const f of files) {
-      try {
-        const { big, small } = await processPhoto(f);
-        const name = `${slugify(d.name || 'producto')}-${Date.now().toString(36)}${randomId(3).toLowerCase()}`;
-        const [bigUrl, smallUrl] = await Promise.all([uploadImage(`${name}.webp`, big), uploadImage(`${name}-sm.webp`, small)]);
-        d.images.push(bigUrl); d.thumbs.push(smallUrl);
-        paintPhotos();
-      } catch (err) { toast(err.message, 'error'); }
+      try { d.images.push(await processPhoto(f)); paintPhotos(); } catch { toast('No se pudo leer esa foto. Prueba con otra.', 'error'); }
     }
+    toast('Foto lista. Toca “Guardar cambios”.');
   });
 
   /* Tonos */
@@ -398,7 +396,7 @@ function editProduct(p) {
   $('#cancel').addEventListener('click', back);
   $('#del')?.addEventListener('click', async () => {
     if (!confirm(`¿Eliminar “${d.name}”? Si solo quieres ocultarlo un tiempo, mejor desmarca “Mostrar en la tienda”.`)) return;
-    try { await db(`products?id=eq.${encodeURIComponent(d.id)}`, { method: 'DELETE', auth: true }); toast('Producto eliminado'); back(); } catch (e) { toast(e.message, 'error'); }
+    try { await deleteProductFb(p); toast('Producto eliminado'); back(); } catch (e) { toast(e.message, 'error'); }
   });
   $('#editor').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -420,27 +418,38 @@ function editProduct(p) {
       howToSteps: $('#e-steps').value.split('\n').map((s) => s.trim()).filter(Boolean), tip: $('#e-tip').value.trim(),
       ingredients: $('#e-ingr').value.trim(), nso: $('#e-nso').value.trim(),
       tones: d.tones.map((t) => ({ name: t.name.trim(), hex: HEX.test(t.hex) ? t.hex : '#cccccc', family: TONE_FAMILIES[t.family] ? t.family : 'nude', stock: Math.max(0, Number(t.stock) || 0) })),
-      image: d.images[0], thumb: d.thumbs[0] || d.images[0],
     };
     data.slug = d.slug || slugify(name);
     if (products.some((x) => x.slug === data.slug && x.id !== data.id)) data.slug = `${data.slug}-${randomId(3).toLowerCase()}`;
     data.howToUse = data.howToSteps.join(' ');
-    data.stock = data.tones.length ? data.tones.reduce((s, t) => s + t.stock, 0) : Math.max(0, Number($('#e-stock').value) || 0);
-    // Si no tocaste las unidades, conservamos las actuales (pudo haber pedidos mientras editabas).
-    if (!isNew && !stockTouched) {
-      try {
-        const [fresh] = await db(`products?select=data&id=eq.${encodeURIComponent(d.id)}`, { auth: true });
-        if (fresh) {
-          data.stock = fresh.data.stock;
-          data.tones = data.tones.map((t) => ({ ...t, stock: fresh.data.tones?.find((x) => x.name === t.name)?.stock ?? t.stock }));
-        }
-      } catch { /* si falla, se guarda lo que hay en pantalla */ }
+    /* Unidades: van al inventario (no al producto). Si no las tocaste, solo se envían las
+       referencias nuevas o eliminadas, para no pisar descuentos de pedidos recientes. */
+    const newStock = data.tones.length
+      ? Object.fromEntries(data.tones.map((t) => [invKey(data.id, t.name), t.stock]))
+      : { [invKey(data.id)]: Math.max(0, Number($('#e-stock').value) || 0) };
+    const stockToSend = (isNew || stockTouched) ? newStock : Object.fromEntries(Object.entries(newStock).filter(([k]) => !oldKeys.includes(k)));
+    const removedKeys = oldKeys.filter((k) => !(k in newStock));
+    data.tones = data.tones.map(({ stock, ...t }) => t);
+    delete data.stock;
+
+    /* Fotos: si todas son archivos de la tienda, se guardan como rutas; si hay fotos nuevas,
+       van completas a "productImages" y el producto guarda solo una miniatura. */
+    let gallery = null;
+    if (d.images.some(isData)) {
+      gallery = d.images;
+      const size = gallery.reduce((n, x) => n + String(x).length, 0);
+      if (size > MAX_GALLERY_CHARS) { alert.hidden = false; alert.textContent = 'Las fotos pesan demasiado juntas. Quita una y vuelve a guardar.'; return; }
+      data.thumb = await toDataURL(d.images[0], 400, 500, 0.75);
+      data.image = data.thumb; data.images = [data.thumb]; data.gallery = true;
+    } else {
+      data.images = d.images; data.image = d.images[0]; data.gallery = false;
+      if (!(p && p.images?.[0] === d.images[0] && p.thumb)) data.thumb = await toDataURL(d.images[0], 400, 500, 0.75);
     }
-    const active = $('#e-active').checked;
-    delete data._active; delete data._sort;
+    data.active = $('#e-active').checked;
+    data.sort = isNew ? products.length : (d._sort ?? 0);
+    delete data._active; delete data._sort; delete data.thumbs;
     try {
-      await db('products', { method: 'POST', prefer: 'resolution=merge-duplicates,return=minimal', auth: true,
-        body: { id: data.id, sort: isNew ? products.length : (d._sort ?? 0), active, data, updated_at: new Date().toISOString() } });
+      await saveProductFb(data, { gallery, stock: stockToSend, removedKeys });
       toast('Cambios guardados. Ya se ven en la tienda.');
       back();
     } catch (err) { alert.hidden = false; alert.textContent = err.message; }
@@ -454,7 +463,7 @@ let orderFilter = 'activos';
 async function tabOrders() {
   body().innerHTML = '<p class="muted">Cargando pedidos…</p>';
   let rows = [];
-  try { rows = await db('orders?select=id,status,data,created_at&order=created_at.desc&limit=300', { auth: true }); } catch (e) { body().innerHTML = `<p class="form-alert">${esc(e.message)}</p>`; return; }
+  try { rows = await listOrders(); } catch (e) { body().innerHTML = `<p class="form-alert">${esc(e.message)}</p>`; return; }
   const filters = [['activos', 'Por atender'], ['todos', 'Todos'], ['pagado', 'Pagados'], ['enviado', 'Enviados'], ['cancelado', 'Cancelados']];
   const show = rows.filter((r) => (orderFilter === 'todos' ? true : orderFilter === 'activos' ? r.status === 'nuevo' : r.status === orderFilter));
   body().innerHTML = `<div class="admin-card"><h2>Pedidos</h2>
@@ -463,7 +472,7 @@ async function tabOrders() {
     ${show.map((r) => { const o = r.data || {}; const c = o.contact || {}; const sh = o.shipping || {}; const tt = o.totals || {};
       const wa = c.phone ? `https://wa.me/57${String(c.phone).replace(/\D/g, '').slice(-10)}` : '';
       return `<article class="msg-item">
-        <header><strong>${esc(r.id)} · ${esc(c.name || '')}</strong><span><span class="status-pill">${STATUS[r.status]}</span> ${new Date(r.created_at).toLocaleString('es-CO')}</span></header>
+        <header><strong>${esc(r.id)} · ${esc(c.name || '')}</strong><span><span class="status-pill">${STATUS[r.status]}</span> ${new Date(r.createdAt).toLocaleString('es-CO')}</span></header>
         <ul class="small" style="margin:8px 0;padding-left:18px">${(o.items || []).map((i) => `<li>${i.qty} × ${esc(i.name)}${i.tone ? ` (${esc(i.tone)})` : ''} — ${formatPrice(i.total)}</li>`).join('')}</ul>
         <p class="small" style="margin:0"><strong>Total: ${formatPrice(tt.total ?? o.serverSubtotal ?? 0)}</strong>${tt.discount ? ` · descuento ${formatPrice(tt.discount)}${tt.coupon ? ` (${esc(tt.coupon)})` : ''}` : ''} · envío ${tt.shipping ? formatPrice(tt.shipping) : 'gratis'}</p>
         <p class="small" style="margin:4px 0 0">${esc(sh.address || '')} ${esc(sh.address2 || '')}, ${esc(sh.city || '')}, ${esc(sh.department || '')} · ${esc(sh.method || '')}${o.invoice && typeof o.invoice === 'object' ? ` · Factura: ${esc(o.invoice.docType)} ${esc(o.invoice.docNumber)}` : ''}</p>
@@ -479,13 +488,13 @@ async function tabOrders() {
     if (f) { orderFilter = f.dataset.of; tabOrders(); return; }
     const set = e.target.closest('[data-set]');
     if (set) {
-      try { await db(`orders?id=eq.${encodeURIComponent(set.dataset.id)}`, { method: 'PATCH', body: { status: set.dataset.set, updated_at: new Date().toISOString() }, auth: true }); toast(`Pedido marcado como ${STATUS[set.dataset.set].toLowerCase()}`); tabOrders(); } catch (err) { toast(err.message, 'error'); }
+      try { await setOrderStatus(set.dataset.id, set.dataset.set); toast(`Pedido marcado como ${STATUS[set.dataset.set].toLowerCase()}`); tabOrders(); } catch (err) { toast(err.message, 'error'); }
       return;
     }
     const can = e.target.closest('[data-cancel]');
     if (can) {
       if (!confirm(`¿Cancelar el pedido ${can.dataset.cancel}? Las unidades vuelven al inventario.`)) return;
-      try { await db('rpc/cancel_order', { method: 'POST', body: { p_id: can.dataset.cancel }, auth: true }); toast('Pedido cancelado. Unidades devueltas.'); tabOrders(); } catch (err) { toast(err.message, 'error'); }
+      try { await cancelOrderFb(rows.find((x) => x.id === can.dataset.cancel)); toast('Pedido cancelado. Unidades devueltas.'); tabOrders(); } catch (err) { toast(err.message, 'error'); }
     }
   };
 }
@@ -493,7 +502,7 @@ async function tabOrders() {
 /* ---------------- Datos de la tienda ---------------- */
 async function tabStore() {
   body().innerHTML = '<p class="muted">Cargando…</p>';
-  try { const rows = await db('settings?select=value&key=eq.store', { auth: true }); settings = rows[0]?.value || {}; } catch (e) { body().innerHTML = `<p class="form-alert">${esc(e.message)}</p>`; return; }
+  try { settings = (await fetchSettings()) || {}; } catch (e) { body().innerHTML = `<p class="form-alert">${esc(e.message)}</p>`; return; }
   applySettings(settings);
   const c = CONFIG.company;
   const wa = (CONFIG.whatsapp.number || '').replace(/^57/, '');
@@ -580,7 +589,7 @@ async function tabStore() {
       coupons: couponObj,
     };
     try {
-      await db('settings', { method: 'POST', prefer: 'resolution=merge-duplicates,return=minimal', auth: true, body: { key: 'store', value, updated_at: new Date().toISOString() } });
+      await saveSettingsFb(value);
       settings = value; applySettings(value);
       alert.hidden = true; toast('Datos guardados. Ya se ven en la tienda.');
     } catch (err) { alert.hidden = false; alert.textContent = err.message; }
@@ -591,7 +600,7 @@ async function tabStore() {
 async function tabAdmins() {
   body().innerHTML = '<p class="muted">Cargando…</p>';
   let list = [];
-  try { list = await db('admins?select=email,added_at&order=added_at.asc', { auth: true }); } catch (e) { body().innerHTML = `<p class="form-alert">${esc(e.message)}</p>`; return; }
+  try { list = (await listAdmins()).map((a) => ({ email: a.email || a.id, added_at: a.addedAt || a._createTime })); } catch (e) { body().innerHTML = `<p class="form-alert">${esc(e.message)}</p>`; return; }
   const me = (getSession()?.email || '').toLowerCase();
   body().innerHTML = `<div class="admin-card">
     <h2>Administradoras</h2>
@@ -611,7 +620,7 @@ async function tabAdmins() {
     e.preventDefault();
     const email = $('#new-admin').value.trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { toast('Revisa el correo.', 'error'); return; }
-    try { await db('admins', { method: 'POST', body: { email }, prefer: 'return=minimal', auth: true }); toast('Administradora agregada'); tabAdmins(); } catch (err) { toast(err.message, 'error'); }
+    try { await addAdmin(email); toast('Administradora agregada'); tabAdmins(); } catch (err) { toast(err.message, 'error'); }
   });
   body().onclick = async (e) => {
     const b = e.target.closest('[data-rm-admin]'); if (!b) return;
@@ -619,7 +628,8 @@ async function tabAdmins() {
     const self = email === me;
     if (!confirm(self ? 'Vas a quitarte a ti misma. Perderás el acceso al panel. ¿Continuar?' : `¿Quitar a ${email}?`)) return;
     try {
-      await db(`admins?email=eq.${encodeURIComponent(email)}`, { method: 'DELETE', auth: true });
+      if (list.length <= 1) throw new Error('última');
+      await removeAdmin(email);
       if (self) { await signOut(); location.reload(); } else tabAdmins();
     } catch (err) { toast(err.message.includes('permiso') ? err.message : 'No se pudo quitar. Debe quedar al menos una administradora.', 'error'); }
   };
@@ -629,7 +639,7 @@ async function tabAdmins() {
 async function tabMessages() {
   body().innerHTML = '<p class="muted">Cargando…</p>';
   let rows = [];
-  try { rows = await db('contact_messages?select=id,message,created_at&order=created_at.desc&limit=200', { auth: true }); } catch (e) { body().innerHTML = `<p class="form-alert">${esc(e.message)}</p>`; return; }
+  try { rows = (await listCollection('contactMessages')).map((x) => ({ ...x, created_at: x.createdAt })).sort((a, b) => String(b.created_at).localeCompare(String(a.created_at))); } catch (e) { body().innerHTML = `<p class="form-alert">${esc(e.message)}</p>`; return; }
   body().innerHTML = `<div class="admin-card"><h2>Mensajes de contacto</h2>
     <p class="small muted">Recuerda responder las peticiones, quejas y reclamos en máximo 15 días hábiles, y las solicitudes de datos personales en 10 (consultas) o 15 (reclamos).</p>
     ${rows.map((r) => { const m = r.message || {}; return `<article class="msg-item">
@@ -641,7 +651,7 @@ async function tabMessages() {
   body().onclick = async (e) => {
     const b = e.target.closest('[data-del-msg]'); if (!b) return;
     if (!confirm('¿Borrar este mensaje?')) return;
-    try { await db(`contact_messages?id=eq.${b.dataset.delMsg}`, { method: 'DELETE', auth: true }); tabMessages(); } catch (err) { toast(err.message, 'error'); }
+    try { await deleteDoc(`contactMessages/${b.dataset.delMsg}`); tabMessages(); } catch (err) { toast(err.message, 'error'); }
   };
 }
 
@@ -649,7 +659,7 @@ async function tabMessages() {
 async function tabConsents() {
   body().innerHTML = '<p class="muted">Cargando…</p>';
   let rows = [];
-  try { rows = await db('consents?select=id,record,created_at&order=created_at.desc&limit=1000', { auth: true }); } catch (e) { body().innerHTML = `<p class="form-alert">${esc(e.message)}</p>`; return; }
+  try { rows = (await listCollection('consents')).map((x) => ({ ...x, created_at: x.createdAt })).sort((a, b) => String(b.created_at).localeCompare(String(a.created_at))); } catch (e) { body().innerHTML = `<p class="form-alert">${esc(e.message)}</p>`; return; }
   const who = (r) => r.subject?.email || r.subject?.phone || r.subject?.displayName || r.subject?.browserId || '';
   const acc = (r) => (r.consents || []).map((c) => `${c.key}: ${c.accepted ? 'sí' : 'no'}`).join(' · ');
   body().innerHTML = `<div class="admin-card"><h2>Registro de autorizaciones</h2>

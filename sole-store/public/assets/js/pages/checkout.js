@@ -14,7 +14,7 @@ import { totals, onChange, clearCart } from '../store.js';
 import { field, setupForm } from '../forms.js';
 import { consentFieldset, recordConsent } from '../consent.js';
 import { currentUser, saveOrder } from '../auth.js';
-import { isConfigured, db } from '../supabase.js';
+import { isConfigured, placeOrderFb, fetchInventory, invKey } from '../firebase.js';
 
 const DEPARTAMENTOS = ['Amazonas', 'Antioquia', 'Arauca', 'Atlántico', 'Bogotá D.C.', 'Bolívar', 'Boyacá', 'Caldas', 'Caquetá', 'Casanare', 'Cauca', 'Cesar', 'Chocó', 'Córdoba', 'Cundinamarca', 'Guainía', 'Guaviare', 'Huila', 'La Guajira', 'Magdalena', 'Meta', 'Nariño', 'Norte de Santander', 'Putumayo', 'Quindío', 'Risaralda', 'San Andrés y Providencia', 'Santander', 'Sucre', 'Tolima', 'Valle del Cauca', 'Vaupés', 'Vichada'];
 
@@ -144,11 +144,19 @@ async function placeOrder(data, form) {
   // Con el panel conectado, la base de datos revisa y DESCUENTA las unidades en este momento.
   if (isConfigured()) {
     try {
-      const res = await db('rpc/place_order', { method: 'POST', body: { p_order: order } });
-      order.items = order.items.map((i, n) => ({ ...i, unit: res.items[n]?.unit ?? i.unit, total: res.items[n]?.total ?? i.total }));
+      // Al guardar el pedido NO enviamos las fotos (solo nombre, tono, cantidad y precio).
+      await placeOrderFb({ ...order, items: order.items.map(({ image, ...i }) => ({ ...i, tone: i.tone || null })) });
     } catch (err) {
-      if (err.message.startsWith('SIN_STOCK:')) {
-        fail(`Lo sentimos: <strong>${escapeHTML(err.message.slice(10))}</strong> ya no tiene unidades suficientes (alguien acaba de comprarlo). <a href="carrito.html">Revisa tu carrito</a>.`);
+      // Si las reglas lo rechazan, casi siempre es porque alguien compró las últimas unidades.
+      let short = null;
+      if (err.denied) {
+        try {
+          const inv = await fetchInventory();
+          short = order.items.find((i) => (inv[invKey(i.id, i.tone)] ?? 0) < i.qty);
+        } catch { /* sin conexión */ }
+      }
+      if (short) {
+        fail(`Lo sentimos: <strong>${escapeHTML(short.name)}${short.tone ? ` (${escapeHTML(short.tone)})` : ''}</strong> ya no tiene unidades suficientes (alguien acaba de comprarlo). <a href="carrito.html">Revisa tu carrito</a>.`);
       } else {
         fail('No pudimos registrar tu pedido. Revisa tu conexión e inténtalo de nuevo, o escríbenos por WhatsApp.');
       }

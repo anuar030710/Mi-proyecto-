@@ -5,7 +5,7 @@
  *    y sin marcar: (a) Términos + autorización de tratamiento de datos y (b) comunicaciones comerciales.
  * 2. Registro: al enviar el formulario se guarda una prueba de QUÉ aceptó la persona, CUÁNDO,
  *    CÓMO (casilla, formulario, página) y QUÉ VERSIÓN de cada documento estaba vigente.
- *    La prueba se guarda en Supabase (tabla consents, con la hora del servidor) o, sin Supabase,
+ *    La prueba se guarda en Firebase (colección consents, con la hora del servidor) o, sin Firebase,
  *    en server.js (POST /api/consent → private/consent-log.jsonl, con IP). Si el servidor no está disponible se guarda en cola
  *    y se reintenta en la próxima visita. (Ley 1581 de 2012 art. 9 y Decreto 1377 de 2013 art. 7-8:
  *    el responsable debe conservar prueba de la autorización.)
@@ -15,11 +15,11 @@
 import { CONFIG } from './config.js';
 import { storage, escapeHTML, randomId, trapFocus, $ } from './utils.js';
 import { ICONS } from './icons.js';
-import { isConfigured, db } from './supabase.js';
+import { isConfigured, addRecord } from './firebase.js';
 
-/** Guarda un registro: en Supabase (tabla consents, solo se puede agregar) o en server.js. */
+/** Guarda un registro: en Firebase (colección consents, solo se puede agregar) o en server.js. */
 async function postRecord(record) {
-  if (isConfigured()) { await db('consents', { method: 'POST', body: { record }, prefer: 'return=minimal' }); return; }
+  if (isConfigured()) { await addRecord('consents', 'record', record); return; }
   const res = await fetch(CONFIG.consentEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record), keepalive: true });
   if (!res.ok) throw new Error(String(res.status));
 }

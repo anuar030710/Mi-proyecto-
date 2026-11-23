@@ -98,13 +98,14 @@ Si algún día quieres cobrar en la página, las opciones en Colombia son **Womp
 
 ## 6. Panel de administración (editar sin código)
 
-`admin.html` es un panel para que la administradora cambie productos, precios, unidades, fotos, textos, WhatsApp, datos legales, envíos y cupones desde el celular o el computador. Usa **Supabase** (gratis) como base de datos y para el inicio de sesión. Solo los correos de la tabla `admins` pueden guardar cambios: lo controla la base de datos, no el navegador.
+`admin.html` es un panel para que la administradora cambie productos, precios, unidades (por tono), fotos, textos, WhatsApp, datos legales, envíos y cupones, y atienda pedidos. Todo funciona con **Firebase gratis** (sin tarjeta):
 
+- **Firestore**: productos, inventario, pedidos, ajustes, autorizaciones y mensajes. Las fotos se guardan reducidas dentro de Firestore (no se usa Storage).
+- **Authentication**: acceso con correo y contraseña. Solo los correos de la colección `admins` (con correo confirmado) pueden editar.
+- **Reglas de seguridad**: `firestore.rules`. Una clienta solo puede descontar unidades creando un pedido en la misma operación, y nunca por debajo de 0. Las autorizaciones no se pueden borrar.
+- **Código**: `assets/js/firebase.js` (sin librerías externas) y `assets/js/pages/admin.js`.
 - Instalación y uso: **`docs/GUIA-ADMINISTRADORA.md`**.
-- Reglas de seguridad y tablas: **`supabase/setup.sql`**.
-- Con Supabase conectado, las autorizaciones y los mensajes de contacto también se guardan ahí (funciona en GitHub Pages, sin `server.js`).
-- **Inventario:** unidades por producto o por tono; se descuentan solas con cada pedido (función `place_order` en la base de datos) y vuelven al cancelar el pedido desde el panel.
-- Si Supabase no está configurado o no responde, la tienda usa `data/products.json` (en ese caso el inventario no se descuenta).
+- Si Firebase no está configurado, la tienda usa `data/products.json` (sin descuento de inventario).
 
 ## 7. Qué incluye
 

@@ -1,0 +1,116 @@
+rules_version = '2';
+
+// =====================================================================
+// Soles Store — Reglas de seguridad de Firestore
+//
+// - Cualquiera puede VER la tienda (productos, inventario, ajustes).
+// - Solo las ADMINISTRADORAS (documentos en la colección "admins", con el correo como id,
+//   y con el correo confirmado) pueden editar. Se agregan y quitan desde el panel.
+// - Una clienta solo puede descontar unidades si en la MISMA operación crea su pedido,
+//   y nunca puede dejar una referencia por debajo de 0.
+// - Autorizaciones (Ley 1581) y mensajes: se pueden crear, pero no editar ni borrar
+//   (los mensajes sí los puede borrar la administradora).
+// =====================================================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && exists(/databases/$(database)/documents/admins/$(request.auth.token.email.lower()));
+    }
+
+    // ---------- Catálogo y ajustes ----------
+    match /products/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /productImages/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ---------- Administradoras ----------
+    match /admins/{email} {
+      allow read: if isAdmin();
+      allow create: if isAdmin() && email == email.lower() && request.resource.data.email == email;
+      allow delete: if isAdmin();
+      allow update: if false;
+    }
+
+    // ---------- Inventario ----------
+    // Un solo documento "inventory/stock" con items: { "idProducto|tono": unidades }.
+    function okKey(k) {
+      return request.resource.data.items[k] is int
+        && request.resource.data.items[k] >= 0
+        && request.resource.data.items[k] < resource.data.items[k];
+    }
+    function isOrderDecrement() {
+      // El pedido declara en "lastItems" qué referencias descuenta; deben coincidir exactamente
+      // con las que cambiaron, y cada una debe bajar sin quedar en negativo.
+      let changed = request.resource.data.items.diff(resource.data.items);
+      let keys = request.resource.data.lastItems;
+      let order = request.resource.data.lastOrder;
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['items', 'lastOrder', 'lastItems'])
+        && changed.addedKeys().size() == 0
+        && changed.removedKeys().size() == 0
+        && keys is list && keys.size() >= 1 && keys.size() <= 10
+        && changed.affectedKeys() == keys.toSet()
+        && okKey(keys[0])
+        && (keys.size() < 2 || okKey(keys[1]))
+        && (keys.size() < 3 || okKey(keys[2]))
+        && (keys.size() < 4 || okKey(keys[3]))
+        && (keys.size() < 5 || okKey(keys[4]))
+        && (keys.size() < 6 || okKey(keys[5]))
+        && (keys.size() < 7 || okKey(keys[6]))
+        && (keys.size() < 8 || okKey(keys[7]))
+        && (keys.size() < 9 || okKey(keys[8]))
+        && (keys.size() < 10 || okKey(keys[9]))
+        && order is string
+        && !exists(/databases/$(database)/documents/orders/$(order))
+        && existsAfter(/databases/$(database)/documents/orders/$(order));
+    }
+    match /inventory/{doc} {
+      allow read: if true;
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() || (doc == 'stock' && isOrderDecrement());
+    }
+
+    // ---------- Pedidos ----------
+    match /orders/{id} {
+      allow create: if id.matches('^SOLES-[0-9]{6}-[A-Z0-9]{4}$')
+        && request.resource.data.keys().hasOnly(['status', 'data', 'createdAt'])
+        && request.resource.data.status == 'nuevo'
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.data is map
+        && getAfter(/databases/$(database)/documents/inventory/stock).data.lastOrder == id;
+      allow read: if isAdmin();
+      allow update: if isAdmin() && resource.data.status != 'cancelado'
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+        && request.resource.data.status in ['nuevo', 'pagado', 'enviado', 'cancelado'];
+      allow delete: if false;
+    }
+
+    // ---------- Prueba de autorizaciones (Ley 1581) ----------
+    match /consents/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['record', 'createdAt'])
+        && request.resource.data.record is map
+        && request.resource.data.createdAt == request.time;
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    // ---------- Mensajes de contacto ----------
+    match /contactMessages/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['message', 'createdAt'])
+        && request.resource.data.message is map
+        && request.resource.data.createdAt == request.time;
+      allow read, delete: if isAdmin();
+      allow update: if false;
+    }
+  }
+}

@@ -38,8 +38,9 @@ const SECURITY_HEADERS = {
     "script-src 'self'",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' data: blob: https://*.supabase.co",
-    "connect-src 'self' https://*.supabase.co",
+    "img-src 'self' data: blob:",
+    // Firebase (y sus emuladores locales, solo para pruebas)
+    "connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com http://localhost:8080 http://localhost:9099",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",

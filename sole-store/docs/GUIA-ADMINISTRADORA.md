@@ -48,46 +48,65 @@ Los cambios se ven en la tienda apenas guardas (recarga la página de la tienda)
 2. La nueva persona abre `admin.html`, elige **Es mi primera vez: crear mi acceso**, escribe ese mismo correo y una contraseña, y confirma desde el enlace que le llega al correo.
 3. Cuando ya pueda entrar, **quita tu correo** de la lista.
 4. La nueva persona debe actualizar en **Datos de la tienda** su nombre o razón social, NIT, dirección, teléfono y correos.
-5. Pásale también la cuenta de **Supabase** (ver abajo, “Dueña de las cuentas”).
+5. Pásale también el proyecto de **Firebase** (ver abajo, “Dueña de las cuentas”).
 
-La tienda no permite quedarse sin administradora: siempre debe quedar al menos una.
+La tienda no permite quedarse sin administradora desde el panel: siempre debe quedar al menos una.
 
-¿Olvidaste la contraseña? En la pantalla de entrada: **Olvidé mi contraseña**.
+¿Olvidaste la contraseña? En la pantalla de entrada: **Olvidé mi contraseña**. Te llega un correo de Firebase con un enlace para crear una nueva; luego vuelve al panel y entra.
 
 ---
 
 ## Instalación (una sola vez)
 
-Esto lo hace quien instala la tienda. Tarda unos 15 minutos.
+Todo funciona con **Firebase, gratis y sin tarjeta**: Hosting (la página), Firestore (productos, inventario, pedidos y fotos) y Authentication (acceso de administradoras). No se usa Firebase Storage: las fotos se guardan reducidas dentro de Firestore.
 
-1. Crea una cuenta gratis en **supabase.com** con el **correo de la tienda** (no uno personal), y crea un proyecto nuevo. Región sugerida: *South America (São Paulo)*.
-2. En el proyecto: **SQL Editor** → **New query**. Abre el archivo `supabase/setup.sql`, cambia `CORREO_DE_LA_ADMINISTRADORA` por el correo real de la administradora, pégalo completo y pulsa **Run**.
-3. **Authentication** → **URL Configuration**: en **Site URL** pon `https://solesstore.web.app/admin.html` y agrégala también en **Redirect URLs**. Así los enlaces de confirmación y de “olvidé mi contraseña” llevan al panel.
-4. **Project Settings** → **API**: copia **Project URL** y la clave **anon public**. Pégalas en `public/assets/js/config.js`, en la línea `supabase: { url: '...', anonKey: '...' }`. Esas dos son públicas. **Nunca** uses ni compartas la clave **service_role**.
-5. Publica ese cambio (unir a `main` en GitHub). La tienda se actualiza sola en solesstore.web.app en 1 o 2 minutos.
-6. La administradora entra a `admin.html` → **Es mi primera vez: crear mi acceso** → confirma su correo → entra → en **Productos** pulsa **Copiar los productos actuales** → en **Datos de la tienda** completa sus datos legales y guarda.
+**A. Crear el proyecto**
+1. **console.firebase.google.com** → **Agregar proyecto** → nombre `solesstore`. Revisa que el ID que aparece debajo sea `solesstore` (si no, avisa: hay que cambiarlo en `.firebaserc`, `config.js` y el archivo de publicación).
+2. **Desactiva** Google Analytics.
+
+**B. Base de datos (Firestore)**
+1. **Compilación → Firestore Database → Crear base de datos** → modo **producción** → ubicación **southamerica-east1 (São Paulo)**.
+2. Pestaña **Datos** → **Iniciar colección** → ID de la colección: `admins`.
+   - ID del documento: el correo de la administradora **en minúsculas** (ej.: `barretocarolina465@gmail.com`).
+   - Campo: `email` (tipo string) con ese mismo correo → **Guardar**.
+   - Repite con **Agregar documento** para cada administradora inicial. Las siguientes se agregan desde el panel.
+
+**C. Inicio de sesión (Authentication)**
+1. **Compilación → Authentication → Comenzar** → **Correo electrónico/contraseña** → **Habilitar** (solo la primera opción) → **Guardar**.
+
+**D. Conectar la página**
+1. ⚙️ **Configuración del proyecto → General → Tus apps** → ícono **`</>`** (Web) → apodo `tienda` → **Registrar app** (no marques Hosting).
+2. Copia el valor de **apiKey** y pégalo en `public/assets/js/config.js`, en la línea `firebase: { apiKey: '...', projectId: 'solesstore' }`. Es un dato público: es seguro que esté en el código.
+
+**E. Publicación automática** (ver “Publicación” abajo) y unir los cambios a `main`.
+
+**F. Primer ingreso**
+La administradora entra a `https://solesstore.web.app/admin.html` → **Es mi primera vez: crear mi acceso** → confirma su correo desde el enlace que le llega → entra → en **Productos** pulsa **Copiar los productos actuales** → en **Datos de la tienda** completa sus datos legales y guarda.
 
 Listo: desde ahí todo se maneja desde el panel.
 
 ### Dueña de las cuentas
 
 Para que el negocio no dependa de una persona:
-- **Supabase:** créalo con el correo de la tienda. Para cambiar de dueña: *Organization → Team → Invite* con el correo nuevo como **Owner**, y luego quita a la anterior.
-- **Firebase** (donde se publica la página): ⚙️ **Configuración del proyecto → Usuarios y permisos → Agregar miembro** con el correo nuevo como **Propietario**; luego quita al anterior y genera una **clave privada nueva** (ver “Publicación”).
+- **Firebase:** ⚙️ **Configuración del proyecto → Usuarios y permisos → Agregar miembro** con el correo nuevo como **Propietario**; luego quita al anterior y genera una **clave privada nueva** para GitHub (ver “Publicación”).
 - **GitHub** (donde está el código): *Settings → Transfer ownership* al usuario de la nueva administradora. Después de instalar el panel ya no hace falta entrar a GitHub para el día a día.
 
 ### Publicación en solesstore.web.app
 
-Cada cambio en el código que llega a la rama `main` se publica solo en Firebase Hosting (archivo `.github/workflows/sole-store-firebase.yml`). Para eso GitHub necesita una clave de Firebase guardada como secreto:
+Cada cambio en el código que llega a la rama `main` se publica solo (archivo `.github/workflows/sole-store-firebase.yml`): primero las **reglas de seguridad** (`firestore.rules`) y luego la **página**. Para eso GitHub necesita una clave de Firebase guardada como secreto:
 
 1. Firebase → ⚙️ **Configuración del proyecto → Cuentas de servicio → Generar nueva clave privada**. Se descarga un archivo `.json`.
 2. GitHub → repositorio → **Settings → Secrets and variables → Actions → New repository secret**. Nombre: `FIREBASE_SERVICE_ACCOUNT_SOLESSTORE`. Valor: pega **todo** el contenido del archivo.
 3. Borra el archivo descargado de tu computador. Esa clave nunca se comparte por chat ni correo.
 
-Los cambios hechos desde el panel (productos, precios, unidades, datos) **no** necesitan esto: se ven al instante.
+Si la publicación de reglas fallara por permisos, se pueden pegar a mano: **Firestore Database → Reglas** → pega el contenido de `firestore.rules` → **Publicar**.
+
+Los cambios hechos desde el panel (productos, precios, unidades, fotos, datos) **no** necesitan esto: se ven al instante.
 
 ---
 
-## Plan gratuito de Supabase
+## Límites del plan gratuito de Firebase
 
-Alcanza de sobra para una tienda pequeña. Si el proyecto no tiene actividad por una semana, Supabase lo pausa; la tienda sigue mostrando los productos de `data/products.json` y basta con entrar a supabase.com y pulsar **Restore**. Para evitarlo, entra al panel al menos una vez por semana.
+Alcanzan de sobra para una tienda pequeña: unas 50.000 lecturas y 20.000 escrituras de la base de datos por día. Cada visita a una página de la tienda usa unas 30 lecturas, es decir, más de 1.500 visitas diarias gratis. Firebase no pausa el proyecto por inactividad.
+
+Fotos: hasta **4 por producto**, guardadas reducidas (800 × 1000 px). Lo ideal es una foto clara del producto solo, con buena luz.

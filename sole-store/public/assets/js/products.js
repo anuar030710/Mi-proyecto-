@@ -2,18 +2,18 @@
  * Acceso al catálogo (data/products.json) y reglas de precio/etiquetas.
  */
 import { CONFIG } from './config.js';
-import { isConfigured, fetchPublicProducts } from './supabase.js';
+import { isConfigured, fetchCatalog, invKey } from './firebase.js';
 
 let cache = null;
 
 /** Carga los productos una sola vez por página. */
 export async function loadProducts() {
   if (cache) return cache;
-  // 1) Productos editados desde el panel (Supabase). 2) Si no hay, el archivo data/products.json.
+  // 1) Productos e inventario del panel (Firebase). 2) Si no hay, el archivo data/products.json.
   if (isConfigured()) {
     try {
-      const remote = await fetchPublicProducts();
-      if (remote.length) { cache = remote; return cache; }
+      const { products: remote, inventory } = await fetchCatalog();
+      if (remote.length) { cache = remote.map((p) => withInventory(p, inventory)); return cache; }
     } catch (e) { console.warn('Usando data/products.json:', e.message); }
   }
   const res = await fetch('data/products.json', { cache: 'no-cache' });
@@ -21,6 +21,13 @@ export async function loadProducts() {
   const data = await res.json();
   cache = data.products;
   return cache;
+}
+
+/** Aplica las unidades del inventario (por tono o por producto) al producto. */
+function withInventory(p, inv) {
+  const tones = (p.tones || []).map((t) => ({ ...t, stock: inv ? (inv[invKey(p.id, t.name)] ?? 0) : (t.stock ?? 0) }));
+  const stock = tones.length ? tones.reduce((n, t) => n + Math.max(0, t.stock), 0) : (inv ? (inv[invKey(p.id)] ?? 0) : (p.stock ?? 0));
+  return { ...p, tones, stock, reviews: p.reviews || [], skinTypes: p.skinTypes || [], images: p.images?.length ? p.images : [p.image] };
 }
 
 export const findProduct = (products, idOrSlug) => products.find((p) => p.id === idOrSlug || p.slug === idOrSlug);

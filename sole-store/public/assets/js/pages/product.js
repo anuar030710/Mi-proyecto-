@@ -7,6 +7,7 @@ import { productCard, bindCardActions } from '../components/productCard.js';
 import { openCartDrawer } from '../components/cartDrawer.js';
 import { CONFIG, CATEGORIES } from '../config.js';
 import { $, $$, escapeHTML, formatPrice, starsHTML, getParam, toast, storage } from '../utils.js';
+import { fetchGallery } from '../firebase.js';
 import { findProduct, finalPrice, badges, isOut, isLow, stockOf, firstAvailableTone } from '../products.js';
 import { addToCart, isFavorite, toggleFavorite } from '../store.js';
 import { ICONS } from '../icons.js';
@@ -25,6 +26,8 @@ function howToCard(prod) {
   </section>`;
 }
 const p = findProduct(products, getParam('id') || '');
+// Fotos grandes guardadas desde el panel (se cargan solo en la ficha del producto).
+if (p?.gallery) { try { p.images = (await fetchGallery(p.id)) || p.images; } catch { /* se queda con la miniatura */ } }
 const root = $('#product-root');
 
 if (!p) {

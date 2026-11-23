@@ -4,7 +4,7 @@ import { CONFIG } from '../config.js';
 import { $, escapeHTML } from '../utils.js';
 import { field, setupForm } from '../forms.js';
 import { consentFieldset, recordConsent } from '../consent.js';
-import { isConfigured, db } from '../supabase.js';
+import { isConfigured, addRecord } from '../firebase.js';
 
 await initLayout();
 const form = $('#contact-form');
@@ -25,7 +25,7 @@ setupForm(form, async (data, f) => {
   const payload = { name: data.name, email: data.email, reason: data.reason, order: data.order || null, message: data.message, consentRecordId: consent.recordId, date: new Date().toISOString() };
   let sent = false;
   try {
-    if (isConfigured()) { await db('contact_messages', { method: 'POST', body: { message: payload }, prefer: 'return=minimal' }); sent = true; }
+    if (isConfigured()) { await addRecord('contactMessages', 'message', payload); sent = true; }
     else { const res = await fetch(CONFIG.contactEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); sent = res.ok; }
   } catch { sent = false; }
   if (sent) {
