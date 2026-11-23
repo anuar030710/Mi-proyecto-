@@ -4,4 +4,4 @@ Disallow: /checkout.html
 Disallow: /confirmacion.html
 Disallow: /cuenta.html
 Disallow: /admin.html
-Sitemap: https://solesstore.web.app/sitemap.xml
+Sitemap: https://soles-store.web.app/sitemap.xml

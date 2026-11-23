@@ -5,6 +5,8 @@ import { CONFIG } from './config.js';
 import { isConfigured, fetchCatalog, invKey } from './firebase.js';
 
 let cache = null;
+/** De dónde salió el catálogo: 'firebase' (panel) o 'archivo' (data/products.json). */
+export let catalogSource = 'archivo';
 
 /** Carga los productos una sola vez por página. */
 export async function loadProducts() {
@@ -13,7 +15,7 @@ export async function loadProducts() {
   if (isConfigured()) {
     try {
       const { products: remote, inventory } = await fetchCatalog();
-      if (remote.length) { cache = remote.map((p) => withInventory(p, inventory)); return cache; }
+      if (remote.length && inventory) { cache = remote.map((p) => withInventory(p, inventory)); catalogSource = 'firebase'; return cache; }
     } catch (e) { console.warn('Usando data/products.json:', e.message); }
   }
   const res = await fetch('data/products.json', { cache: 'no-cache' });

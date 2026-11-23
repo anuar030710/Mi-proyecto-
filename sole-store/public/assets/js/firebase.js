@@ -107,6 +107,8 @@ export async function idToken() {
 async function fs(path, { method = 'GET', body, auth = false } = {}) {
   const token = auth ? await idToken() : null;
   const res = await fetch(`${fsBase()}${path}`, {
+    // Lecturas públicas: si Firebase no responde en 6 s, la tienda sigue con el catálogo del archivo.
+    ...(method === 'GET' && !auth && typeof AbortSignal.timeout === 'function' ? { signal: AbortSignal.timeout(6000) } : {}),
     method, headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
     body: body ? JSON.stringify(body) : undefined,
   });

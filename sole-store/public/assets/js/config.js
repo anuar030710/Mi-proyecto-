@@ -7,7 +7,7 @@ export const CONFIG = {
      "configuración web" del proyecto: Firebase → ⚙️ Configuración del proyecto → General →
      Tus apps → app web. Estos datos son públicos: es seguro que estén aquí.
      Si apiKey está vacía, la tienda usa data/products.json y el panel no funciona. */
-  firebase: { apiKey: '', projectId: 'solesstore' },
+  firebase: { apiKey: 'AIzaSyAFhnH0a0clWVEhkvuvasy5afBJ8Ka-aDw', projectId: 'soles-store' },
 
   /* Todo lo de abajo son valores por defecto: la administradora los cambia desde el panel. */
   storeName: 'Soles Store',

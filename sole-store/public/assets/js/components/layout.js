@@ -191,6 +191,8 @@ function fillCompanyData() {
 
 /** Punto de entrada común. Devuelve el catálogo para que la página lo use. */
 export async function initLayout() {
+  const productsPromise = loadProducts().catch((e) => { throw e; }); // en paralelo con los ajustes
+  productsPromise.catch(() => {});
   await loadSettings(); // ajustes del panel antes de pintar header y footer
   $('#app-header').outerHTML = headerHTML();
   $('#app-footer').outerHTML = footerHTML();
@@ -204,7 +206,7 @@ export async function initLayout() {
   flushPendingConsents();
   initReveal();
   let products = [];
-  try { products = await loadProducts(); } catch (err) {
+  try { products = await productsPromise; } catch (err) {
     console.error(err);
     $('main')?.insertAdjacentHTML('afterbegin', '<div class="container"><p class="form-alert" style="margin:20px 0">No pudimos cargar el catálogo. Abre la tienda con <code>node server.js</code> (ver README).</p></div>');
   }

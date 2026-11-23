@@ -2,9 +2,9 @@
 
 Con el **panel de administración** puedes cambiar tu tienda sin tocar código: productos, precios, unidades, fotos, textos, WhatsApp, datos legales, envíos y cupones.
 
-**Dónde está:** **https://solesstore.web.app/admin.html**
+**Dónde está:** **https://soles-store.web.app/admin.html**
 
-La tienda para las clientas es **https://solesstore.web.app**
+La tienda para las clientas es **https://soles-store.web.app**
 
 Las clientas no ven ningún enlace al panel, y aunque alguien llegue a esa página, solo los correos autorizados pueden guardar cambios.
 
@@ -61,7 +61,7 @@ La tienda no permite quedarse sin administradora desde el panel: siempre debe qu
 Todo funciona con **Firebase, gratis y sin tarjeta**: Hosting (la página), Firestore (productos, inventario, pedidos y fotos) y Authentication (acceso de administradoras). No se usa Firebase Storage: las fotos se guardan reducidas dentro de Firestore.
 
 **A. Crear el proyecto**
-1. **console.firebase.google.com** → **Agregar proyecto** → nombre `solesstore`. Revisa que el ID que aparece debajo sea `solesstore` (si no, avisa: hay que cambiarlo en `.firebaserc`, `config.js` y el archivo de publicación).
+1. **console.firebase.google.com** → **Agregar proyecto** → nombre `Soles Store`. El ID del proyecto es `soles-store` (si no, avisa: hay que cambiarlo en `.firebaserc`, `config.js` y el archivo de publicación).
 2. **Desactiva** Google Analytics.
 
 **B. Base de datos (Firestore)**
@@ -76,12 +76,12 @@ Todo funciona con **Firebase, gratis y sin tarjeta**: Hosting (la página), Fire
 
 **D. Conectar la página**
 1. ⚙️ **Configuración del proyecto → General → Tus apps** → ícono **`</>`** (Web) → apodo `tienda` → **Registrar app** (no marques Hosting).
-2. Copia el valor de **apiKey** y pégalo en `public/assets/js/config.js`, en la línea `firebase: { apiKey: '...', projectId: 'solesstore' }`. Es un dato público: es seguro que esté en el código.
+2. Copia el valor de **apiKey** y pégalo en `public/assets/js/config.js`, en la línea `firebase: { apiKey: '...', projectId: 'soles-store' }`. Es un dato público: es seguro que esté en el código.
 
 **E. Publicación automática** (ver “Publicación” abajo) y unir los cambios a `main`.
 
 **F. Primer ingreso**
-La administradora entra a `https://solesstore.web.app/admin.html` → **Es mi primera vez: crear mi acceso** → confirma su correo desde el enlace que le llega → entra → en **Productos** pulsa **Copiar los productos actuales** → en **Datos de la tienda** completa sus datos legales y guarda.
+La administradora entra a `https://soles-store.web.app/admin.html` → **Es mi primera vez: crear mi acceso** → confirma su correo desde el enlace que le llega → entra → en **Productos** pulsa **Copiar los productos actuales** → en **Datos de la tienda** completa sus datos legales y guarda.
 
 Listo: desde ahí todo se maneja desde el panel.
 
@@ -91,7 +91,7 @@ Para que el negocio no dependa de una persona:
 - **Firebase:** ⚙️ **Configuración del proyecto → Usuarios y permisos → Agregar miembro** con el correo nuevo como **Propietario**; luego quita al anterior y genera una **clave privada nueva** para GitHub (ver “Publicación”).
 - **GitHub** (donde está el código): *Settings → Transfer ownership* al usuario de la nueva administradora. Después de instalar el panel ya no hace falta entrar a GitHub para el día a día.
 
-### Publicación en solesstore.web.app
+### Publicación en soles-store.web.app
 
 Cada cambio en el código que llega a la rama `main` se publica solo (archivo `.github/workflows/sole-store-firebase.yml`): primero las **reglas de seguridad** (`firestore.rules`) y luego la **página**. Para eso GitHub necesita una clave de Firebase guardada como secreto:
 
