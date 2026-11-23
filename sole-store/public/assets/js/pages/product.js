@@ -14,6 +14,16 @@ import { field, setupForm } from '../forms.js';
 import { consentFieldset, recordConsent } from '../consent.js';
 
 const products = await initLayout();
+
+/** Mensaje para la clienta: cómo se usa (pasos) y consejo de la tienda. */
+function howToCard(prod) {
+  if (!prod.howToSteps?.length && !prod.tip) return '';
+  return `<section class="howto" aria-labelledby="howto-title">
+    <h2 id="howto-title" class="howto__title">${ICONS.sparkle} Cómo usarlo</h2>
+    ${prod.howToSteps?.length ? `<ol class="howto__steps">${prod.howToSteps.map((s) => `<li>${escapeHTML(s)}</li>`).join('')}</ol>` : ''}
+    ${prod.tip ? `<p class="howto__tip"><strong>Consejo de Sole:</strong> ${escapeHTML(prod.tip)}</p>` : ''}
+  </section>`;
+}
 const p = findProduct(products, getParam('id') || '');
 const root = $('#product-root');
 
@@ -96,6 +106,8 @@ root.innerHTML = `
         <button class="icon-btn" id="fav-btn" aria-pressed="${isFavorite(p.id)}" aria-label="Guardar en favoritos" style="border:1.5px solid var(--line);width:52px;height:52px">${ICONS.heart}</button>
       </div>
 
+      ${howToCard(p)}
+
       <ul class="mini-trust" style="margin-top:22px">
         <li>${ICONS.truck} Envío a todo Colombia · gratis desde ${formatPrice(CONFIG.freeShippingFrom)}</li>
         <li>${ICONS.return} Devoluciones de productos sellados en 5 días hábiles · <a href="reembolsos.html">ver política</a></li>
@@ -105,7 +117,6 @@ root.innerHTML = `
       <div class="accordion" style="margin-top:20px">
         <details open><summary>Descripción</summary><div class="acc-body"><p>${escapeHTML(p.description)}</p></div></details>
         <details><summary>Ingredientes</summary><div class="acc-body"><p>${escapeHTML(p.ingredients)}</p><p class="small muted">Si tienes alergias, revisa la lista completa en el empaque. Ante cualquier irritación suspende su uso.</p></div></details>
-        <details><summary>Modo de uso</summary><div class="acc-body"><p>${escapeHTML(p.howToUse)}</p></div></details>
         <details><summary>Registro sanitario</summary><div class="acc-body"><p>Notificación Sanitaria Obligatoria (INVIMA): ${escapeHTML(p.nso)}</p></div></details>
       </div>
     </div>

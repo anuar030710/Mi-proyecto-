@@ -5,9 +5,25 @@ import { $, escapeHTML, formatPrice, getParam } from '../utils.js';
 import { findOrder } from '../auth.js';
 import { ICONS } from '../icons.js';
 
-await initLayout();
+const products = await initLayout();
 const order = findOrder(getParam('pedido') || '');
 const root = $('#confirm-root');
+
+/** "Cómo usar lo que compraste": un mensaje por producto del pedido. */
+function howToSection(o) {
+  const seen = new Set();
+  const items = o.items.map((i) => products.find((p) => p.id === i.id))
+    .filter((p) => p && p.howToSteps?.length && !seen.has(p.id) && seen.add(p.id));
+  if (!items.length) return '';
+  return `<section class="summary" style="margin-top:20px" aria-labelledby="howto-order">
+    <h2 id="howto-order" style="font-size:1.4rem">Cómo usar lo que compraste</h2>
+    ${items.map((p) => `<div class="howto howto--compact">
+      <h3 class="howto__title">${escapeHTML(p.name)}</h3>
+      <ol class="howto__steps">${p.howToSteps.map((s) => `<li>${escapeHTML(s)}</li>`).join('')}</ol>
+      ${p.tip ? `<p class="howto__tip"><strong>Consejo de Sole:</strong> ${escapeHTML(p.tip)}</p>` : ''}
+    </div>`).join('')}
+  </section>`;
+}
 
 const NEXT = {
   tarjeta: 'Te llevaremos a la pasarela de pago para ingresar los datos de tu tarjeta. Cuando el pago se apruebe recibirás un correo.',
@@ -38,6 +54,7 @@ if (!order) {
       <p class="small" style="margin:0"><strong>Entrega en:</strong> ${escapeHTML(order.shipping.address)} ${escapeHTML(order.shipping.address2)}, ${escapeHTML(order.shipping.city)}, ${escapeHTML(order.shipping.department)}</p>
       <p class="small" style="margin:0"><strong>Siguiente paso:</strong> ${NEXT[order.payment] || ''}</p>
     </div>
+    ${howToSection(order)}
     <div class="hero__ctas" style="justify-content:center;margin-top:28px">
       <a class="btn" href="catalogo.html">Seguir comprando</a>
       <a class="btn btn--outline" href="cuenta.html">Ver mis pedidos</a>

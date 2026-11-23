@@ -564,3 +564,13 @@ p { margin: 0 0 1em; }
 /* Galería con una sola foto: sin miniaturas y a todo el ancho */
 .gallery__thumbs[hidden] { display: none; }
 .gallery:has(.gallery__thumbs[hidden]) { grid-template-columns: 1fr; }
+
+/* Mensaje "Cómo usarlo" de cada producto */
+.howto { margin-top: 22px; padding: 18px 20px; border-radius: var(--radius); background: #fff; border: 1.5px solid var(--rose-300); text-align: left; }
+.howto__title { display: flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 1rem; font-weight: 600; margin: 0 0 10px; }
+.howto__title svg { width: 20px; height: 20px; color: var(--gold-700); flex: none; }
+.howto__steps { margin: 0; padding-left: 22px; display: grid; gap: 6px; font-size: .94rem; color: var(--ink-80); }
+.howto__steps li::marker { color: var(--gold-700); font-weight: 600; }
+.howto__tip { margin: 12px 0 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--rose-50); font-size: .9rem; }
+.howto--compact { margin-top: 0; border: 0; border-top: 1px solid var(--line); border-radius: 0; padding: 14px 0 0; background: transparent; }
+.howto--compact .howto__tip { background: #fff; }

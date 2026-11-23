@@ -45,9 +45,15 @@
       ],
       "description": "Brillo labial de acabado cristal en tubo transparente. Contenido: 3,2 g.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica directamente sobre los labios, solo o encima de tu labial favorito.",
+      "howToUse": "Empieza con los labios limpios e hidratados. Desliza el aplicador desde el centro hacia las comisuras. Úsalo solo para un brillo natural o encima de tu labial para más volumen.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Empieza con los labios limpios e hidratados.",
+        "Desliza el aplicador desde el centro hacia las comisuras.",
+        "Úsalo solo para un brillo natural o encima de tu labial para más volumen."
+      ],
+      "tip": "El tono Transparente va con todo: úsalo sobre cualquier labial para darle brillo."
     },
     {
       "id": "s002",
@@ -93,9 +99,15 @@
       ],
       "description": "Rubor compacto en estuche dorado con espejo. Acabado satinado y pigmento modulable. Contenido neto: 4,5 g.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica con brocha sobre la parte alta de las mejillas y difumina hacia las sienes.",
+      "howToUse": "Sonríe para encontrar la parte más alta de tus mejillas. Toma poco producto con la brocha y sacude el exceso. Aplica en las mejillas y difumina hacia las sienes.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Sonríe para encontrar la parte más alta de tus mejillas.",
+        "Toma poco producto con la brocha y sacude el exceso.",
+        "Aplica en las mejillas y difumina hacia las sienes."
+      ],
+      "tip": "Empieza con poquito y ve sumando capas: es más fácil agregar color que quitarlo."
     },
     {
       "id": "s003",
@@ -129,9 +141,15 @@
       ],
       "description": "Contorno líquido con aplicador de esponja para esculpir y dar dimensión al rostro. Contenido: 5 ml.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica pequeños puntos bajo los pómulos, en la mandíbula y la frente, y difumina con brocha o esponja.",
+      "howToUse": "Agita un poco y saca producto con el aplicador. Haz pequeños puntos bajo el pómulo, en la mandíbula y a los lados de la frente. Difumina enseguida con brocha o esponja húmeda, hacia arriba.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Agita un poco y saca producto con el aplicador.",
+        "Haz pequeños puntos bajo el pómulo, en la mandíbula y a los lados de la frente.",
+        "Difumina enseguida con brocha o esponja húmeda, hacia arriba."
+      ],
+      "tip": "Aplícalo antes del polvo para que se funda con tu base."
     },
     {
       "id": "s004",
@@ -177,9 +195,15 @@
       ],
       "description": "Contorno en barra de punta triangular para trazos precisos. Textura cremosa que se difumina fácil.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Desliza la barra bajo el pómulo y a los lados de la nariz; difumina con brocha o esponja.",
+      "howToUse": "Desliza la barra justo debajo del pómulo, desde la oreja hacia la boca. Marca suave a los lados de la nariz y en la línea de la mandíbula. Difumina con brocha o esponja hasta que no se vean líneas.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Desliza la barra justo debajo del pómulo, desde la oreja hacia la boca.",
+        "Marca suave a los lados de la nariz y en la línea de la mandíbula.",
+        "Difumina con brocha o esponja hasta que no se vean líneas."
+      ],
+      "tip": "Usa la punta del triángulo para las zonas pequeñas, como la nariz."
     },
     {
       "id": "s005",
@@ -215,9 +239,15 @@
       ],
       "description": "Lápiz para cejas con tajalápiz incorporado en la tapa.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Dibuja trazos cortos en la dirección del vello y peina con un cepillo de cejas.",
+      "howToUse": "Peina las cejas hacia arriba. Rellena con trazos cortos y suaves en la dirección del vello. Vuelve a peinar para que el color se vea natural.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Peina las cejas hacia arriba.",
+        "Rellena con trazos cortos y suaves en la dirección del vello.",
+        "Vuelve a peinar para que el color se vea natural."
+      ],
+      "tip": "Empieza más claro al inicio de la ceja y más definido hacia la punta."
     },
     {
       "id": "s006",
@@ -258,9 +288,15 @@
       ],
       "description": "Delineador en lápiz de trazo suave, con tajalápiz en la tapa.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Delinea pegado a las pestañas y difumina con la punta de un dedo o un pincel si quieres un efecto ahumado.",
+      "howToUse": "Saca punta con el tajalápiz de la tapa. Delinea pegado a las pestañas, de adentro hacia afuera. Para un efecto ahumado, difumina la línea con el dedo o un pincel.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Saca punta con el tajalápiz de la tapa.",
+        "Delinea pegado a las pestañas, de adentro hacia afuera.",
+        "Para un efecto ahumado, difumina la línea con el dedo o un pincel."
+      ],
+      "tip": "Si se te endurece la punta, caliéntala unos segundos entre los dedos."
     },
     {
       "id": "s007",
@@ -306,10 +342,16 @@
       ],
       "description": "Máscara de pestañas con fórmula contra agua. Elige tu versión: Micro Fibra (efecto extensiones), Maxi-Volumen (más espesor) o Profesional Silicón (cepillo de silicona).",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica desde la raíz hacia las puntas en zigzag. Repite para más intensidad.",
+      "howToUse": "Coloca el cepillo en la raíz de las pestañas. Sube moviéndolo en zigzag hasta las puntas. Aplica una segunda capa antes de que la primera se seque.",
       "nso": "Pendiente: copiar del empaque",
       "reviews": [],
-      "variantLabel": "Versión"
+      "variantLabel": "Versión",
+      "howToSteps": [
+        "Coloca el cepillo en la raíz de las pestañas.",
+        "Sube moviéndolo en zigzag hasta las puntas.",
+        "Aplica una segunda capa antes de que la primera se seque."
+      ],
+      "tip": "Elige Micro Fibra para alargar, Maxi-Volumen para más espesor o Silicón para separar pestaña por pestaña."
     },
     {
       "id": "s008",
@@ -339,9 +381,15 @@
       ],
       "description": "Brocha profesional de cerdas suaves para corrector y sombras. Vegana y libre de crueldad animal.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Úsala para difuminar corrector bajo los ojos o sombra en el párpado. Lávala cada semana con jabón suave.",
+      "howToUse": "Toma corrector o sombra con la punta de la brocha. Aplica a toques suaves en la zona. Difumina con movimientos cortos hasta que no se noten bordes.",
       "nso": "No aplica (accesorio, no es un cosmético)",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Toma corrector o sombra con la punta de la brocha.",
+        "Aplica a toques suaves en la zona.",
+        "Difumina con movimientos cortos hasta que no se noten bordes."
+      ],
+      "tip": "Lávala cada semana con jabón suave y déjala secar acostada."
     },
     {
       "id": "s009",
@@ -371,9 +419,15 @@
       ],
       "description": "Brocha profesional de corte angular, ideal para rubor y contorno.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica rubor o contorno siguiendo el hueso del pómulo con movimientos hacia arriba.",
+      "howToUse": "Toma rubor o contorno con la parte más larga de la brocha. Apóyala siguiendo el hueso del pómulo. Difumina con movimientos hacia arriba y hacia afuera.",
       "nso": "No aplica (accesorio, no es un cosmético)",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Toma rubor o contorno con la parte más larga de la brocha.",
+        "Apóyala siguiendo el hueso del pómulo.",
+        "Difumina con movimientos hacia arriba y hacia afuera."
+      ],
+      "tip": "Su corte angular se adapta solo a la forma de tu rostro."
     },
     {
       "id": "s010",
@@ -403,9 +457,15 @@
       ],
       "description": "Brocha profesional de cerdas densas y corte plano para aplicar base líquida o en crema.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica la base con movimientos circulares desde el centro del rostro hacia afuera.",
+      "howToUse": "Pon un poco de base en el dorso de tu mano. Toma producto con la brocha y aplica desde el centro del rostro. Difumina con movimientos circulares hacia afuera.",
       "nso": "No aplica (accesorio, no es un cosmético)",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Pon un poco de base en el dorso de tu mano.",
+        "Toma producto con la brocha y aplica desde el centro del rostro.",
+        "Difumina con movimientos circulares hacia afuera."
+      ],
+      "tip": "Pásala al final, sin producto, para pulir y dejar acabado de piel."
     },
     {
       "id": "s011",
@@ -441,9 +501,15 @@
       ],
       "description": "Pomos de maquillaje para aplicar y sellar polvos.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Presiona suavemente el pomo sobre la piel para aplicar polvo suelto o compacto.",
+      "howToUse": "Toma polvo con el pomo y retira el exceso en el dorso de la mano. Presiona suavemente sobre la piel, sin arrastrar. Insiste en la zona T y bajo los ojos.",
       "nso": "No aplica (accesorio, no es un cosmético)",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Toma polvo con el pomo y retira el exceso en el dorso de la mano.",
+        "Presiona suavemente sobre la piel, sin arrastrar.",
+        "Insiste en la zona T y bajo los ojos."
+      ],
+      "tip": "Lávalos con frecuencia para que no acumulen bacterias."
     },
     {
       "id": "s012",
@@ -509,9 +575,15 @@
       ],
       "description": "Corrector líquido con vitamina E y ácido hialurónico. Contenido: 10 ml.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica en ojeras, alrededor de la nariz y en imperfecciones; difumina a toques con esponja o dedo.",
+      "howToUse": "Aplica pequeños puntos en ojeras, alrededor de la nariz e imperfecciones. Difumina a toques con la esponja húmeda o con el dedo. Sella con un poco de polvo si tienes piel grasa.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Aplica pequeños puntos en ojeras, alrededor de la nariz e imperfecciones.",
+        "Difumina a toques con la esponja húmeda o con el dedo.",
+        "Sella con un poco de polvo si tienes piel grasa."
+      ],
+      "tip": "Para las ojeras, elige un tono un poquito más claro que tu piel."
     },
     {
       "id": "s013",
@@ -592,9 +664,15 @@
       ],
       "description": "Corrector de ojeras de buena cobertura en 10 tonos. Contenido: 9 ml.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica en forma de triángulo invertido bajo el ojo y difumina con esponja húmeda.",
+      "howToUse": "Dibuja un triángulo invertido bajo cada ojo. Difumina a toques con esponja húmeda. Sella con polvo suelto para que dure todo el día.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Dibuja un triángulo invertido bajo cada ojo.",
+        "Difumina a toques con esponja húmeda.",
+        "Sella con polvo suelto para que dure todo el día."
+      ],
+      "tip": "Si no sabes cuál de los 10 tonos te va, escríbenos por WhatsApp con una foto y te ayudamos."
     },
     {
       "id": "s014",
@@ -624,9 +702,15 @@
       ],
       "description": "Fijador de maquillaje en spray para rostro que ayuda a que tu maquillaje dure más.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Agita y rocía a unos 20 cm del rostro con los ojos cerrados al terminar tu maquillaje.",
+      "howToUse": "Termina todo tu maquillaje. Agita el envase y cierra los ojos. Rocía a unos 20 cm del rostro, en forma de X y luego de T.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Termina todo tu maquillaje.",
+        "Agita el envase y cierra los ojos.",
+        "Rocía a unos 20 cm del rostro, en forma de X y luego de T."
+      ],
+      "tip": "También puedes rociarlo en la esponja antes de aplicar la base para un acabado más fresco."
     },
     {
       "id": "s015",
@@ -667,9 +751,15 @@
       ],
       "description": "Esponja para maquillaje en forma de gota, tamaño XL, para base, corrector y polvos.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Humedécela, escúrrela bien y aplica tu base a toques. Lávala después de cada uso.",
+      "howToUse": "Humedece la esponja y escúrrela muy bien. Aplica la base, el corrector o el polvo a toquecitos. Lávala después de cada uso y déjala secar al aire.",
       "nso": "No aplica (accesorio, no es un cosmético)",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Humedece la esponja y escúrrela muy bien.",
+        "Aplica la base, el corrector o el polvo a toquecitos.",
+        "Lávala después de cada uso y déjala secar al aire."
+      ],
+      "tip": "Húmeda rinde más: absorbe menos producto y deja la piel más natural."
     },
     {
       "id": "s016",
@@ -699,9 +789,14 @@
       ],
       "description": "Llavero Bloom Me en tono rosa con corazón y accesorio de maquillaje, ideal para llevar en el bolso o regalar.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Engánchalo a tu bolso o llaves con el mosquetón. Revisa en el empaque el contenido exacto del set.",
+      "howToUse": "Engancha el llavero a tu bolso o tus llaves con el mosquetón. Úsalo para retocarte cuando estés fuera de casa.",
       "nso": "No aplica (accesorio, no es un cosmético)",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Engancha el llavero a tu bolso o tus llaves con el mosquetón.",
+        "Úsalo para retocarte cuando estés fuera de casa."
+      ],
+      "tip": "Es un detalle perfecto para regalar."
     },
     {
       "id": "s017",
@@ -735,9 +830,15 @@
       ],
       "description": "Polvo suelto para sellar el maquillaje y controlar el brillo. Incluye pomo de terciopelo.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Toma polvo con el pomo, retira el exceso y presiona sobre la zona T y bajo los ojos.",
+      "howToUse": "Toma polvo con el pomo incluido y retira el exceso. Presiona sobre la zona T y bajo los ojos. Retira lo que sobre con una brocha limpia.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Toma polvo con el pomo incluido y retira el exceso.",
+        "Presiona sobre la zona T y bajo los ojos.",
+        "Retira lo que sobre con una brocha limpia."
+      ],
+      "tip": "Aplícalo apenas termines la base y el corrector para sellarlos."
     },
     {
       "id": "s018",
@@ -773,9 +874,15 @@
       ],
       "description": "Iluminador en crema en estuche con tapa de estrella. Da un brillo luminoso y natural a los puntos altos del rostro.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica con la yema del dedo o una brocha pequeña sobre pómulos, puente de la nariz y arco de cupido.",
+      "howToUse": "Toma un poco de producto con la yema del dedo. Da toquecitos en lo alto del pómulo, el puente de la nariz y el arco de cupido. Difumina los bordes con el dedo.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Toma un poco de producto con la yema del dedo.",
+        "Da toquecitos en lo alto del pómulo, el puente de la nariz y el arco de cupido.",
+        "Difumina los bordes con el dedo."
+      ],
+      "tip": "Póntelo antes del polvo: así el brillo se ve más natural."
     },
     {
       "id": "s019",
@@ -828,9 +935,15 @@
       ],
       "description": "Iluminador en polvo suelto de destellos finos, en 4 tonos. Contenido: 8 g.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Toma un poco de producto con brocha abanico, retira el exceso y aplica sobre los pómulos y la nariz. También sirve en el lagrimal.",
+      "howToUse": "Toma poco producto con una brocha abanico. Sacude el exceso para evitar que caiga en el rostro. Aplica en lo alto del pómulo, la nariz y el lagrimal.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Toma poco producto con una brocha abanico.",
+        "Sacude el exceso para evitar que caiga en el rostro.",
+        "Aplica en lo alto del pómulo, la nariz y el lagrimal."
+      ],
+      "tip": "Angel Glow y Cosmic Lover van mejor en pieles claras; Cookie y Diva Glow en pieles medias y trigueñas."
     },
     {
       "id": "s020",
@@ -886,9 +999,15 @@
       ],
       "description": "Rubor líquido tipo sérum de textura ligera para un color fresco y natural. Contenido: 10 ml.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica 1 o 2 gotas en las mejillas y difumina rápido con los dedos o una esponja.",
+      "howToUse": "Aplica 1 o 2 gotas en cada mejilla. Difumina enseguida con los dedos o una esponja. Agrega otra gota si quieres más color.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Aplica 1 o 2 gotas en cada mejilla.",
+        "Difumina enseguida con los dedos o una esponja.",
+        "Agrega otra gota si quieres más color."
+      ],
+      "tip": "Se seca rápido, así que difumina mejilla por mejilla."
     },
     {
       "id": "s021",
@@ -918,9 +1037,15 @@
       ],
       "description": "Fijador de cejas de fijación extrema, con ácido hialurónico y aceite de ricino. Contenido: 4,8 g.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Peina las cejas hacia arriba con el cepillo y dales forma. Deja secar unos segundos.",
+      "howToUse": "Peina las cejas hacia arriba con el cepillo. Dales la forma que quieras. Deja secar unos segundos sin tocarlas.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Peina las cejas hacia arriba con el cepillo.",
+        "Dales la forma que quieras.",
+        "Deja secar unos segundos sin tocarlas."
+      ],
+      "tip": "Úsalo después del lápiz de cejas para que el color no se mueva en todo el día."
     },
     {
       "id": "s022",
@@ -961,9 +1086,15 @@
       ],
       "description": "Pomos de terciopelo en forma triangular con cinta para sujetar. Su punta llega a esquinas como el contorno de ojos y la nariz.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Úsalos para aplicar o sellar polvos presionando sobre la piel. Lávalos con jabón suave.",
+      "howToUse": "Toma polvo con el pomo y retira el exceso. Presiona con la parte plana en mejillas y frente. Usa la punta para la nariz y bajo los ojos.",
       "nso": "No aplica (accesorio, no es un cosmético)",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Toma polvo con el pomo y retira el exceso.",
+        "Presiona con la parte plana en mejillas y frente.",
+        "Usa la punta para la nariz y bajo los ojos."
+      ],
+      "tip": "Puedes doblarlo en dos para llegar a zonas muy pequeñas."
     },
     {
       "id": "s023",
@@ -993,9 +1124,15 @@
       ],
       "description": "Gel para efecto laminado de cejas. Contenido: 10 ml.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Peina las cejas hacia arriba con el cepillo, dales forma y deja secar.",
+      "howToUse": "Peina las cejas hacia arriba con el cepillo. Acomódalas con el cepillo para dar forma de laminado. Deja secar sin tocarlas.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Peina las cejas hacia arriba con el cepillo.",
+        "Acomódalas con el cepillo para dar forma de laminado.",
+        "Deja secar sin tocarlas."
+      ],
+      "tip": "Aplícalo sobre las cejas limpias y secas para que dure más."
     },
     {
       "id": "s024",
@@ -1046,9 +1183,15 @@
       ],
       "description": "Rubor líquido en 4 tonos de acabado natural y fácil de difuminar.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica una pequeña cantidad en las mejillas y difumina a toques con los dedos o una esponja.",
+      "howToUse": "Aplica una gota en cada mejilla. Difumina a toques con los dedos o una esponja. Construye el color poco a poco.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Aplica una gota en cada mejilla.",
+        "Difumina a toques con los dedos o una esponja.",
+        "Construye el color poco a poco."
+      ],
+      "tip": "Durazno y Fucsia dan un efecto fresco; Caramelo y Terracota un efecto bronceado."
     },
     {
       "id": "s025",
@@ -1097,9 +1240,15 @@
       ],
       "description": "Polvo facial suelto para sellar el maquillaje y controlar el brillo, en 4 tonos.",
       "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
-      "howToUse": "Aplica con pomo o brocha sobre la zona T y bajo los ojos; retira el exceso con una brocha limpia.",
+      "howToUse": "Toma polvo con un pomo o una brocha. Presiona sobre la zona T y bajo los ojos. Retira el exceso con una brocha limpia.",
       "nso": "Pendiente: copiar del empaque",
-      "reviews": []
+      "reviews": [],
+      "howToSteps": [
+        "Toma polvo con un pomo o una brocha.",
+        "Presiona sobre la zona T y bajo los ojos.",
+        "Retira el exceso con una brocha limpia."
+      ],
+      "tip": "Elige el tono más parecido a tu piel o tu base; el rosa ayuda a dar luz a pieles claras."
     }
   ]
 }
