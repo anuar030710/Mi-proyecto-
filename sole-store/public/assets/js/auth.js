@@ -72,4 +72,4 @@ export function deleteAccount(email) {
 export const getOrders = () => storage.get(ORDERS_KEY, []);
 export const saveOrder = (order) => { const all = getOrders(); all.unshift(order); storage.set(ORDERS_KEY, all.slice(0, 50)); };
 export const findOrder = (id) => getOrders().find((o) => o.id === id);
-export const ordersFor = (email) => getOrders().filter((o) => o.contact.email.toLowerCase() === email.toLowerCase());
+export const ordersFor = (email) => getOrders().filter((o) => (o.contact.email || '').toLowerCase() === email.toLowerCase());

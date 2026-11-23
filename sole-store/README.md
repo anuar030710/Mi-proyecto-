@@ -82,26 +82,19 @@ Todo está en **`public/data/products.json`**. Cada producto tiene:
 1. Completa `company` en `config.js` (razón social, NIT, dirección, teléfono). Mientras falten, aparecen resaltados en amarillo.
 2. Revisa los textos legales con un abogado y ajusta `policyVersions` cuando los cambies.
 3. Pon los **precios y el stock reales** (los actuales son provisionales) y los números `nso` del INVIMA.
-4. Conecta pagos y base de datos (abajo) y pon `demoMode: false`.
+4. Pon `demoMode: false` cuando precios, stock y datos legales sean los reales.
 5. Cambia `TU-DOMINIO.co` en `robots.txt` y `sitemap.xml`.
 6. Publica con HTTPS (Render, Railway o un VPS para `server.js`).
 
-## 5. Conectar pagos reales
+## 5. Pagos: por WhatsApp
 
-La tienda **nunca** debe pedir datos de tarjeta: los pide la pasarela. El flujo es igual en todas:
+La página **no cobra**. Al finalizar la compra, la clienta ve su número de pedido y un botón **"Enviar pedido por WhatsApp"** que abre el chat con la tienda con todo el pedido escrito (productos, tonos, total, dirección y factura). El pago se acuerda en esa conversación.
 
-1. En `checkout.js` → `placeOrder()`, en vez de guardar el pedido en el navegador, envíalo a tu servidor (`POST /api/orders`).
-2. El servidor **recalcula el total con los precios de `products.json`** (nunca confíes en el total que manda el navegador), guarda el pedido como “pendiente” y crea el pago en la pasarela con tu llave **secreta** (guárdala en una variable de entorno, nunca en `config.js`).
-3. Rediriges a la persona a la pasarela.
-4. La pasarela avisa a tu servidor por **webhook** si el pago se aprobó. Verifica la firma del webhook y solo entonces marca el pedido como pagado y descuenta stock.
+- El número de WhatsApp está en `config.js` (`whatsapp.number`).
+- El texto del mensaje se arma en `assets/js/whatsapp.js`.
+- Nunca pidas por WhatsApp claves, códigos de verificación ni datos completos de tarjetas.
 
-| Pasarela | Ideal para | Métodos en Colombia | Cómo |
-|---|---|---|---|
-| **Wompi** (Bancolombia) | Empezar en Colombia | Tarjeta, PSE, Nequi, Bancolombia, efectivo | Widget o Web Checkout con firma de integridad (SHA-256 de referencia + monto en centavos + moneda + secreto). Webhook de eventos `transaction.updated`. |
-| **Mercado Pago** | Vender también en otros países de Latinoamérica | Tarjeta, PSE, Efecty | Crear una “preferencia” con la API de Checkout Pro y redirigir a `init_point`. Notificaciones IPN/webhooks. |
-| **Stripe** | Ventas internacionales en USD | Tarjeta (no PSE ni Nequi) | Stripe Checkout Session + webhook `checkout.session.completed`. Revisa la disponibilidad para cuentas colombianas. |
-
-Recomendación: **Wompi** para clientas en Colombia (PSE y Nequi son clave).
+Si algún día quieres cobrar en la página, las opciones en Colombia son **Wompi** (tarjeta, PSE, Nequi), **Mercado Pago** o **Stripe** (para ventas en dólares). Eso requiere un servidor que recalcule el total y reciba la confirmación del pago.
 
 ## 6. Conectar una base de datos
 
@@ -114,4 +107,4 @@ Ahora mismo las cuentas y pedidos viven en el navegador (`auth.js`) y los consen
 
 ## 7. Qué incluye
 
-Inicio (banner, categorías, más vendidos, ofertas, reseñas, boletín) · Catálogo con filtros y orden · Ficha con galería y zoom, tonos, stock bajo, reseñas y relacionados · Carrito lateral con contador y barra de envío gratis · Carrito con cupones · Checkout con 4 medios de pago · Confirmación con número de pedido · Cuenta (registro, login, pedidos, favoritos, descarga y borrado de datos) · Contacto/PQR, FAQ, envíos, reembolsos, términos, privacidad y cookies · Buscador con sugerencias · WhatsApp flotante · Banner de cookies · SEO básico (títulos, descripciones, `robots.txt`, `sitemap.xml`, datos estructurados de producto) · Navegación con teclado, contraste AA y respeto a “reducir movimiento”.
+Inicio (banner, categorías, más vendidos, ofertas, reseñas, boletín) · Catálogo con filtros y orden · Ficha con galería y zoom, tonos, stock bajo, reseñas y relacionados · Carrito lateral con contador y barra de envío gratis · Carrito con cupones · Checkout con envío del pedido por WhatsApp · Confirmación con número de pedido · Cuenta (registro, login, pedidos, favoritos, descarga y borrado de datos) · Contacto/PQR, FAQ, envíos, reembolsos, términos, privacidad y cookies · Buscador con sugerencias · WhatsApp flotante · Banner de cookies · SEO básico (títulos, descripciones, `robots.txt`, `sitemap.xml`, datos estructurados de producto) · Navegación con teclado, contraste AA y respeto a “reducir movimiento”.

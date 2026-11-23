@@ -22,8 +22,8 @@ function headerHTML() {
   const user = currentUser();
   const navLinks = NAV.map(([href, label]) => `<li><a href="${href}" ${href === here ? 'aria-current="page"' : ''}>${label}</a></li>`).join('');
   return `
-  ${CONFIG.demoMode ? `<div class="demo-bar">Tienda de demostración: no se procesan pagos ni envíos reales. <a href="faq.html#demo">Más info</a></div>` : ''}
-  <p class="announce">${ICONS.truck.replace('<svg', '<svg style="display:inline;width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Envío gratis desde ${formatPrice(CONFIG.freeShippingFrom)} · Pago contra entrega disponible</p>
+  ${CONFIG.demoMode ? `<div class="demo-bar">Tienda en preparación: precios y disponibilidad pueden cambiar. <a href="faq.html#demo">Más info</a></div>` : ''}
+  <p class="announce">${ICONS.truck.replace('<svg', '<svg style="display:inline;width:16px;height:16px;vertical-align:-3px;margin-right:6px"')}Envío gratis desde ${formatPrice(CONFIG.freeShippingFrom)} · Pedidos y pagos por WhatsApp</p>
   <header class="site-header">
     <div class="container header-inner">
       <button class="icon-btn menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav">${ICONS.menu}</button>
@@ -67,7 +67,7 @@ function footerHTML() {
   return `
   <section class="trust" aria-label="Por qué comprar en ${escapeHTML(CONFIG.storeName)}">
     <ul class="container">
-      <li>${ICONS.lock}<span><strong>Pago seguro</strong>Pasarela certificada. No guardamos tu tarjeta.</span></li>
+      <li>${ICONS.lock}<span><strong>Compra por WhatsApp</strong>Confirmamos tu pedido y el pago contigo</span></li>
       <li>${ICONS.truck}<span><strong>Envíos a todo Colombia</strong>Gratis desde ${formatPrice(CONFIG.freeShippingFrom)}</span></li>
       <li>${ICONS.return}<span><strong>Devoluciones fáciles</strong>Productos sellados, 5 días hábiles</span></li>
       <li>${ICONS.shield}<span><strong>100% original</strong>Con registro sanitario INVIMA</span></li>
@@ -79,7 +79,6 @@ function footerHTML() {
         <div>
           <a class="logo" href="index.html">sole<span>.</span><small style="color:#CDBDBC">store</small></a>
           <p style="max-width:34ch;color:#CDBDBC">${escapeHTML(CONFIG.tagline)}. Maquillaje elegido con cariño para que te sientas tú, todos los días.</p>
-          <div class="pay-icons" aria-label="Medios de pago"><span>VISA</span><span>Mastercard</span><span>PSE</span><span>Nequi</span><span>Contra entrega</span></div>
         </div>
         <div><h3>Tienda</h3><ul>
           ${Object.entries(CATEGORIES).slice(0, 6).map(([k, v]) => `<li><a href="catalogo.html?categoria=${k}">${v}</a></li>`).join('')}

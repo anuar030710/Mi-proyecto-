@@ -38,6 +38,10 @@
 
 **Si vendes a clientas en la Unión Europea** también aplican el RGPD y la Directiva ePrivacy (consentimiento previo de cookies, aviso de transferencias internacionales). El banner ya está preparado para eso.
 
+## Pagos por WhatsApp
+
+Desde el 23/11/2026 la página no cobra: el pedido se envía por WhatsApp y el pago se acuerda allí. Esto quedó reflejado en términos (v1.1), privacidad (v1.1, que menciona a WhatsApp/Meta como tercero) y reembolso (v1.1). **[TÚ]** Al cobrar por WhatsApp, envía a la clienta el resumen del pedido y la factura, y conserva la conversación como soporte de la venta.
+
 ## 3. Cookies: ¿necesitas consentimiento?
 
 **Hoy no es obligatorio**, porque la tienda solo usa almacenamiento **estrictamente necesario** (carrito, favoritos, sesión y la propia elección de cookies) y no usa analítica ni publicidad. Aun así se dejó el banner porque:
@@ -77,7 +81,7 @@ Cada envío genera un registro con: id único, formulario, **texto exacto** de c
 
 | Formulario | Se pide | No se pide (a propósito) |
 |---|---|---|
-| Checkout | Correo, nombre, celular, departamento, ciudad, dirección (+ detalle opcional) | Documento (solo si pide factura a su nombre), fecha de nacimiento, género, datos de tarjeta (los pide la pasarela) |
+| Checkout | Nombre, celular (WhatsApp), departamento, ciudad, dirección (+ detalle opcional) | Correo (la confirmación es por WhatsApp), documento (solo si pide factura a su nombre), fecha de nacimiento, género, datos de pago (no se cobra en la página) |
 | Cuenta | Nombre, correo, contraseña | Apellido, teléfono, dirección, cumpleaños |
 | Contacto | Nombre, correo, motivo, mensaje (+ número de pedido opcional) | Teléfono, documento |
 | Reseña | Nombre o apodo, calificación, opinión | Correo |

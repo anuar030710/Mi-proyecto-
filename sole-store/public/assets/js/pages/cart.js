@@ -33,7 +33,7 @@ function render() {
       <p id="coupon-msg" class="small" role="status" style="margin:0;${coupon ? 'color:var(--success)' : ''}">${coupon ? `✓ ${escapeHTML(coupon.label)}` : t.couponInvalid ? '<span style="color:var(--danger)">El cupón guardado ya no aplica a este carrito.</span>' : 'Prueba: BIENVENIDA10, SOLE20K o ENVIOGRATIS'}</p>
       ${summaryRows(t)}
       <a class="btn btn--block" href="checkout.html">Finalizar compra</a>
-      <p class="small muted center">${ICONS.lock.replace('<svg', '<svg style="width:14px;display:inline;vertical-align:-2px"')} Pago 100% seguro</p>
+      <p class="small muted center">${ICONS.lock.replace('<svg', '<svg style="width:14px;display:inline;vertical-align:-2px"')} Confirmas y pagas tu pedido por WhatsApp</p>
     </aside>`;
   });
   $('#coupon-form').addEventListener('submit', (e) => {

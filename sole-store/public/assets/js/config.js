@@ -7,7 +7,7 @@ export const CONFIG = {
   tagline: 'Tu luz, a tu manera',
 
   /* Modo demostración: muestra una barra avisando que no se procesan pagos reales.
-     Pon false SOLO cuando hayas conectado una pasarela de pago y un backend. */
+     Pon false cuando los precios, el stock y los datos legales sean los reales. */
   demoMode: true,
 
   /* Moneda. Para dólares: currency 'USD', locale 'en-US', decimals 2. */
@@ -27,13 +27,8 @@ export const CONFIG = {
     { id: 'express', name: 'Envío express', desc: '1 a 2 días hábiles (ciudades principales)', price: 22000 },
   ],
 
-  /* Métodos de pago. La tienda NUNCA pide datos de tarjeta: los pide la pasarela. */
-  paymentMethods: [
-    { id: 'tarjeta', name: 'Tarjeta crédito o débito', desc: 'Visa, Mastercard, American Express. Te llevaremos a la pasarela segura para ingresar los datos.' },
-    { id: 'pse', name: 'PSE', desc: 'Débito desde tu cuenta bancaria. Elegirás tu banco en la pasarela.' },
-    { id: 'nequi', name: 'Nequi', desc: 'Recibirás una notificación en tu app Nequi para aprobar el pago.' },
-    { id: 'contraentrega', name: 'Pago contra entrega', desc: 'Pagas en efectivo al recibir. Disponible en ciudades principales.' },
-  ],
+  /* Pagos: NO se hacen en la página. Al confirmar, la clienta envía su pedido por WhatsApp
+     y el pago se acuerda en esa conversación (ver assets/js/whatsapp.js). */
 
   /* Cupones de ejemplo. type: 'percent' | 'fixed' | 'shipping' */
   coupons: {
@@ -61,10 +56,10 @@ export const CONFIG = {
   /* Versiones de los documentos legales. Súbelas cuando cambies el texto:
      así cada aceptación registrada indica qué versión aceptó la persona. */
   policyVersions: {
-    terms: '1.0 (2026-11-22)',
-    privacy: '1.0 (2026-11-22)',
+    terms: '1.1 (2026-11-23)',
+    privacy: '1.1 (2026-11-23)',
     cookies: '1.0 (2026-11-22)',
-    refunds: '1.0 (2026-11-22)',
+    refunds: '1.1 (2026-11-23)',
   },
 
   /* Scripts opcionales que SOLO se cargan si la persona acepta esa categoría de cookies.

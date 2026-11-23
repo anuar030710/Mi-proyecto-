@@ -22,7 +22,7 @@ const COOKIE_KEY = 'sole_cookie_prefs';
 
 /** Finalidad del tratamiento según el formulario (se muestra en la casilla 1). */
 const PURPOSES = {
-  checkout: 'procesar mi pedido, el pago, el envío y la factura',
+  checkout: 'gestionar mi pedido, confirmarlo y acordar el pago por WhatsApp, enviarlo y emitir la factura',
   registro: 'crear y administrar mi cuenta, y guardar mi historial de pedidos y favoritos',
   contacto: 'responder mi mensaje o solicitud',
   resena: 'publicar mi reseña con el nombre que indique',

@@ -54,6 +54,7 @@ body {
 }
 body.no-scroll { overflow: hidden; }
 img, svg { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
 img { height: auto; }
 a { color: inherit; text-decoration-color: var(--gold-500); text-underline-offset: 3px; }
 a:hover { color: var(--rose-700); }
@@ -574,3 +575,8 @@ p { margin: 0 0 1em; }
 .howto__tip { margin: 12px 0 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--rose-50); font-size: .9rem; }
 .howto--compact { margin-top: 0; border: 0; border-top: 1px solid var(--line); border-radius: 0; padding: 14px 0 0; background: transparent; }
 .howto--compact .howto__tip { background: #fff; }
+
+/* Botón de WhatsApp (pedido) */
+.btn--whatsapp { background: #1F8F4E; border-color: #1F8F4E; min-height: 56px; font-size: 1.05rem; }
+.btn--whatsapp:hover { background: #17713D; border-color: #17713D; }
+.btn--whatsapp svg { width: 24px; height: 24px; }

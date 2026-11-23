@@ -1,9 +1,10 @@
 /**
  * Checkout. Pide SOLO los datos necesarios para entregar y cobrar el pedido:
- *  - Contacto: correo (confirmación), nombre (destinatario), celular (la transportadora lo exige).
+ *  - Contacto: nombre (destinatario) y celular (para confirmar el pedido por WhatsApp y para la transportadora).
+ *    No pedimos correo: la confirmación y el pago se hacen por WhatsApp.
  *  - Envío: departamento, ciudad, dirección y detalles opcionales.
  *  - Documento de identidad: solo si la persona pide factura electrónica a su nombre.
- *  - Datos de tarjeta/banco: NUNCA aquí. Los pide la pasarela de pago (Wompi, Mercado Pago, etc.).
+ *  - Pago: NO se hace en la página. Al confirmar se abre WhatsApp con el pedido y el pago se acuerda allí.
  */
 import { initLayout } from '../components/layout.js';
 import { summaryRows } from '../components/cartDrawer.js';
@@ -34,11 +35,10 @@ function render() {
 
     <fieldset class="checkout-section">
       <legend><span class="step-num">1</span>Contacto</legend>
-      ${user ? `<p class="small muted">Compras como <strong>${escapeHTML(user.email)}</strong>.</p>` : '<p class="small muted">¿Ya tienes cuenta? <a href="cuenta.html">Inicia sesión</a>. También puedes comprar como invitada.</p>'}
+      ${user ? `<p class="small muted">Compras como <strong>${escapeHTML(user.email)}</strong>.</p>` : '<p class="small muted">¿Ya tienes cuenta? <a href="cuenta.html">Inicia sesión</a> para guardar el pedido en tu historial. También puedes comprar como invitada.</p>'}
       <div class="form-grid form-grid--2">
-        ${field({ name: 'email', label: 'Correo electrónico', type: 'email', autocomplete: 'email', cls: 'span-2', hint: 'Aquí te enviamos la confirmación y el seguimiento.', value: user?.email || '' })}
         ${field({ name: 'name', label: 'Nombre y apellido', rule: 'name', autocomplete: 'name', value: user?.name || '' })}
-        ${field({ name: 'phone', label: 'Celular', type: 'tel', rule: 'phone', autocomplete: 'tel-national', attrs: 'inputmode="numeric"', hint: 'Solo para que la transportadora coordine la entrega.' })}
+        ${field({ name: 'phone', label: 'Celular', type: 'tel', rule: 'phone', autocomplete: 'tel-national', attrs: 'inputmode="numeric"', hint: 'Tu WhatsApp: por ahí confirmamos el pedido y el pago.' })}
       </div>
     </fieldset>
 
@@ -58,11 +58,7 @@ function render() {
     </fieldset>
 
     <fieldset class="checkout-section">
-      <legend><span class="step-num">4</span>Método de pago</legend>
-      ${CONFIG.paymentMethods.map((m, i) => `
-        <label class="option-card"><input type="radio" name="payment" value="${m.id}" ${i === 0 ? 'checked' : ''}>
-          <span><strong>${escapeHTML(m.name)}</strong><span class="opt-desc">${escapeHTML(m.desc)}</span></span></label>`).join('')}
-      <p class="pay-note">🔒 No pedimos ni guardamos datos de tarjetas ni claves bancarias. El pago se completa en la pasarela certificada${CONFIG.demoMode ? ' (en esta demostración no se realiza ningún cobro)' : ''}.</p>
+      <legend><span class="step-num">4</span>Factura</legend>
       <div class="pay-note" style="border-style:solid">
         <label class="check" style="padding:0"><input type="checkbox" name="wantsInvoice" id="wants-invoice"> Necesito factura electrónica a mi nombre o el de mi empresa</label>
         <div id="invoice-fields" class="form-grid form-grid--2" hidden style="margin-top:12px">
@@ -74,7 +70,7 @@ function render() {
     </fieldset>
 
     ${consentFieldset('checkout')}
-    <p class="small muted" style="margin-top:12px">Al confirmar aceptas pagar el total indicado. Tienes derecho a la reversión del pago y a la garantía legal según la <a href="reembolsos.html">política de reembolso</a>.</p>
+    <p class="pay-note" style="margin-top:16px"><strong>No pagas nada en esta página.</strong> Al continuar se abrirá WhatsApp con tu pedido listo para enviar. Te confirmamos disponibilidad y acordamos el pago por ese chat. Tienes derecho a la garantía legal y a devoluciones según la <a href="reembolsos.html">política de reembolso</a>.</p>
     <button class="btn btn--block" type="submit" id="pay-btn" style="margin-top:8px;min-height:56px"></button>
   </form>
 
@@ -117,28 +113,28 @@ function updateSummary() {
       <span>${escapeHTML(l.product.name)}${l.toneObj ? `<br><span class="muted">${escapeHTML(l.toneObj.name)}</span>` : ''}<br><span class="qty-pill">x${l.qty}</span></span>
       <strong>${formatPrice(l.total)}</strong></div>`).join('');
   $('#summary-totals').innerHTML = summaryRows(t, { shippingLabel: t.method.name });
-  $('#pay-btn').textContent = `Confirmar pedido · ${formatPrice(t.total)}`;
+  $('#pay-btn').textContent = `Continuar a WhatsApp · ${formatPrice(t.total)}`;
 }
 
 async function placeOrder(data, form) {
   const t = totals(products, shippingId);
-  const consent = await recordConsent(form, { email: data.email });
+  const consent = await recordConsent(form, { extra: { subject: { phone: data.phone, email: user?.email || null } } });
   const d = new Date();
   const order = {
     id: `SOLE-${d.toISOString().slice(2, 10).replace(/-/g, '')}-${randomId(4)}`,
     date: d.toISOString(),
-    status: data.payment === 'contraentrega' ? 'Confirmado · pago contra entrega' : 'Pendiente de pago',
+    status: 'Por confirmar en WhatsApp',
     items: t.lines.map((l) => ({ id: l.product.id, name: l.product.name, tone: l.tone, qty: l.qty, unit: l.unit, total: l.total, image: l.product.thumb || l.product.image })),
     totals: { subtotal: t.subtotal, discount: t.discount, shipping: t.shipping, total: t.total, coupon: t.coupon?.code || null },
-    contact: { email: data.email.toLowerCase(), name: data.name, phone: data.phone },
+    contact: { email: user?.email || null, name: data.name, phone: data.phone },
     shipping: { method: t.method.name, department: data.department, city: data.city, address: data.address, address2: data.address2 || '' },
-    payment: data.payment,
+    payment: 'whatsapp',
     invoice: data.wantsInvoice ? { docType: data.docType, docNumber: data.docNumber } : 'Consumidor final',
     consentRecordId: consent.recordId,
   };
   saveOrder(order);
   clearCart();
-  // Producción: aquí se crea la orden en tu backend y se redirige a la pasarela (ver README).
+  // La confirmación muestra el botón para enviar el pedido por WhatsApp (el navegador bloquea abrirlo solo aquí).
   location.href = `confirmacion.html?pedido=${encodeURIComponent(order.id)}`;
 }
 

@@ -111,7 +111,7 @@ root.innerHTML = `
       <ul class="mini-trust" style="margin-top:22px">
         <li>${ICONS.truck} Envío a todo Colombia · gratis desde ${formatPrice(CONFIG.freeShippingFrom)}</li>
         <li>${ICONS.return} Devoluciones de productos sellados en 5 días hábiles · <a href="reembolsos.html">ver política</a></li>
-        <li>${ICONS.lock} Pago seguro: tarjeta, PSE, Nequi o contra entrega</li>
+        <li>${ICONS.lock} Haz tu pedido aquí y acordamos el pago por WhatsApp</li>
       </ul>
 
       <div class="accordion" style="margin-top:20px">
