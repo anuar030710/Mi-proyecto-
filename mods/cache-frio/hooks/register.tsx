@@ -1,15 +1,18 @@
+import { atom, read, update } from 'claude-code'
 import type { EngineInterface, Register, Timer } from 'claude-code'
 
-type Ttl = '5m' | '1h'
+import type { CacheView, Ttl } from '../types'
 
 const TTL_MS: Record<Ttl, number> = { '5m': 5 * 60_000, '1h': 60 * 60_000 }
 // Cuánto antes de enfriarse llega el aviso previo.
 const WARN_BEFORE_MS: Record<Ttl, number> = { '5m': 60_000, '1h': 5 * 60_000 }
 
-// Estado de esta carga del mod (una recarga lo reinicia).
-const st: { ttl: Ttl; coldAt: number; timers: Timer[] } = {
+// Lo que la barra lee; escribirlo la redibuja en todas las pantallas.
+const view = atom({ plugin: 'cache-frio', key: 'view' } as const, null)
+
+// Estado de esta carga del mod (una recarga lo reinicia; `view` se conserva).
+const st: { ttl: Ttl; timers: Timer[] } = {
   ttl: '5m', // conservador hasta que la API diga cuánto dura la escritura
-  coldAt: 0,
   timers: [],
 }
 
@@ -18,21 +21,28 @@ function fmt(ms: number): string {
   return s >= 60 ? `${Math.ceil(s / 60)} min` : `${s} s`
 }
 
+function describe(v: CacheView): string {
+  const left = v.coldAt - v.checkedAt
+  return left > 0 ? `🔥 Caché caliente · se enfría en ${fmt(left)}` : '🧊 Caché fría'
+}
+
 function clearTimers(): void {
   for (const t of st.timers) t.cancel()
   st.timers = []
 }
 
-async function showStatus($: EngineInterface): Promise<void> {
-  const left = st.coldAt - (await $.clock.now())
-  $.ui.status(left > 0 ? `🔥 caché caliente · ${fmt(left)}` : '🧊 caché fría')
+async function refresh($: EngineInterface): Promise<void> {
+  const now = await $.clock.now()
+  const v = await update($, view, old => (old ? { ...old, checkedAt: now } : old))
+  if (v) $.ui.status(describe(v))
 }
 
 async function arm($: EngineInterface, sentAt: number): Promise<void> {
   clearTimers()
   const ttl = st.ttl
-  st.coldAt = sentAt + TTL_MS[ttl]
-  const toCold = Math.max(0, st.coldAt - (await $.clock.now()))
+  const coldAt = sentAt + TTL_MS[ttl]
+  const now = await $.clock.now()
+  const toCold = Math.max(0, coldAt - now)
   const toWarn = toCold - WARN_BEFORE_MS[ttl]
 
   // Notificaciones nativas que la app guarda y lanza aunque no estés mirando la
@@ -67,11 +77,14 @@ async function arm($: EngineInterface, sentAt: number): Promise<void> {
   st.timers.push(
     $.clock.after(toCold, () => {
       $.ui.toast('🧊 La caché de prompts se enfrió', { timeoutMs: 30_000 })
-      void showStatus($)
+      void refresh($)
     }),
   )
-  st.timers.push($.clock.every(30_000, () => void showStatus($)))
-  await showStatus($)
+  st.timers.push($.clock.every(30_000, () => void refresh($)))
+
+  const v: CacheView = { coldAt, ttl, checkedAt: now }
+  await update($, view, () => v)
+  $.ui.status(describe(v))
 }
 
 export const register: Register = on => {
@@ -92,6 +105,15 @@ export const register: Register = on => {
     return result
   })
 
+  // Barra encima de la caja de texto: se ve en terminal, escritorio y móvil.
+  on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
+    const v = await read($, view)
+    if (e.props.hasSurvey || v === null) return next(e)
+
+    const { Text } = $.ui.resolve(e)
+    return <Text dimColor>{describe(v)}</Text>
+  })
+
   on('session.start', async ($, e, next) => {
     await $.command.register({
       name: 'cache',
@@ -101,15 +123,16 @@ export const register: Register = on => {
   })
 
   on('command.run', { command: 'cache' }, async $ => {
-    if (st.coldAt === 0) {
-      return { text: 'Todavía no hay ninguna petición al modelo registrada desde que se cargó el mod.' }
+    const v = await read($, view)
+    if (v === null) {
+      return { text: 'Todavía no hay ninguna petición al modelo registrada en esta sesión.' }
     }
-    const left = st.coldAt - (await $.clock.now())
+    const left = v.coldAt - (await $.clock.now())
     return {
       text:
         left > 0
-          ? `Caché caliente (TTL ${st.ttl}): se enfría en ${fmt(left)}.`
-          : `Caché fría desde hace ${fmt(-left)} (TTL ${st.ttl}).`,
+          ? `Caché caliente (TTL ${v.ttl}): se enfría en ${fmt(left)}.`
+          : `Caché fría desde hace ${fmt(-left)} (TTL ${v.ttl}).`,
     }
   })
 
