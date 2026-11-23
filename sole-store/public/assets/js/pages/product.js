@@ -19,7 +19,7 @@ const products = await initLayout();
 function howToCard(prod) {
   if (!prod.howToSteps?.length && !prod.tip) return '';
   return `<section class="howto" aria-labelledby="howto-title">
-    <h2 id="howto-title" class="howto__title">${ICONS.sparkle} Cómo usarlo</h2>
+    <h2 id="howto-title" class="howto__title">Cómo usarlo</h2>
     ${prod.howToSteps?.length ? `<ol class="howto__steps">${prod.howToSteps.map((s) => `<li>${escapeHTML(s)}</li>`).join('')}</ol>` : ''}
     ${prod.tip ? `<p class="howto__tip"><strong>Consejo de Sole:</strong> ${escapeHTML(prod.tip)}</p>` : ''}
   </section>`;
