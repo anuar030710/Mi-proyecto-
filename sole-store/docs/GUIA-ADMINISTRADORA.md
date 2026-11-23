@@ -2,8 +2,9 @@
 
 Con el **panel de administración** puedes cambiar tu tienda sin tocar código: productos, precios, unidades, fotos, textos, WhatsApp, datos legales, envíos y cupones.
 
-**Dónde está:** en la dirección de tu tienda agrega `/admin.html`. Por ejemplo:
-`https://anuar030710.github.io/Mi-proyecto-/sole-store/public/admin.html`
+**Dónde está:** **https://solestore.web.app/admin.html**
+
+La tienda para las clientas es **https://solestore.web.app**
 
 Las clientas no ven ningún enlace al panel, y aunque alguien llegue a esa página, solo los correos autorizados pueden guardar cambios.
 
@@ -61,9 +62,9 @@ Esto lo hace quien instala la tienda. Tarda unos 15 minutos.
 
 1. Crea una cuenta gratis en **supabase.com** con el **correo de la tienda** (no uno personal), y crea un proyecto nuevo. Región sugerida: *South America (São Paulo)*.
 2. En el proyecto: **SQL Editor** → **New query**. Abre el archivo `supabase/setup.sql`, cambia `CORREO_DE_LA_ADMINISTRADORA` por el correo real de la administradora, pégalo completo y pulsa **Run**.
-3. **Authentication** → **URL Configuration**: en **Site URL** pon la dirección de `admin.html` de tu tienda, y agrégala también en **Redirect URLs**. Así los enlaces de confirmación y de “olvidé mi contraseña” llevan al panel.
+3. **Authentication** → **URL Configuration**: en **Site URL** pon `https://solestore.web.app/admin.html` y agrégala también en **Redirect URLs**. Así los enlaces de confirmación y de “olvidé mi contraseña” llevan al panel.
 4. **Project Settings** → **API**: copia **Project URL** y la clave **anon public**. Pégalas en `public/assets/js/config.js`, en la línea `supabase: { url: '...', anonKey: '...' }`. Esas dos son públicas. **Nunca** uses ni compartas la clave **service_role**.
-5. Publica ese cambio (unir a `main` en GitHub).
+5. Publica ese cambio (unir a `main` en GitHub). La tienda se actualiza sola en solestore.web.app en 1 o 2 minutos.
 6. La administradora entra a `admin.html` → **Es mi primera vez: crear mi acceso** → confirma su correo → entra → en **Productos** pulsa **Copiar los productos actuales** → en **Datos de la tienda** completa sus datos legales y guarda.
 
 Listo: desde ahí todo se maneja desde el panel.
@@ -72,7 +73,18 @@ Listo: desde ahí todo se maneja desde el panel.
 
 Para que el negocio no dependa de una persona:
 - **Supabase:** créalo con el correo de la tienda. Para cambiar de dueña: *Organization → Team → Invite* con el correo nuevo como **Owner**, y luego quita a la anterior.
+- **Firebase** (donde se publica la página): ⚙️ **Configuración del proyecto → Usuarios y permisos → Agregar miembro** con el correo nuevo como **Propietario**; luego quita al anterior y genera una **clave privada nueva** (ver “Publicación”).
 - **GitHub** (donde está el código): *Settings → Transfer ownership* al usuario de la nueva administradora. Después de instalar el panel ya no hace falta entrar a GitHub para el día a día.
+
+### Publicación en solestore.web.app
+
+Cada cambio en el código que llega a la rama `main` se publica solo en Firebase Hosting (archivo `.github/workflows/sole-store-firebase.yml`). Para eso GitHub necesita una clave de Firebase guardada como secreto:
+
+1. Firebase → ⚙️ **Configuración del proyecto → Cuentas de servicio → Generar nueva clave privada**. Se descarga un archivo `.json`.
+2. GitHub → repositorio → **Settings → Secrets and variables → Actions → New repository secret**. Nombre: `FIREBASE_SERVICE_ACCOUNT_SOLESTORE`. Valor: pega **todo** el contenido del archivo.
+3. Borra el archivo descargado de tu computador. Esa clave nunca se comparte por chat ni correo.
+
+Los cambios hechos desde el panel (productos, precios, unidades, datos) **no** necesitan esto: se ven al instante.
 
 ---
 

@@ -83,8 +83,8 @@ Lo más fácil es el **panel de administración** (sección 6). Sin panel, todo 
 2. Revisa los textos legales con un abogado y ajusta `policyVersions` cuando los cambies.
 3. Pon los **precios y el stock reales** (los actuales son provisionales) y los números `nso` del INVIMA.
 4. Pon `demoMode: false` cuando precios, stock y datos legales sean los reales.
-5. Cambia `TU-DOMINIO.co` en `robots.txt` y `sitemap.xml`.
-6. Publica con HTTPS (Render, Railway o un VPS para `server.js`).
+5. Si cambias la dirección de la tienda, actualízala en `robots.txt` y `sitemap.xml`.
+6. La tienda se publica sola en **https://solestore.web.app** (Firebase Hosting) cada vez que un cambio llega a `main`. Configuración: `firebase.json`, `.firebaserc` y `.github/workflows/sole-store-firebase.yml`; pasos en `docs/GUIA-ADMINISTRADORA.md`.
 
 ## 5. Pagos: por WhatsApp
 

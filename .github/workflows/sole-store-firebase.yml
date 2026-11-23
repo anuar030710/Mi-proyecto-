@@ -1,0 +1,26 @@
+# Publica Sole Store en Firebase Hosting (https://solestore.web.app) cada vez que
+# cambia la carpeta sole-store/ en la rama main. También se puede lanzar a mano
+# desde GitHub: Actions → "Publicar Sole Store" → Run workflow.
+name: Publicar Sole Store
+
+on:
+  push:
+    branches: [main]
+    paths: ['sole-store/**', '.github/workflows/sole-store-firebase.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLESTORE }}
+          projectId: solestore
+          channelId: live
+          entryPoint: sole-store
