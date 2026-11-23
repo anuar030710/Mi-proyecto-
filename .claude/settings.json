@@ -1,0 +1,10 @@
+{
+  "extraKnownMarketplaces": {
+    "mi-proyecto-mods": {
+      "source": { "source": "github", "repo": "anuar030710/Mi-proyecto-" }
+    }
+  },
+  "enabledPlugins": {
+    "cache-frio@mi-proyecto-mods": true
+  }
+}
