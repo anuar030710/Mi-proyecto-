@@ -15,7 +15,7 @@
 | 5 | Registro de cuándo y cómo aceptó cada persona | Hecho. Ver §5 | `server.js` → `private/consent-log.jsonl` |
 | 6 | Política de reembolso | Hecho (incluye retracto, garantía y reversión del pago) | `reembolsos.html` |
 | 7 | Pedir solo los datos necesarios | Hecho. Ver §6 | Formularios |
-| 8 | Derechos de cada imagen | Revisado. Ver §7 y `DERECHOS-IMAGENES.md` | |
+| 8 | Derechos de cada imagen | Revisado: 6 fotos propias, 10 por confirmar. Ver §7 y `DERECHOS-IMAGENES.md` | **[TÚ]** |
 | 9 | Leyes locales | Revisado. Ver §2. Hay pendientes **[TÚ]** | |
 
 ## 2. Normas que aplican y cómo las cubre la tienda
@@ -28,7 +28,7 @@
 | **Ley 1480, art. 47** — retracto | 5 días hábiles, con excepciones (bienes de uso personal) | Los cosméticos son de uso personal → se explica la excepción y se ofrece devolución **voluntaria** de productos sellados | Decide si mantienes la devolución voluntaria |
 | **Ley 1480, art. 51 y Decreto 1074/2015** — reversión del pago | Informar el derecho y el procedimiento | `reembolsos.html#reversion`, enlazado desde términos, checkout y confirmación | **[TÚ]** Proceso interno para atenderlas en los plazos legales |
 | **Ley 1480, arts. 7–18 y Decreto 735/2013** — garantía | Garantía legal mínima | Explicada en `reembolsos.html` | — |
-| **Ley 1480 y Ley 2300 de 2023** — publicidad engañosa y contacto | Reseñas y afirmaciones veraces; contactar solo en horarios y canales permitidos | Reseñas marcadas “de ejemplo”; marketing solo con casilla aceptada | **[TÚ]** Borrar las reseñas de ejemplo antes de publicar. Enviar marketing solo lun–vie 7 a. m.–7 p. m. y sáb 8 a. m.–3 p. m., nunca domingos ni festivos |
+| **Ley 1480 y Ley 2300 de 2023** — publicidad engañosa y contacto | Reseñas y afirmaciones veraces; contactar solo en horarios y canales permitidos | El catálogo empieza sin reseñas ni calificaciones; las descripciones solo dicen lo que muestra el empaque; marketing solo con casilla aceptada | **[TÚ]** Publicar solo reseñas de clientas reales. Enviar marketing solo lun–vie 7 a. m.–7 p. m. y sáb 8 a. m.–3 p. m., nunca domingos ni festivos |
 | **Circular Única SIC** | Enlace visible a la SIC en tiendas online | Enlace a www.sic.gov.co en el footer de todas las páginas | — |
 | **Ley 1581/2012, Decreto 1377/2013 (Dec. 1074/2015)** — datos personales | Política con contenido mínimo; autorización previa, expresa e informada; **conservar prueba**; atender consultas (10 días hábiles) y reclamos (15 días hábiles) | Política completa; casillas sin marcar; registro de prueba; descarga y borrado de datos en “Mi cuenta”; plazos en la política | **[TÚ]** Revisar si debes inscribir tus bases de datos en el **RNBD de la SIC** (obligatorio para sociedades y entidades sin ánimo de lucro con activos totales superiores a 100.000 UVT — Decreto 090 de 2018). **[TÚ]** Firmar contratos de encargo con pasarela, transportadora y hosting |
 | **Ley 527 de 1999** — comercio electrónico | Validez de los mensajes de datos y la aceptación electrónica | La aceptación por casilla queda registrada con fecha, texto y versión | — |
@@ -85,4 +85,4 @@ Cada envío genera un registro con: id único, formulario, **texto exacto** de c
 
 ## 7. Imágenes
 
-Ver `DERECHOS-IMAGENES.md`. En corto: **todas las imágenes actuales fueron creadas por código para este proyecto**, por lo que no hay derechos de terceros. Las marcas de los productos son ficticias. No se pudo verificar ninguna foto tuya porque aún no hay ninguna: regístralas cuando las agregues.
+Ver `DERECHOS-IMAGENES.md`. En corto: las 6 fotos tomadas en tu tienda (con tu letrero) son tuyas. Las otras 10 parecen fotos promocionales de las marcas (Ani-K, Atenea, Bloomshell): **no puedo verificar sus derechos**; necesitas el permiso escrito de la marca o del distribuidor, o reemplazarlas por fotos tuyas. Los nombres de marca solo se usan para identificar los productos originales que revendes.
