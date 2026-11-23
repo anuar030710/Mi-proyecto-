@@ -28,7 +28,7 @@ function headerHTML() {
   <header class="site-header">
     <div class="container header-inner">
       <button class="icon-btn menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav">${ICONS.menu}</button>
-      <a class="logo" href="index.html" aria-label="${escapeHTML(CONFIG.storeName)}, ir al inicio">sole<span>.</span><small>store</small></a>
+      <a class="logo" href="index.html" aria-label="${escapeHTML(CONFIG.storeName)}, ir al inicio">soles<span>.</span><small>store</small></a>
       <nav class="main-nav" aria-label="Principal"><ul>${navLinks}</ul></nav>
       <div class="header-actions">
         <button class="icon-btn" data-search-toggle aria-label="Buscar" aria-expanded="false" aria-controls="search-panel">${ICONS.search}</button>
@@ -53,7 +53,7 @@ function headerHTML() {
     <div class="overlay" data-close-nav></div>
     <nav class="mobile-nav__panel" aria-label="Menú móvil">
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <a class="logo" href="index.html">sole<span>.</span></a>
+        <a class="logo" href="index.html">soles<span>.</span></a>
         <button class="icon-btn" data-close-nav aria-label="Cerrar menú">${ICONS.close}</button>
       </div>
       <ul>${navLinks}${Object.entries(CATEGORIES).map(([k, v]) => `<li><a href="catalogo.html?categoria=${k}" style="font-size:1.1rem">${v}</a></li>`).join('')}</ul>
@@ -78,7 +78,7 @@ function footerHTML() {
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="logo" href="index.html">sole<span>.</span><small style="color:#CDBDBC">store</small></a>
+          <a class="logo" href="index.html">soles<span>.</span><small style="color:#CDBDBC">store</small></a>
           <p style="max-width:34ch;color:#CDBDBC">${escapeHTML(CONFIG.tagline)}. Maquillaje elegido con cariño para que te sientas tú, todos los días.</p>
           <div class="pay-icons" aria-label="Medios de pago"><span>Pagos por WhatsApp:</span>${CONFIG.paymentOptions.map((m) => `<span>${escapeHTML(m)}</span>`).join('')}</div>
         </div>

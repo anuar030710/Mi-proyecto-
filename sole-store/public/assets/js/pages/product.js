@@ -21,7 +21,7 @@ function howToCard(prod) {
   return `<section class="howto" aria-labelledby="howto-title">
     <h2 id="howto-title" class="howto__title">Cómo usarlo</h2>
     ${prod.howToSteps?.length ? `<ol class="howto__steps">${prod.howToSteps.map((s) => `<li>${escapeHTML(s)}</li>`).join('')}</ol>` : ''}
-    ${prod.tip ? `<p class="howto__tip"><strong>Consejo de Sole:</strong> ${escapeHTML(prod.tip)}</p>` : ''}
+    ${prod.tip ? `<p class="howto__tip"><strong>Consejo de Soles:</strong> ${escapeHTML(prod.tip)}</p>` : ''}
   </section>`;
 }
 const p = findProduct(products, getParam('id') || '');
@@ -33,7 +33,7 @@ if (!p) {
 }
 
 /* ---------- SEO dinámico ---------- */
-document.title = `${p.name} · ${p.brand} | Sole Store`;
+document.title = `${p.name} · ${p.brand} | Soles Store`;
 $('meta[name="description"]').setAttribute('content', `${p.name} de ${p.brand}. ${p.description.slice(0, 120)}`);
 const ld = document.createElement('script');
 ld.type = 'application/ld+json';

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sole Store — servidor local sin dependencias (solo Node.js 18+).
+ * Soles Store — servidor local sin dependencias (solo Node.js 18+).
  *
  *   node server.js            → http://localhost:3000
  *   PORT=8080 node server.js  → otro puerto
@@ -129,6 +129,6 @@ http.createServer((req, res) => {
   if (pathname.startsWith('/api/')) return handleApi(req, res, pathname).catch(() => send(res, 500, { error: 'server_error' }));
   return serveStatic(req, res, pathname);
 }).listen(PORT, () => {
-  console.log(`Sole Store lista en http://localhost:${PORT}`);
+  console.log(`Soles Store lista en http://localhost:${PORT}`);
   console.log(`Registro de consentimientos: ${path.join(PRIVATE, 'consent-log.jsonl')}`);
 });

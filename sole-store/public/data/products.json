@@ -1,5 +1,5 @@
 {
-  "_info": "Catálogo de Sole Store. Precios en COP con IVA incluido. IMPORTANTE: los precios y el stock (10) son PROVISIONALES: cámbialos por los reales. 'discount' es un porcentaje. 'stock' 0 = Agotado. 'nso' = Notificación Sanitaria INVIMA (cópiala del empaque).",
+  "_info": "Catálogo de Soles Store. Precios en COP con IVA incluido. IMPORTANTE: los precios y el stock (10) son PROVISIONALES: cámbialos por los reales. 'discount' es un porcentaje. 'stock' 0 = Agotado. 'nso' = Notificación Sanitaria INVIMA (cópiala del empaque).",
   "products": [
     {
       "id": "s001",

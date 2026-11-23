@@ -1,5 +1,5 @@
 /**
- * Sole Store — Configuración central.
+ * Soles Store — Configuración central.
  * Casi todo lo que una dueña de tienda necesita cambiar está aquí.
  */
 export const CONFIG = {
@@ -9,7 +9,7 @@ export const CONFIG = {
   supabase: { url: '', anonKey: '' },
 
   /* Todo lo de abajo son valores por defecto: la administradora los cambia desde el panel. */
-  storeName: 'Sole Store',
+  storeName: 'Soles Store',
   tagline: 'Tu luz, a tu manera',
 
   /* Modo demostración: muestra una barra avisando que no se procesan pagos reales.
@@ -46,28 +46,28 @@ export const CONFIG = {
   },
 
   /* WhatsApp: número en formato internacional sin "+" ni espacios. */
-  whatsapp: { number: '573054556549', message: 'Hola Sole Store, tengo una pregunta sobre un producto.' },
+  whatsapp: { number: '573054556549', message: 'Hola Soles Store, tengo una pregunta sobre un producto.' },
 
   /* Datos legales del comercio (Ley 1480 de 2011, art. 50, y Ley 1581 de 2012).
      OBLIGATORIO completarlos antes de publicar. Se muestran en el footer y en las políticas. */
   company: {
-    legalName: '',          // Razón social o nombre de la persona natural. Ej.: 'Sole Store S.A.S.'
+    legalName: '',          // Razón social o nombre de la persona natural. Ej.: 'Soles Store S.A.S.'
     nit: '',                // NIT con dígito de verificación. Ej.: '900.000.000-0'
     address: '',            // Dirección física de notificaciones
     city: 'Bogotá D.C., Colombia',
     phone: '',              // Teléfono de atención
-    email: 'hola@solestore.co',
-    privacyEmail: 'datos@solestore.co',   // Correo para ejercer derechos de habeas data
+    email: 'hola@solesstore.co',
+    privacyEmail: 'datos@solesstore.co',   // Correo para ejercer derechos de habeas data
     hours: 'Lunes a viernes de 8:00 a. m. a 6:00 p. m.; sábados de 9:00 a. m. a 1:00 p. m.',
   },
 
   /* Versiones de los documentos legales. Súbelas cuando cambies el texto:
      así cada aceptación registrada indica qué versión aceptó la persona. */
   policyVersions: {
-    terms: '1.1 (2026-11-23)',
-    privacy: '1.1 (2026-11-23)',
-    cookies: '1.0 (2026-11-22)',
-    refunds: '1.1 (2026-11-23)',
+    terms: '1.2 (2026-11-23)',
+    privacy: '1.2 (2026-11-23)',
+    cookies: '1.1 (2026-11-23)',
+    refunds: '1.2 (2026-11-23)',
   },
 
   /* Scripts opcionales que SOLO se cargan si la persona acepta esa categoría de cookies.

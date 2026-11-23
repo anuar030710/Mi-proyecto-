@@ -130,7 +130,7 @@ async function placeOrder(data, form) {
   const consent = await recordConsent(form, { extra: { subject: { phone: data.phone, email: user?.email || null } } });
   const d = new Date();
   const order = {
-    id: `SOLE-${d.toISOString().slice(2, 10).replace(/-/g, '')}-${randomId(4)}`,
+    id: `SOLES-${d.toISOString().slice(2, 10).replace(/-/g, '')}-${randomId(4)}`,
     date: d.toISOString(),
     status: 'Por confirmar en WhatsApp',
     items: t.lines.map((l) => ({ id: l.product.id, name: l.product.name, tone: l.tone, qty: l.qty, unit: l.unit, total: l.total, image: l.product.thumb || l.product.image })),

@@ -1,7 +1,7 @@
-# Publica Sole Store en Firebase Hosting (https://solestore.web.app) cada vez que
+# Publica Soles Store en Firebase Hosting (https://solesstore.web.app) cada vez que
 # cambia la carpeta sole-store/ en la rama main. También se puede lanzar a mano
-# desde GitHub: Actions → "Publicar Sole Store" → Run workflow.
-name: Publicar Sole Store
+# desde GitHub: Actions → "Publicar Soles Store" → Run workflow.
+name: Publicar Soles Store
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLESTORE }}
-          projectId: solestore
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLESSTORE }}
+          projectId: solesstore
           channelId: live
           entryPoint: sole-store

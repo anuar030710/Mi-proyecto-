@@ -1,4 +1,4 @@
-# Revisión legal de Sole Store (Colombia)
+# Revisión legal de Soles Store (Colombia)
 
 **Fecha de revisión:** 22 de noviembre de 2026 · **Alcance:** venta online a consumidores en Colombia.
 

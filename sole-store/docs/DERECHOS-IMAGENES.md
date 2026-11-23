@@ -2,7 +2,7 @@
 
 Antes de publicar, cada imagen de la tienda debe tener una fila con su origen y su permiso. Si no puedes llenar la fila, no publiques esa imagen.
 
-**Revisión del 23 de noviembre de 2026.** Las fotos las entregó la dueña de la tienda. Solo se puede confirmar el origen de las que se ven tomadas en el local (aparece el letrero de Sole Store). Las demás tienen fondo de estudio y estilo publicitario: lo más probable es que vengan de las marcas o del distribuidor.
+**Revisión del 23 de noviembre de 2026.** Las fotos las entregó la dueña de la tienda. Solo se puede confirmar el origen de las que se ven tomadas en el local (aparece el letrero de Soles Store). Las demás tienen fondo de estudio y estilo publicitario: lo más probable es que vengan de las marcas o del distribuidor.
 
 ## Fotos actuales
 

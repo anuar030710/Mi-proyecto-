@@ -1,5 +1,5 @@
 /**
- * Panel de administración de Sole Store.
+ * Panel de administración de Soles Store.
  *
  * Pensado para alguien que NO programa: todo se edita con formularios.
  * La seguridad real la pone Supabase (supabase/setup.sql): aunque alguien abra esta página,
@@ -308,7 +308,7 @@ function editProduct(p) {
       <div class="form-grid">
         <div class="field"><label for="e-desc">Descripción</label><textarea id="e-desc">${esc(d.description)}</textarea></div>
         <div class="field"><label for="e-steps">Cómo usarlo <span class="opt">(un paso por línea)</span></label><textarea id="e-steps">${esc((d.howToSteps || []).join('\n'))}</textarea></div>
-        <div class="field"><label for="e-tip">Consejo de Sole <span class="opt">(opcional)</span></label><input id="e-tip" value="${esc(d.tip || '')}"></div>
+        <div class="field"><label for="e-tip">Consejo de Soles <span class="opt">(opcional)</span></label><input id="e-tip" value="${esc(d.tip || '')}"></div>
         <div class="field"><label for="e-ingr">Ingredientes</label><textarea id="e-ingr" style="min-height:80px">${esc(d.ingredients || '')}</textarea></div>
         <div class="field"><label for="e-nso">Registro sanitario INVIMA (NSO)</label><input id="e-nso" value="${esc(d.nso || '')}"><span class="hint">Cópialo del empaque. En brochas y accesorios escribe “No aplica”.</span></div>
       </div>
@@ -571,7 +571,7 @@ async function tabStore() {
         ...(k.type !== 'shipping' ? { value: Number(k.value) || 0 } : {}), ...(Number(k.minSubtotal) > 0 ? { minSubtotal: Number(k.minSubtotal) } : {}) };
     }
     const value = {
-      storeName: v('st-name') || 'Sole Store', tagline: v('st-tag'),
+      storeName: v('st-name') || 'Soles Store', tagline: v('st-tag'),
       whatsapp: { number: `57${waNum}`, message: v('st-wamsg') },
       paymentOptions: v('st-pay').split(',').map((s) => s.trim()).filter(Boolean),
       company: { legalName: v('st-legal'), nit: v('st-nit'), address: v('st-addr'), city: v('st-city'), phone: v('st-phone'), email: v('st-email'), privacyEmail: v('st-pemail'), hours: v('st-hours') },

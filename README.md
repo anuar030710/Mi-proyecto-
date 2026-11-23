@@ -4,6 +4,6 @@ Las skills están en `.claude/skills/`, copiadas desde https://github.com/emilko
 
 Para usarlas en un proyecto real, copia la carpeta `.claude/skills/` a la raíz de tu repositorio.
 
-## Sole Store
+## Soles Store
 
 Tienda online de maquillaje en `sole-store/`. Instrucciones en [`sole-store/README.md`](sole-store/README.md).

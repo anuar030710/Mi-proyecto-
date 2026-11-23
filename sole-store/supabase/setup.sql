@@ -1,5 +1,5 @@
 -- =====================================================================
--- Sole Store — configuración de Supabase (se ejecuta UNA sola vez)
+-- Soles Store — configuración de Supabase (se ejecuta UNA sola vez)
 --
 -- Cómo usarlo:
 --   1. En supabase.com abre tu proyecto → SQL Editor → New query.
@@ -184,7 +184,7 @@ begin
     raise exception 'PEDIDO_INVALIDO';
   end if;
   oid := p_order->>'id';
-  if oid is null or oid !~ '^SOLE-[0-9]{6}-[A-Z0-9]{4}$' then raise exception 'PEDIDO_INVALIDO'; end if;
+  if oid is null or oid !~ '^SOLES-[0-9]{6}-[A-Z0-9]{4}$' then raise exception 'PEDIDO_INVALIDO'; end if;
   for it in select * from jsonb_array_elements(p_order->'items') loop
     q := (it->>'qty')::int;
     if q is null or q < 1 or q > 20 then raise exception 'PEDIDO_INVALIDO'; end if;

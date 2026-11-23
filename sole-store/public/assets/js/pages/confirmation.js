@@ -21,7 +21,7 @@ function howToSection(o) {
     ${items.map((p) => `<div class="howto howto--compact">
       <h3 class="howto__title">${escapeHTML(p.name)}</h3>
       <ol class="howto__steps">${p.howToSteps.map((s) => `<li>${escapeHTML(s)}</li>`).join('')}</ol>
-      ${p.tip ? `<p class="howto__tip"><strong>Consejo de Sole:</strong> ${escapeHTML(p.tip)}</p>` : ''}
+      ${p.tip ? `<p class="howto__tip"><strong>Consejo de Soles:</strong> ${escapeHTML(p.tip)}</p>` : ''}
     </div>`).join('')}
   </section>`;
 }

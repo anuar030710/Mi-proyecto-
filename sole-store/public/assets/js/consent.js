@@ -34,7 +34,7 @@ const PURPOSES = {
   registro: 'crear y administrar mi cuenta, y guardar mi historial de pedidos y favoritos',
   contacto: 'responder mi mensaje o solicitud',
   resena: 'publicar mi reseña con el nombre que indique',
-  newsletter: 'enviarme el boletín de Sole Store',
+  newsletter: 'enviarme el boletín de Soles Store',
 };
 
 /** Texto exacto de cada casilla. Este mismo texto (sin HTML) queda en el registro. */

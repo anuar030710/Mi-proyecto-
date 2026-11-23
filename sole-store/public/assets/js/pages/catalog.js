@@ -112,7 +112,7 @@ function render(res) {
   // Título de la página según filtro
   const title = state.categoria.length === 1 ? CATEGORIES[state.categoria[0]] : state.oferta ? 'Ofertas' : state.q ? `Resultados para “${state.q}”` : state.orden === 'novedades' ? 'Novedades' : 'Catálogo';
   $('#page-title').textContent = title;
-  document.title = `${title} | Sole Store`;
+  document.title = `${title} | Soles Store`;
 }
 
 function syncURL() {
