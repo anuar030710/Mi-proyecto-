@@ -11,6 +11,7 @@ import { cartCount, getFavorites, onChange } from '../store.js';
 import { currentUser } from '../auth.js';
 import { initCartDrawer, openCartDrawer } from './cartDrawer.js';
 import { initCookieConsent, flushPendingConsents } from '../consent.js';
+import { loadSettings } from '../settings.js';
 
 const NAV = [
   ['index.html', 'Inicio'], ['catalogo.html', 'Catálogo'], ['catalogo.html?oferta=1', 'Ofertas'],
@@ -190,6 +191,7 @@ function fillCompanyData() {
 
 /** Punto de entrada común. Devuelve el catálogo para que la página lo use. */
 export async function initLayout() {
+  await loadSettings(); // ajustes del panel antes de pintar header y footer
   $('#app-header').outerHTML = headerHTML();
   $('#app-footer').outerHTML = footerHTML();
   fillCompanyData();

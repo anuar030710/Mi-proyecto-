@@ -5,8 +5,8 @@
  *    y sin marcar: (a) Términos + autorización de tratamiento de datos y (b) comunicaciones comerciales.
  * 2. Registro: al enviar el formulario se guarda una prueba de QUÉ aceptó la persona, CUÁNDO,
  *    CÓMO (casilla, formulario, página) y QUÉ VERSIÓN de cada documento estaba vigente.
- *    La prueba se envía a server.js (POST /api/consent), que añade la IP y la hora del servidor y
- *    la guarda en private/consent-log.jsonl. Si el servidor no está disponible se guarda en cola
+ *    La prueba se guarda en Supabase (tabla consents, con la hora del servidor) o, sin Supabase,
+ *    en server.js (POST /api/consent → private/consent-log.jsonl, con IP). Si el servidor no está disponible se guarda en cola
  *    y se reintenta en la próxima visita. (Ley 1581 de 2012 art. 9 y Decreto 1377 de 2013 art. 7-8:
  *    el responsable debe conservar prueba de la autorización.)
  * 3. Cookies: banner con "Aceptar todas", "Solo necesarias" y "Configurar", con el mismo peso visual.
@@ -15,6 +15,14 @@
 import { CONFIG } from './config.js';
 import { storage, escapeHTML, randomId, trapFocus, $ } from './utils.js';
 import { ICONS } from './icons.js';
+import { isConfigured, db } from './supabase.js';
+
+/** Guarda un registro: en Supabase (tabla consents, solo se puede agregar) o en server.js. */
+async function postRecord(record) {
+  if (isConfigured()) { await db('consents', { method: 'POST', body: { record }, prefer: 'return=minimal' }); return; }
+  const res = await fetch(CONFIG.consentEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record), keepalive: true });
+  if (!res.ok) throw new Error(String(res.status));
+}
 
 const PENDING_KEY = 'sole_consent_pending';
 const RECEIPTS_KEY = 'sole_consent_receipts';
@@ -125,10 +133,7 @@ async function sendRecord(record) {
   const receipt = { recordId: record.recordId, form: record.form, date: record.clientTimestamp,
     consents: record.consents.map((c) => ({ key: c.key, accepted: c.accepted })), synced: false };
   try {
-    const res = await fetch(CONFIG.consentEndpoint, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record), keepalive: true,
-    });
-    if (!res.ok) throw new Error(String(res.status));
+    await postRecord(record);
     receipt.synced = true;
   } catch {
     const pending = storage.get(PENDING_KEY, []);
@@ -147,8 +152,7 @@ export async function flushPendingConsents() {
   const still = [];
   for (const rec of pending) {
     try {
-      const res = await fetch(CONFIG.consentEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...rec, retried: true }) });
-      if (!res.ok) throw new Error();
+      await postRecord({ ...rec, retried: true });
     } catch { still.push(rec); }
   }
   storage.set(PENDING_KEY, still);

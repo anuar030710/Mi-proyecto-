@@ -2,12 +2,20 @@
  * Acceso al catálogo (data/products.json) y reglas de precio/etiquetas.
  */
 import { CONFIG } from './config.js';
+import { isConfigured, fetchPublicProducts } from './supabase.js';
 
 let cache = null;
 
 /** Carga los productos una sola vez por página. */
 export async function loadProducts() {
   if (cache) return cache;
+  // 1) Productos editados desde el panel (Supabase). 2) Si no hay, el archivo data/products.json.
+  if (isConfigured()) {
+    try {
+      const remote = await fetchPublicProducts();
+      if (remote.length) { cache = remote; return cache; }
+    } catch (e) { console.warn('Usando data/products.json:', e.message); }
+  }
   const res = await fetch('data/products.json', { cache: 'no-cache' });
   if (!res.ok) throw new Error('No se pudo cargar el catálogo');
   const data = await res.json();

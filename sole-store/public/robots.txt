@@ -3,4 +3,5 @@ Disallow: /carrito.html
 Disallow: /checkout.html
 Disallow: /confirmacion.html
 Disallow: /cuenta.html
+Disallow: /admin.html
 Sitemap: https://www.TU-DOMINIO.co/sitemap.xml

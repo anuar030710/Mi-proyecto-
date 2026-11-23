@@ -50,7 +50,7 @@ sole-store/
 
 ## 3. Cambiar productos, precios y fotos
 
-Todo está en **`public/data/products.json`**. Cada producto tiene:
+Lo más fácil es el **panel de administración** (sección 6). Sin panel, todo está en **`public/data/products.json`**. Cada producto tiene:
 
 | Campo | Qué es | Ejemplo |
 |---|---|---|
@@ -96,14 +96,14 @@ La página **no cobra**. Al finalizar la compra, la clienta ve su número de ped
 
 Si algún día quieres cobrar en la página, las opciones en Colombia son **Wompi** (tarjeta, PSE, Nequi), **Mercado Pago** o **Stripe** (para ventas en dólares). Eso requiere un servidor que recalcule el total y reciba la confirmación del pago.
 
-## 6. Conectar una base de datos
+## 6. Panel de administración (editar sin código)
 
-Ahora mismo las cuentas y pedidos viven en el navegador (`auth.js`) y los consentimientos en archivos `.jsonl`. Para producción:
+`admin.html` es un panel para que la administradora cambie productos, precios, unidades, fotos, textos, WhatsApp, datos legales, envíos y cupones desde el celular o el computador. Usa **Supabase** (gratis) como base de datos y para el inicio de sesión. Solo los correos de la tabla `admins` pueden guardar cambios: lo controla la base de datos, no el navegador.
 
-- **Opción simple:** [Supabase](https://supabase.com) (PostgreSQL + login + almacenamiento de fotos). Tablas: `products`, `orders`, `order_items`, `customers`, `consents`, `contact_messages`. Usa su autenticación en vez de `auth.js` y Row Level Security para que cada clienta solo lea sus pedidos.
-- **Opción con tu servidor:** Node + PostgreSQL. Agrega endpoints `/api/products`, `/api/orders`, `/api/auth/*` a `server.js` (o migra a Express) y cambia `loadProducts()` para leer de `/api/products`.
-- Haz que la tabla `consents` **solo permita insertar** (sin actualizar ni borrar): así sirve como prueba.
-- Si quieres un panel para editar productos sin tocar JSON: Supabase Studio, o un CMS como Strapi o Directus.
+- Instalación y uso: **`docs/GUIA-ADMINISTRADORA.md`**.
+- Reglas de seguridad y tablas: **`supabase/setup.sql`**.
+- Con Supabase conectado, las autorizaciones y los mensajes de contacto también se guardan ahí (funciona en GitHub Pages, sin `server.js`).
+- Si Supabase no está configurado o no responde, la tienda usa `data/products.json`.
 
 ## 7. Qué incluye
 

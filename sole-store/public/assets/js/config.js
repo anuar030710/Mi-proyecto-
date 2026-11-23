@@ -3,6 +3,12 @@
  * Casi todo lo que una dueña de tienda necesita cambiar está aquí.
  */
 export const CONFIG = {
+  /* Panel de administración (admin.html). Se llena UNA sola vez al crear el proyecto en
+     supabase.com (Project Settings → API). Ambas son públicas: es seguro que estén aquí.
+     NUNCA pongas aquí la clave "service_role". Si se dejan vacías, la tienda usa data/products.json. */
+  supabase: { url: '', anonKey: '' },
+
+  /* Todo lo de abajo son valores por defecto: la administradora los cambia desde el panel. */
   storeName: 'Sole Store',
   tagline: 'Tu luz, a tu manera',
 
