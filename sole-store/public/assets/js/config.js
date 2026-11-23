@@ -78,7 +78,7 @@ export const CONFIG = {
 
 /* Nombres legibles de categorías, tipos de piel y familias de tono. */
 export const CATEGORIES = {
-  labiales: 'Labiales', rubores: 'Rubores', contorno: 'Contorno', correctores: 'Correctores', polvos: 'Polvos',
+  labiales: 'Labiales', rubores: 'Rubores', iluminadores: 'Iluminadores', contorno: 'Contorno', correctores: 'Correctores', polvos: 'Polvos',
   fijadores: 'Fijadores', cejas: 'Cejas', delineadores: 'Delineadores', mascaras: 'Máscaras de pestañas',
   brochas: 'Brochas', accesorios: 'Esponjas y accesorios',
 };

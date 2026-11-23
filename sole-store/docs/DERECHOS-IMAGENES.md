@@ -24,6 +24,14 @@ Antes de publicar, cada imagen de la tienda debe tener una fila con su origen y 
 | `esponja-bloom-swirl-xl.webp` | Bloom Swirl XL | Foto promocional | ⚠️ Por confirmar | Ídem |
 | `llavero-bloom-me.webp` | Bloom Me | Render de catálogo | ⚠️ Por confirmar | Ídem |
 | `polvo-suelto-bloomshell.webp` | Polvo suelto | Foto promocional | ⚠️ Por confirmar | Ídem |
+| `iluminador-crema-ani-k.webp` | Iluminador en crema Ani-K | Foto de catálogo de la marca | ⚠️ Por confirmar | Permiso de la marca/distribuidor o foto propia |
+| `iluminador-suelto-bonita.webp`, `-2`, `-3` | Iluminador suelto Bonita | Fotos promocionales de Ani-K (una con texto publicitario y otra con el brazo de una persona) | ⚠️ Por confirmar | Ídem |
+| `rubor-serum-flushy-blushy.webp` | Flushy Blushy | Foto promocional | ⚠️ Por confirmar | Ídem |
+| `fijador-cejas-freeze-babes.webp` | Freeze Babes | Foto de producto (puede ser tuya) | ⚠️ Por confirmar | Si la tomaste tú, márcala ✅ |
+| `pomos-triangulares-ani-k.webp` | Pomos triangulares | Foto promocional | ⚠️ Por confirmar | Ídem |
+| `bloom-lamination-xl.webp` | Bloom Lamination XL | Foto promocional | ⚠️ Por confirmar | Ídem |
+| `rubor-bloom-floral-liquid.webp` | Bloom Floral Liquid | Foto promocional | ⚠️ Por confirmar | Ídem |
+| `polvo-suelto-ani-k.webp` | Loose Powder Ani-K | Foto de catálogo | ⚠️ Por confirmar | Ídem |
 
 Las marcas que aparecen en las fotos (Bloomshell, Ani-K, Atenea, Samy, Prosa, Kiss Beauty, Hidrals Beauty) pertenecen a sus titulares. Usarlas para identificar productos originales que revendes está permitido; no las uses como si fueran tu propia marca.
 

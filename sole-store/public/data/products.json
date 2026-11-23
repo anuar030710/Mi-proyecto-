@@ -738,6 +738,368 @@
       "howToUse": "Toma polvo con el pomo, retira el exceso y presiona sobre la zona T y bajo los ojos.",
       "nso": "Pendiente: copiar del empaque",
       "reviews": []
+    },
+    {
+      "id": "s018",
+      "slug": "iluminador-crema-ani-k",
+      "name": "Iluminador en Crema Cream Highlighter",
+      "brand": "Ani-K",
+      "category": "iluminadores",
+      "price": 25000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Dorado",
+          "hex": "#D9A57A",
+          "family": "dorado"
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/iluminador-crema-ani-k.webp",
+      "thumb": "assets/img/products/iluminador-crema-ani-k-sm.webp",
+      "images": [
+        "assets/img/products/iluminador-crema-ani-k.webp"
+      ],
+      "description": "Iluminador en crema en estuche con tapa de estrella. Da un brillo luminoso y natural a los puntos altos del rostro.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Aplica con la yema del dedo o una brocha pequeña sobre pómulos, puente de la nariz y arco de cupido.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": []
+    },
+    {
+      "id": "s019",
+      "slug": "iluminador-suelto-bonita",
+      "name": "Iluminador Suelto Bonita",
+      "brand": "Ani-K",
+      "category": "iluminadores",
+      "price": 22000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Angel Glow",
+          "hex": "#EDE6DA",
+          "family": "dorado"
+        },
+        {
+          "name": "Diva Glow",
+          "hex": "#D9A08E",
+          "family": "rosa"
+        },
+        {
+          "name": "Cookie",
+          "hex": "#DCC9A4",
+          "family": "dorado"
+        },
+        {
+          "name": "Cosmic Lover",
+          "hex": "#EEDDE6",
+          "family": "rosa"
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/iluminador-suelto-bonita.webp",
+      "thumb": "assets/img/products/iluminador-suelto-bonita-sm.webp",
+      "images": [
+        "assets/img/products/iluminador-suelto-bonita.webp",
+        "assets/img/products/iluminador-suelto-bonita-2.webp",
+        "assets/img/products/iluminador-suelto-bonita-3.webp"
+      ],
+      "description": "Iluminador en polvo suelto de destellos finos, en 4 tonos. Contenido: 8 g.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Toma un poco de producto con brocha abanico, retira el exceso y aplica sobre los pómulos y la nariz. También sirve en el lagrimal.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": []
+    },
+    {
+      "id": "s020",
+      "slug": "rubor-serum-flushy-blushy",
+      "name": "Rubor Sérum Flushy Blushy",
+      "brand": "Ani-K",
+      "category": "rubores",
+      "price": 28000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Tono 1",
+          "hex": "#D95A6B",
+          "family": "rosa"
+        },
+        {
+          "name": "Tono 2",
+          "hex": "#E0567A",
+          "family": "rosa"
+        },
+        {
+          "name": "Tono 3",
+          "hex": "#F07A5E",
+          "family": "coral"
+        },
+        {
+          "name": "Tono 4",
+          "hex": "#B8323C",
+          "family": "rojo"
+        },
+        {
+          "name": "Tono 5",
+          "hex": "#C42E4A",
+          "family": "rojo"
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/rubor-serum-flushy-blushy.webp",
+      "thumb": "assets/img/products/rubor-serum-flushy-blushy-sm.webp",
+      "images": [
+        "assets/img/products/rubor-serum-flushy-blushy.webp"
+      ],
+      "description": "Rubor líquido tipo sérum de textura ligera para un color fresco y natural. Contenido: 10 ml.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Aplica 1 o 2 gotas en las mejillas y difumina rápido con los dedos o una esponja.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": []
+    },
+    {
+      "id": "s021",
+      "slug": "fijador-cejas-freeze-babes",
+      "name": "Fijador de Cejas Freeze Babes",
+      "brand": "Ani-K",
+      "category": "cejas",
+      "price": 22000,
+      "discount": 0,
+      "tones": [],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/fijador-cejas-freeze-babes.webp",
+      "thumb": "assets/img/products/fijador-cejas-freeze-babes-sm.webp",
+      "images": [
+        "assets/img/products/fijador-cejas-freeze-babes.webp"
+      ],
+      "description": "Fijador de cejas de fijación extrema, con ácido hialurónico y aceite de ricino. Contenido: 4,8 g.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Peina las cejas hacia arriba con el cepillo y dales forma. Deja secar unos segundos.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": []
+    },
+    {
+      "id": "s022",
+      "slug": "pomos-triangulares-ani-k",
+      "name": "Pomos Triangulares",
+      "brand": "Ani-K",
+      "category": "accesorios",
+      "price": 12000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Rosa",
+          "hex": "#F3C9BE",
+          "family": "rosa"
+        },
+        {
+          "name": "Café",
+          "hex": "#A97B5C",
+          "family": "marron"
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/pomos-triangulares-ani-k.webp",
+      "thumb": "assets/img/products/pomos-triangulares-ani-k-sm.webp",
+      "images": [
+        "assets/img/products/pomos-triangulares-ani-k.webp"
+      ],
+      "description": "Pomos de terciopelo en forma triangular con cinta para sujetar. Su punta llega a esquinas como el contorno de ojos y la nariz.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Úsalos para aplicar o sellar polvos presionando sobre la piel. Lávalos con jabón suave.",
+      "nso": "No aplica (accesorio, no es un cosmético)",
+      "reviews": []
+    },
+    {
+      "id": "s023",
+      "slug": "bloom-lamination-xl",
+      "name": "Bloom Lamination XL",
+      "brand": "Bloomshell",
+      "category": "cejas",
+      "price": 30000,
+      "discount": 0,
+      "tones": [],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/bloom-lamination-xl.webp",
+      "thumb": "assets/img/products/bloom-lamination-xl-sm.webp",
+      "images": [
+        "assets/img/products/bloom-lamination-xl.webp"
+      ],
+      "description": "Gel para efecto laminado de cejas. Contenido: 10 ml.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Peina las cejas hacia arriba con el cepillo, dales forma y deja secar.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": []
+    },
+    {
+      "id": "s024",
+      "slug": "rubor-bloom-floral-liquid",
+      "name": "Rubor Líquido Bloom Floral Liquid",
+      "brand": "Bloomshell",
+      "category": "rubores",
+      "price": 26000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Durazno",
+          "hex": "#E08870",
+          "family": "coral"
+        },
+        {
+          "name": "Fucsia",
+          "hex": "#E9507F",
+          "family": "rosa"
+        },
+        {
+          "name": "Caramelo",
+          "hex": "#9C4E22",
+          "family": "marron"
+        },
+        {
+          "name": "Terracota",
+          "hex": "#8C3A2C",
+          "family": "coral"
+        }
+      ],
+      "skinTypes": [
+        "seca",
+        "grasa",
+        "mixta",
+        "normal",
+        "sensible"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/rubor-bloom-floral-liquid.webp",
+      "thumb": "assets/img/products/rubor-bloom-floral-liquid-sm.webp",
+      "images": [
+        "assets/img/products/rubor-bloom-floral-liquid.webp"
+      ],
+      "description": "Rubor líquido en 4 tonos de acabado natural y fácil de difuminar.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Aplica una pequeña cantidad en las mejillas y difumina a toques con los dedos o una esponja.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": []
+    },
+    {
+      "id": "s025",
+      "slug": "polvo-suelto-ani-k",
+      "name": "Polvo Facial Suelto Loose Powder",
+      "brand": "Ani-K",
+      "category": "polvos",
+      "price": 24000,
+      "discount": 0,
+      "tones": [
+        {
+          "name": "Scarlett",
+          "hex": "#D9AC7C",
+          "family": "nude"
+        },
+        {
+          "name": "Cinnamon",
+          "hex": "#A8643A",
+          "family": "marron"
+        },
+        {
+          "name": "Rosa",
+          "hex": "#F0B3A8",
+          "family": "rosa"
+        },
+        {
+          "name": "Carlota",
+          "hex": "#EADCB0",
+          "family": "nude"
+        }
+      ],
+      "skinTypes": [
+        "grasa",
+        "mixta",
+        "normal"
+      ],
+      "stock": 10,
+      "sold": 0,
+      "createdAt": "2026-11-23",
+      "rating": 0,
+      "reviewsCount": 0,
+      "image": "assets/img/products/polvo-suelto-ani-k.webp",
+      "thumb": "assets/img/products/polvo-suelto-ani-k-sm.webp",
+      "images": [
+        "assets/img/products/polvo-suelto-ani-k.webp"
+      ],
+      "description": "Polvo facial suelto para sellar el maquillaje y controlar el brillo, en 4 tonos.",
+      "ingredients": "Consulta la lista completa de ingredientes en el empaque del producto.",
+      "howToUse": "Aplica con pomo o brocha sobre la zona T y bajo los ojos; retira el exceso con una brocha limpia.",
+      "nso": "Pendiente: copiar del empaque",
+      "reviews": []
     }
   ]
 }
