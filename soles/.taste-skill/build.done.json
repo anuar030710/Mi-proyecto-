@@ -1,0 +1,11 @@
+{
+ "page": "index.html",
+ "url": null,
+ "root": null,
+ "kind": "product",
+ "category": "maquillaje",
+ "primary": "Pedir por WhatsApp",
+ "rounds": 3,
+ "start": "2026-11-21T02:50:33.375Z",
+ "by": "gate.mjs --start"
+}
