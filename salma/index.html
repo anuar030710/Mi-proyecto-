@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Inspirato Salma · Pijamas y piezas únicas</title>
+  <meta name="description" content="Inspirato Salma: pijamas, batolas y conjuntos únicos para mujeres que crean tendencia. Pide por WhatsApp. Pago con Nequi, Bancolombia o efectivo." />
+  <meta name="theme-color" content="#fbf6f1" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E🌸%3C/text%3E%3C/svg%3E" />
+  <link rel="preload" href="fonts/fraunces-latin-full-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <img class="hero-logo" src="img/logo.webp" alt="Inspirato Salma · Moda femenina" width="536" height="512" fetchpriority="high" />
+          <span class="eyebrow">Pijamas · Batolas · Conjuntos</span>
+          <h1>Florece con piezas <em>únicas</em></h1>
+          <p class="lead" data-cfg="marca.descripcion"></p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#catalogo">Ver catálogo</a>
+            <a class="btn btn-wa" data-wa="Hola Inspirato Salma ✨ Quiero ver el catálogo">Escríbenos <span data-cfg="whatsappVisible"></span></a>
+          </div>
+          <div class="pay-strip" id="pay-strip"></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <img src="img/conjunto-vaquita.webp" alt="" width="450" height="562" fetchpriority="high" />
+          <img src="img/batola-ositos-rayas.webp" alt="" width="450" height="562" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="catalogo">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Catálogo</h2>
+          <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
+        </div>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="como-comprar">
+      <div class="wrap">
+        <div class="section-head"><h2>¿Lista para florecer?</h2></div>
+        <div class="info">
+          <div><h3>1. Elige tu pieza</h3><p>Escoge talla, color y cantidad, y agrégala a tu bolsa.</p></div>
+          <div><h3>2. Confirma por WhatsApp</h3><p>Te llega tu pedido listo al chat. Allí confirmamos disponibilidad, envío y total.</p></div>
+          <div><h3>3. Paga y recibe</h3><p><span data-cfg="pagos"></span>. <span data-cfg="marca.envio"></span></p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <!-- Detalle de producto -->
+  <dialog class="product-dlg" id="product-dlg" aria-labelledby="p-name">
+    <button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button>
+    <div class="inner">
+      <div class="pimg"><img id="p-img" alt="" /></div>
+      <form class="pinfo" id="p-form">
+        <span class="card-cat" id="p-cat"></span>
+        <h2 id="p-name"></h2>
+        <p class="muted" id="p-pieces" style="margin:0"></p>
+        <p class="price" id="p-price" style="margin:0"></p>
+        <fieldset><legend>Color</legend><div class="opts" id="p-colors"></div></fieldset>
+        <fieldset><legend>Talla</legend><div class="opts" id="p-sizes"></div><p class="stock-note" id="p-stock" aria-live="polite"></p></fieldset>
+        <fieldset>
+          <legend>Cantidad</legend>
+          <div class="qty"><button type="button" id="q-minus" aria-label="Menos">−</button><output id="q-val">1</output><button type="button" id="q-plus" aria-label="Más">+</button></div>
+        </fieldset>
+        <button class="btn btn-primary" type="submit" id="p-add">Agregar a la bolsa</button>
+        <p class="muted" style="margin:0">¿Dudas con tu talla? <a data-wa="Hola ✨ tengo una duda de tallas">Pregúntanos por WhatsApp</a></p>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Bolsa + formulario de pedido -->
+  <dialog class="bag-dlg" id="bag-dlg" aria-labelledby="bag-title">
+    <button class="dlg-close" type="button" data-close aria-label="Cerrar">×</button>
+    <div class="bag-inner">
+      <h2 id="bag-title">Tu bolsa</h2>
+      <ul class="bag-list" id="bag-list"></ul>
+      <p class="muted" id="bag-empty">Tu bolsa está vacía. ¡Elige una pieza para florecer!</p>
+      <div class="total" id="bag-total-row"><span>Subtotal</span><span id="bag-total">$0</span></div>
+      <p class="muted" style="margin:0">Envío: <span data-cfg="legal.costoEnvio"></span>.</p>
+
+      <form class="form" id="order-form" novalidate>
+        <div class="field">
+          <label for="f-nombre">¿Cómo te llamas?</label>
+          <input id="f-nombre" name="nombre" autocomplete="given-name" maxlength="60" required />
+        </div>
+        <div class="field">
+          <label for="f-ciudad">Ciudad o municipio de entrega</label>
+          <input id="f-ciudad" name="ciudad" autocomplete="address-level2" maxlength="60" required />
+          <p class="hint">Solo para calcular el envío. La dirección exacta la acordamos en el chat.</p>
+        </div>
+        <div class="field">
+          <label for="f-nota">Nota (opcional)</label>
+          <textarea id="f-nota" name="nota" maxlength="300" placeholder="Ej: es para regalo"></textarea>
+          <p class="hint">No escribas datos de salud, documentos ni datos bancarios.</p>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="c-terminos" required />
+          <span id="t-terminos">He leído y acepto los <a href="terminos.html" target="_blank">Términos y condiciones</a> y la <a href="reembolsos.html" target="_blank">Política de cambios y reembolsos</a>, y declaro ser mayor de 18 años.</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="c-datos" required />
+          <span id="t-datos">Autorizo de forma previa, expresa e informada a Inspirato Salma para tratar mis datos personales (nombre, ciudad y número de WhatsApp) con el fin de gestionar mi pedido, el envío y la atención posventa, según la <a href="privacidad.html" target="_blank">Política de privacidad</a>. Conozco mis derechos a conocer, actualizar, rectificar y suprimir mis datos.</span>
+        </label>
+
+        <p class="form-error" id="form-error" role="alert"></p>
+        <button class="btn btn-wa" type="submit" id="send-btn">Enviar pedido por WhatsApp</button>
+        <p class="muted" style="margin:0">Se abrirá WhatsApp con tu pedido. Nada se cobra hasta que confirmemos contigo.</p>
+      </form>
+    </div>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="common.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
