@@ -20,7 +20,7 @@
     el.innerHTML = `
       <p class="config-warn" id="config-warn" hidden>Faltan datos legales por completar en <code>config.js</code> (nombre, documento, dirección, correo). Complétalos antes de publicar la página.</p>
       <header class="top"><div class="wrap">
-        <a class="logo" href="index.html">Inspirato <span>Salma</span></a>
+        <a class="logo-img" href="index.html"><img src="img/logo-sm.webp" alt="Inspirato Salma · Moda femenina" width="320" height="306" /></a>
         <nav aria-label="Principal">
           <a class="link" href="${isHome ? "" : "index.html"}#catalogo">Catálogo</a>
           <a class="link" href="${isHome ? "" : "index.html"}#como-comprar">Cómo comprar</a>

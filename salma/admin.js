@@ -36,7 +36,7 @@ let editando = null; // id del producto abierto o "nuevo"
 function renderLogin(msg = "") {
   app.innerHTML = `
     <div class="center"><form class="panel login form" id="login" novalidate>
-      <a class="logo" href="index.html">Inspirato <span>Salma</span></a>
+      <a class="logo-img" href="index.html" style="align-self:center"><img src="img/logo.webp" alt="Inspirato Salma" width="536" height="512" style="height:120px;width:auto" /></a>
       <h1 style="font:500 26px/1.1 var(--serif);margin:8px 0 4px">Panel de administración</h1>
       <p class="muted" style="margin:0 0 8px">Solo para la dueña de la tienda.</p>
       <div class="field"><label for="l-email">Correo</label><input id="l-email" type="email" autocomplete="username" required /></div>

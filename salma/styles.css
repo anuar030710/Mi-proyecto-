@@ -40,7 +40,10 @@ button { -webkit-tap-highlight-color: transparent; }
 
 /* ---------- header ---------- */
 .top { position: sticky; top: 0; z-index: 20; background: rgba(251, 246, 241, .9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 12px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 92px; gap: 12px; }
+.logo-img { display: block; flex-shrink: 0; }
+.logo-img img { height: 80px; width: auto; }
+@media (max-width: 640px) { .top .wrap { height: 76px; } .logo-img img { height: 66px; } }
 .logo { font: italic 600 24px/1 var(--serif); color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
 .logo span { color: var(--rose); }
 .top nav { display: flex; align-items: center; gap: 8px; }
@@ -185,3 +188,7 @@ footer .legal-id { margin-top: 24px; font-size: 13px; }
 .opt.off input { cursor: not-allowed; }
 .stock-note { margin: 8px 0 0; font-size: 14px; color: var(--rose-deep); font-weight: 600; min-height: 1.2em; }
 .card.is-out .card-img img { filter: grayscale(.55) opacity(.8); }
+
+/* logo */
+.hero-logo { width: 230px; height: auto; margin: -8px 0 18px -10px; }
+@media (max-width: 860px) { .hero-logo { width: min(260px, 70vw); margin: 0 auto 20px; } .hero .wrap > div:first-child { text-align: center; } .hero .cta-row, .hero .pay-strip { justify-content: center; } .hero p.lead { margin-left: auto; margin-right: auto; } }
